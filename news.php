@@ -25,8 +25,6 @@
     background-color: #ddd;
     color: black;
   }
-
-<style>
   
 header {
   background-color: #333;
