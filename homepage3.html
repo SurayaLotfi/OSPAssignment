@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Say No to Bully</title>
+  <style>
+    /* Navigation Bar */
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Page Content */
+    .container {
+      margin: auto;
+      width: 80%;
+      padding-top: 50px;
+      text-align: center;
+    }
+
+    .section {
+      background-size: cover;
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-content {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .section-content p {
+      font-size: 18px;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+    h1
+     {
+        font-size: 80px;
+        font-weight: bolder;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px #000000;
+        color: rgb(255, 255, 255);
+        /*font-family: 'Verdana', Arial;*/
+      }
+
+      body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		#bg-slideshow {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+		}
+		#bg-slideshow img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: opacity 1s ease-in-out;
+		}
+		#bg-slideshow img.active {
+			opacity: 1;
+			z-index: 1;
+		}
+
+        .home .text {
+            position: absolute;
+            top: 35%;
+            left: 5%;
+        }
+        
+        .home p {
+            margin: 56px 0;
+            font-size: 25px;
+            color: #fff;
+            text-shadow: 3px 3px #000000;
+            font-weight: 900;
+        }
+
+        .primary-btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .primary-btn:hover {
+            background-color: #0069d9;
+        }
+
+        .message-box {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+
+      
+  </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">News</a>
+        <a href="tips.html">Prevention Tips</a>
+        <a href="gethelp.html">Get Help</a>
+        <a href="#">Sharing</a>
+      </div>
+
+      <section class="home">
+      <div class="text">
+        <h1>Say No to Bully</h1>
+        <p> "People are going to bring you down because of your drive. Ultimately, it makes you a stronger person to turn your cheek and go the other way." ~Selena Gomez
+        </p>
+        <div class="flex">
+            <button class="primary-btn">READ MORE</button>
+            <div class="message-box"></div>
+            
+         <script>
+            const btn = document.querySelector('.primary-btn');
+const messageBox = document.querySelector('.message-box');
+btn.addEventListener('click', function() {
+  const message = 'Come and join us!';
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+  messageBox.appendChild(messageElement);
+  messageBox.style.display = 'block';
+});
+
+         </script>
+
+        </div>
+      </div>
+      </section>
+      <div id="bg-slideshow">
+        <img class="active" src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-5.0.jpg">
+        <img src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-4.0.jpg">
+        <img src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-3.0.jpg">
+        <img src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-2.0.jpeg">
+      </div>
+      <script>
+        var bgImages = document.querySelectorAll('#bg-slideshow img');
+        var index = 0;
+    
+        function nextImage() {
+          bgImages[index].classList.remove('active');
+          index = (index + 1) % bgImages.length;
+          bgImages[index].classList.add('active');
+        }
+    
+        setInterval(nextImage, 5000);
+      
+      </script>
+
+      
+</body>
+</html> 
