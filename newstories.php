@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My YouTube Video</title>
+  <title>Stories on bully victims</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -28,9 +28,71 @@
       width: 100%;
       height: 100%;
     }
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Page Content */
+    .container {
+      margin: auto;
+      width: 80%;
+      padding-top: 50px;
+      text-align: center;
+    }
+
+    .section {
+      background-size: cover;
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-content {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .section-content p {
+      font-size: 18px;
+      text-align: left;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">News</a>
+    <a href="tips.html">Prevention Tips</a>
+    <a href="gethelp.html">Get Help</a>
+    <a href="#">Sharing</a>
+  </div>
   <div class="wrapper">
     <h1>Stories of bully victims</h1>
     
