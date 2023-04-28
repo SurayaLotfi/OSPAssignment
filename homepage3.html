@@ -78,6 +78,8 @@
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
+      position: sticky; /* or position: fixed; */
+      overflow-y: scroll;
 		}
 		#bg-slideshow {
 			position: fixed;
@@ -110,32 +112,54 @@
         .home p {
             margin: 56px 0;
             font-size: 25px;
-            color: #fff;
-            text-shadow: 3px 3px #000000;
+            color:#000000;
+            text-shadow: 2px 2px #fff;
             font-weight: 900;
         }
 
-        .primary-btn {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+
+        .home-about {
+          padding: 4em 0;
+          max-width: 900px;
+          margin: 0 auto;
         }
 
-        .primary-btn:hover {
-            background-color: #0069d9;
+        .container {
+          margin: auto;
+          width: 80%;
+          padding-top: 50px;
+          text-align: center;
         }
 
-        .message-box {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-top: 20px;
-            display: none;
+        .border{
+          border: 2px solid #333;
+          max-width: 500px;
+          padding: 20px;
+          border-radius: 10px;
+          font-family: 'PT Sans', sans-serif;  
+          box-shadow: 2px 2px 2px;
+          margin: auto; 
         }
+
+        .section-content{
+          font-size: 18px;
+          text-align: left;
+          margin-bottom: 15px;
+        }
+        .section-content p {
+          font-size: 18px;
+          text-align: left;
+          margin-bottom: 15px;
+        }
+
+        .columns {
+           display: flex;
+         }
+            
+        .col + .col {
+           margin-left: 1.5em;
+        }
+
 
 
       
@@ -150,32 +174,40 @@
         <a href="#">Sharing</a>
       </div>
 
-      <section class="home">
-      <div class="text">
+      <div class="home">
+        <div class="text">
         <h1>Say No to Bully</h1>
-        <p> "People are going to bring you down because of your drive. Ultimately, it makes you a stronger person to turn your cheek and go the other way." ~Selena Gomez
+        <p> "People are going to bring you down because of your drive.<br>
+             Ultimately, it makes you a stronger person to turn<br>
+             your cheek and go the other way."                      ~Selena Gomez
         </p>
-        <div class="flex">
-            <button class="primary-btn">READ MORE</button>
-            <div class="message-box"></div>
-            
-         <script>
-            const btn = document.querySelector('.primary-btn');
-const messageBox = document.querySelector('.message-box');
-btn.addEventListener('click', function() {
-  const message = 'Come and join us!';
-  const messageElement = document.createElement('p');
-  messageElement.textContent = message;
-  messageBox.appendChild(messageElement);
-  messageBox.style.display = 'block';
-});
-
-         </script>
-
-        </div>
       </div>
-      </section>
-      <div id="bg-slideshow">
+      <title>Home</title>
+      <body>
+        <section>
+        <div class = "container">
+          <div class = "border">
+            <p>
+              <div class = "section-title"><h3><b>Bullying</b></h3></div>
+                  <div class = "section-content">
+                      <p>"Bullying is a form of aggressive behavior in which someone intentionally and repeatedly causes another person injury or discomfort. Bullying can take the form of physical contact, words, or more subtle actions.
+
+                        The bullied individual typically has trouble defending him or herself and does nothing to “cause” the bullying.
+                        
+                        Cyberbullying is verbally threatening or harassing behavior conducted through such electronic technology as cell phones, email, social media, or text messaging."</p>
+
+                        <div class="columns">
+          <div class="col fade-in">
+            <h3>Lorem, ipsum.</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae
+              maiores fuga eos provident voluptas perferendis.
+            </p>
+          </div>
+          </section>        
+
+         </div>
+         <div id="bg-slideshow">
         <img class="active" src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-5.0.jpg">
         <img src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-4.0.jpg">
         <img src="C:\Users\visal\Documents\UM SEM 4\OOP\OSP ASGMT\OSPAssignment\image\Bullly-3.0.jpg">
@@ -194,7 +226,7 @@ btn.addEventListener('click', function() {
         setInterval(nextImage, 5000);
       
       </script>
-
-      
+        </div>
+      </div>
 </body>
 </html> 
