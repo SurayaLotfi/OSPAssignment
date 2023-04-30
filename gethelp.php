@@ -1,4 +1,7 @@
 <style>
+body{
+    background-image: url('https://i.pinimg.com/564x/70/2e/40/702e40edcf6d527a7cb598ba2204d6be.jpg');
+    } 
     .navbar {
       overflow: hidden;
       background-color: #333;
@@ -28,8 +31,11 @@
 
     .text-header{
         padding: 50px;
-        background-color: #f5f5f5;
-        font-family: 'PT Sans', sans-serif;
+        margin: 10px;
+        line-height:0.5;
+        background-color: #6699CC;
+        color: white;
+        /*font-family: 'PT Sans', sans-serif;*/
         font-size:  30px;
         text-align: center;
     }
@@ -60,6 +66,7 @@
     .icon-text{ 
         display: flex;
         align-items: center;
+        color: #365563;
     }
 
     .icon{
@@ -71,16 +78,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <div class="navbar">
-            <a href="#">Home</a>
-            <a href="#">News</a>
-            <a href="tips.html">Prevention Tips</a>
-            <a href="gethelp.html">Get Help</a>
-            <a href="#">Sharing</a>
-          </div>
-        <div class = "text-header">
-            <p>Helplines in Malaysia</p>
+    <div class="navbar">
+    <a href="home.php">Home</a>
+    <a href="news.php">News</a>
+    <a href="tips.php">Prevention Tips</a>
+    <a href="gethelp.php">Get Help</a>
+    <a href="newstories.php">Sharing</a>
+    <a href= "story.php">Share your story</a>
+  </div>
+        <div class = "text-header" style: "margin: 10px">
+            <h1>Helplines in Malaysia</h1>
+                Because we care.
         </div>
+        
         <title>Get Help</title>
         <body>
             <div class = "container">
@@ -90,6 +100,14 @@
                         <div class = "section-content">
                             <p>"We provide legal information and conseling services to
                             survivors."</p>
+                            <div class = "icon-text">
+                            <span class = "icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
+                            </span>
+                                <p>
+                                    Counselors, Volunteers 
+                                </p>
+                            </div>
                             <div class = "icon-text">
                             <span class = "icon">
                                 <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" width="30px" height = "30px">
@@ -118,7 +136,14 @@
                 <div class = "section-title"><h3>MIASA Crisis Helpline<b></b></div>
                     <div class = "section-content">
                         <p>"Provides 24/7", free and confidential support by phone.</p>
-                        
+                        <div class = "icon-text">
+                            <span class = "icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
+                            </span>
+                                <p>
+                                    Peers, Volunteers 
+                                </p>
+                            </div>   
                     <div class = "icon-text">
                     <span class = "icon">
                         <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" width="30px" height = "30px">
@@ -147,7 +172,14 @@
                             "Provides 24/7", free and confidential support by phone.
 
                         </p>
-                        
+                        <div class = "icon-text">
+                            <span class = "icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
+                            </span>
+                                <p>
+                                    Counselors, Volunteers 
+                                </p>
+                            </div>
                         <div class = "icon-text">
                         <span class = "icon">
                             <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" width="30px" height = "30px">
@@ -174,6 +206,14 @@
                 <div class = "section-title"><h3><b>Malaysian Mental Health Association (MMHA)</b></h3></div>
                     <div class = "section-content">
                         <p>"Malaysian Mental Health Association (MMHA) is dedicated to providing free and confidential support and information by phone. "</p>
+                        <div class = "icon-text">
+                            <span class = "icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
+                            </span>
+                                <p>
+                                    Counselors, Volunteers 
+                                </p>
+                            </div>
                         <div class = "icon-text">
                         <span class = "icon">
                             <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" width="30px" height = "30px">
