@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 ?>
 <!DOCTYPE html>
@@ -12,6 +13,8 @@ session_start();
       overflow: hidden;
       background-color: #333;
       font-family: Arial, sans-serif;
+	  margin: 8px 0;
+      margin-left: 8px;
     }
 
     .navbar a {
@@ -163,3 +166,6 @@ if (isset($_SESSION["stories"])) {
 
 </body>
 </html>
+<?php
+ob_end_flush();
+?>
