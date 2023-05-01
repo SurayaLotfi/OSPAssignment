@@ -83,18 +83,26 @@
       text-align: left;
       margin-bottom: 15px;
     }
+    
+    body{
+    background-image: url('https://i.pinimg.com/564x/70/2e/40/702e40edcf6d527a7cb598ba2204d6be.jpg');
+      } 
   </style>
 </head>
 <body>
   <div class="navbar">
-    <a href="#">Home</a>
-    <a href="#">News</a>
-    <a href="tips.html">Prevention Tips</a>
-    <a href="gethelp.html">Get Help</a>
-    <a href="#">Sharing</a>
+    <a href="homepage.php">Home</a>
+    <a href="news.php">News</a>
+    <a href="facts.php">Facts</a>
+    <a href="tips.php">Prevention Tips</a>
+    <a href="gethelp.php">Get Help</a>
+    <a href="newstories.php">Sharing</a>
+    <a href="story.php">Share with Us</a>
   </div>
   <div class="wrapper">
     <h1>Stories of bully victims</h1>
+    <b><p> Know that you are not alone. This page shows videos of previous victims and how they face and overcome bullying issues</p></b>
+    <br>
     
     <?php
       $videos = array(
