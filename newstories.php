@@ -90,15 +90,15 @@
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <a href="homepage.php">Home</a>
-    <a href="news.php">News</a>
-    <a href="facts.php">Facts</a>
-    <a href="tips.php">Prevention Tips</a>
-    <a href="gethelp.php">Get Help</a>
-    <a href="newstories.php">Sharing</a>
-    <a href="story.php">Share with Us</a>
-  </div>
+<div class="navbar">
+          <a href="homepage.php">Home</a>
+          <a href="facts.php">Facts</a>
+          <a href="news.php">News</a>
+          <a href="tips.php">Prevention Tips</a>
+          <a href="gethelp.php">Get Help</a>
+          <a href="newstories.php">Sharing</a>
+          <a href="story.php">Share with Us</a>
+    </div>
   <div class="wrapper">
     <h1>Stories of bully victims</h1>
     <b><p> Know that you are not alone. This page shows videos of previous victims and how they face and overcome bullying issues</p></b>
