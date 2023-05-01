@@ -28,11 +28,15 @@
 
 
     .text-header{
-        padding: 20px;
-        background-color: #ffeaaa;
-        font-family: 'PT Sans', sans-serif;
-        font-size:  30px;
+        font-size: 48px;
+        font-weight: bold;
         text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px #000;
+        color: black;
     }
 
     .section-content {
@@ -43,9 +47,12 @@
         margin: auto;
         border-radius: 10px;
         font-family: 'PT Sans', sans-serif;  
-        font-size: 0.900rem;
+        font-size: 1.000rem;
         font-weight: 400;
     }
+    body{
+    background-image: url('https://i.pinimg.com/564x/70/2e/40/702e40edcf6d527a7cb598ba2204d6be.jpg');
+      } 
 
     </style>   
 </head>
@@ -57,24 +64,14 @@
     <body>
         
         <div class="navbar">
-            <a href="#">Home</a>
-            <a href="#">News</a>
-            <a href="#">Prevention Tips</a>
-            <a href="#">Get Help</a>
-            <a href="#">Sharing</a>
-          </div>
-
-        <p class = "text-header">
-            <strong>What is Bullying</strong>
-        </p>
-        
-        <section>
-        <div class = "container-center">   
-            <div class="section-content">
-                    <p>Bullying is a form of aggressive behavior in which someone intentionally and repeatedly causes another person injury or discomfort. Bullying can take the form of physical contact, words, or more subtle actions. The bullied individual typically has trouble defending him or herself and does nothing to “cause” the bullying. Cyberbullying is verbally threatening or harassing behavior conducted through such electronic technology as cell phones, email, social media, or text messaging.</p>
-                </div>
-            </div>
-                  
+            <a href="homepage.php">Home</a>
+            <a href="news.php">News</a>
+            <a href="facts.php">Facts</a>
+            <a href="tips.php">Prevention Tips</a>
+            <a href="gethelp.php">Get Help</a>
+            <a href="newstories.php">Sharing</a>
+            <a href="story.php">Share with Us</a>
+          </div>   
 
         <p class = "text-header">
             <strong>Types of Bullying</strong>
