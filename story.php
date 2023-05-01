@@ -94,7 +94,7 @@ session_start();
 	<form action="story.php" method="POST">
 		<label for="story">Tell us your story:</label>
 		<textarea name="story" rows="5" required></textarea>
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label for="share-yes-no">Can we share your story on the website with others?</label>
 				<div class="radio-group">
 					<input type="radio" id="yes" name="share-yes-no" value="yes" required>
@@ -104,7 +104,7 @@ session_start();
 					<input type="radio" id="no" name="share-yes-no" value="no" required>
 					<label for="no">No</label>
 				</div>
-       		</div>
+       		</div> -->
 		<input type="submit" value="Submit">
 	</form>
     
