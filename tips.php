@@ -64,7 +64,7 @@
         font-size: 48px;
         font-weight: bold;
         text-align: center;
-        margin-top: 50px;
+        margin-top: 30px;
         margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -72,16 +72,21 @@
         color: black;
         /*font-family: 'Verdana', Arial;*/
       }
+      body{
+    background-image: url('https://i.pinimg.com/564x/70/2e/40/702e40edcf6d527a7cb598ba2204d6be.jpg');
+      } 
   </style>
 </head>
 
 <body>
   <div class="navbar">
-    <a href="#">Home</a>
-    <a href="#">News</a>
-    <a href="tips.html">Prevention Tips</a>
-    <a href="#">Get Help</a>
-    <a href="#">Sharing</a>
+    <a href="homepage.php">Home</a>
+    <a href="news.php">News</a>
+    <a href="facts.php">Facts</a>
+    <a href="tips.php">Prevention Tips</a>
+    <a href="gethelp.php">Get Help</a>
+    <a href="newstories.php">Sharing</a>
+    <a href="story.php">Share with Us</a>
   </div>
 
     <div class="container">
