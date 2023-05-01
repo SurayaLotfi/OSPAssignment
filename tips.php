@@ -9,6 +9,7 @@
       overflow: hidden;
       background-color: #333;
       font-family: Arial, sans-serif;
+      
     }
 
     .navbar a {
@@ -79,15 +80,15 @@
 </head>
 
 <body>
-  <div class="navbar">
-    <a href="homepage.php">Home</a>
-    <a href="news.php">News</a>
-    <a href="facts.php">Facts</a>
-    <a href="tips.php">Prevention Tips</a>
-    <a href="gethelp.php">Get Help</a>
-    <a href="newstories.php">Sharing</a>
-    <a href="story.php">Share with Us</a>
-  </div>
+<div class="navbar">
+          <a href="homepage.php">Home</a>
+          <a href="facts.php">Facts</a>
+          <a href="news.php">News</a>
+          <a href="tips.php">Prevention Tips</a>
+          <a href="gethelp.php">Get Help</a>
+          <a href="newstories.php">Sharing</a>
+          <a href="story.php">Share with Us</a>
+    </div>
 
     <div class="container">
         <h1>How to Prevent Bullying from Occuring?</h1>
