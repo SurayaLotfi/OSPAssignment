@@ -86,15 +86,15 @@ header h1 {
 
 <div body>
 
-  <div class="navbar">
+<div class="navbar">
           <a href="homepage.php">Home</a>
-          <a href="news.php">News</a>
           <a href="facts.php">Facts</a>
+          <a href="news.php">News</a>
           <a href="tips.php">Prevention Tips</a>
           <a href="gethelp.php">Get Help</a>
           <a href="newstories.php">Sharing</a>
           <a href="story.php">Share with Us</a>
-  </div>
+    </div>
 
   <br>
     <title>News of Bullying</title>
