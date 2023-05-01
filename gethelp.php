@@ -58,7 +58,7 @@ body{
     }
 
     .section-content p {
-      font-size: 18px;
+      font-size: 17px;
       text-align: left;
       margin-bottom: 15px;
     }
@@ -79,14 +79,14 @@ body{
 <html>
     <head>
     <div class="navbar">
-    <a href="homepage.php">Home</a>
-    <a href="news.php">News</a>
-    <a href="facts.php">Facts</a>
-    <a href="tips.php">Prevention Tips</a>
-    <a href="gethelp.php">Get Help</a>
-    <a href="newstories.php">Sharing</a>
-    <a href="story.php">Share with Us</a>
-  </div>
+          <a href="homepage.php">Home</a>
+          <a href="facts.php">Facts</a>
+          <a href="news.php">News</a>
+          <a href="tips.php">Prevention Tips</a>
+          <a href="gethelp.php">Get Help</a>
+          <a href="newstories.php">Sharing</a>
+          <a href="story.php">Share with Us</a>
+    </div>
         <div class = "text-header" style: "margin: 10px">
             <h1>Helplines in Malaysia</h1>
                 Because we care.
@@ -97,10 +97,10 @@ body{
             <div class = "container">
                 <div class = "border">
                     <p>
-                    <div class = "section-title"><h3><b>Telenita Helpline</b></h3></div>
+                    <div class = "section-title"><h2><b>Telenita Helpline</b></h2></div>
                         <div class = "section-content">
-                            <p>"We provide legal information and conseling services to
-                            survivors."</p>
+                            <p>Talenita Helpline provides legal information and counselling services to survivors.
+                                 These services are available physically, online and via their Telenita helpline.</p>
                             <div class = "icon-text">
                             <span class = "icon">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
@@ -134,9 +134,9 @@ body{
                 <br>
                 <br>
                 <div class = "border">
-                <div class = "section-title"><h3>MIASA Crisis Helpline<b></b></div>
+                <div class = "section-title"><h2><b>MIASA Crisis Helpline</b></h2></div>
                     <div class = "section-content">
-                        <p>"Provides 24/7", free and confidential support by phone.</p>
+                        <p>MIASA Crisis Helpline provides 24/7, free and confidential support by phone.</p>
                         <div class = "icon-text">
                             <span class = "icon">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
@@ -167,10 +167,11 @@ body{
                 <br>
                 <br>
                 <div class = "border">
-                <div class = "section-title"><h3><b>Pertubuhan Kebajikan Sneham (Sneham Welfare Organisation Malaysia) Malaysia</b></h3> </div>
+                <div class = "section-title"><h2><b>Pertubuhan Kebajikan Sneham (Sneham Welfare Organisation Malaysia) Malaysia</b></h2> </div>
                     <div class = "section-content">
                         <p>
-                            "Provides 24/7", free and confidential support by phone.
+                        Pertubuhan Kebajikan Sneham (Sneham Welfare Organisation Malaysia) Malaysia provides free, compassionate 
+                        and confidential support over phone and text message (SMS).
 
                         </p>
                         <div class = "icon-text">
@@ -204,9 +205,9 @@ body{
                 <br>
                 <br>
                 <div class = "border">
-                <div class = "section-title"><h3><b>Malaysian Mental Health Association (MMHA)</b></h3></div>
+                <div class = "section-title"><h2><b>Malaysian Mental Health Association (MMHA)</b></h2></div>
                     <div class = "section-content">
-                        <p>"Malaysian Mental Health Association (MMHA) is dedicated to providing free and confidential support and information by phone. "</p>
+                        <p>Malaysian Mental Health Association (MMHA) is dedicated to providing free and confidential support and information by phone.</p>
                         <div class = "icon-text">
                             <span class = "icon">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" width="30px" height = "30px">
