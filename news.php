@@ -27,14 +27,19 @@
   }
   
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px #000;
+  color: black;
 }
 
 header h1 {
   margin: 0;
-  font-size: 32px;
   text-align: center;
 }
 
@@ -82,11 +87,13 @@ header h1 {
 <div body>
 
   <div class="navbar">
-    <a href="#">Home</a>
-    <a href="#">News</a>
-    <a href="#">Prevention Tips</a>
-    <a href="#">Get Help</a>
-    <a href="#">Sharing</a>
+          <a href="homepage.php">Home</a>
+          <a href="news.php">News</a>
+          <a href="facts.php">Facts</a>
+          <a href="tips.php">Prevention Tips</a>
+          <a href="gethelp.php">Get Help</a>
+          <a href="newstories.php">Sharing</a>
+          <a href="story.php">Share with Us</a>
   </div>
 
   <br>
