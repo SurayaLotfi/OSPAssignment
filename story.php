@@ -82,14 +82,14 @@ session_start();
 
 <body>
 <div class="navbar">
-        <a href="home.php">Home</a>
-        <a href="news.php">News</a>
-        <a href="facts.php">News</a>
-        <a href="tips.php">Prevention Tips</a>
-        <a href="gethelp.php">Get Help</a>
-        <a href="newstories.php">Sharing</a>
-        <a href="story.php">Share your story</a>
-      </div>
+          <a href="homepage.php">Home</a>
+          <a href="facts.php">Facts</a>
+          <a href="news.php">News</a>
+          <a href="tips.php">Prevention Tips</a>
+          <a href="gethelp.php">Get Help</a>
+          <a href="newstories.php">Sharing</a>
+          <a href="story.php">Share with Us</a>
+    </div>
 	<h1>Share Your Story</h1>
 	<form action="story.php" method="POST">
 		<label for="story">Tell us your story:</label>
