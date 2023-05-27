@@ -26,12 +26,12 @@
 
 /* 1. Theme default css */
  body {
-       font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
 	font-size: 15px;
 	font-weight: normal;
 	color: #777;
 	font-style: normal;
-     line-height: 26px;
+    line-height: 26px;
 }
 .mean-container a.meanmenu-reveal span {
     background: no-repeat;
@@ -604,7 +604,7 @@ color: #b8bfc3;
     color: #fff;
 }
 .top-btn:hover {
-    background: transparent linear-gradient(90deg, #fe4b7b0%, #fe4b7b100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(90deg, #fe4b7b 0%, #fe4b7b 100%) 0% 0% no-repeat padding-box;
      color: #fff;
 }
 .sticky-menu .logo{
@@ -2201,7 +2201,7 @@ padding-top: 30px;
 .services-box .ss-btn2{
     width: 60px;
     height: 60px;
-    background: #fe4b7b0% 0% no-repeat padding-box;
+    background: #fe4b7b 0% 0% no-repeat padding-box;
     box-shadow: 0px 16px 32px #fe4b7b33;
     display: none;
     color: #fff;
@@ -2780,7 +2780,7 @@ border-radius: 50%;
 	top: 50%;
 	height: 90px;
 	width: 90px;
-	background: transparent linear-gradient(90deg, #fe4b7b0%, #fe4b7b100%) 0% 0% no-repeat padding-box;
+	background: transparent linear-gradient(90deg, #fe4b7b 0%, #fe4b7b 100%) 0% 0% no-repeat padding-box;
 	z-index: -1;
 	border-radius: 50%;
 	transform: translate(-50%,-50%);
@@ -3273,7 +3273,7 @@ border-radius: 50%;
 }
 
 .team-info h4 a:hover{
-      color: #fe4b7b;
+    color: #fe4b7b;
 }
 .team-area-content span {
     margin-bottom: 10px;
@@ -5459,7 +5459,7 @@ width: auto !important;
 
 }
 .sidebar-widget .widget li.page_item_has_children,
- {
+{
     padding-bottom: 0;
 }
 .sidebar-widget .widget .children{
@@ -6821,7 +6821,7 @@ td.product-thumbnail img {
 }
 
 .coupon-info p.form-row input[type="submit"]:hover, p.checkout-coupon input[type="submit"]:hover {
-  background: #fe4b7bnone repeat scroll 0 0;
+  background: #fe4b7b none repeat scroll 0 0;
 }
 
 .coupon-info p.form-row input[type="checkbox"] {
@@ -8199,13 +8199,13 @@ display: inline-block;
     color: #fff;
 }
 .process-area .section-title h5{
-     color: #fe4b7b;
+    color: #fe4b7b;
 }
 .process-area .col-lg-3.col-md-12:nth-child(2),.process-area .col-lg-3.col-md-12:nth-child(4) {
     margin-top: 50px;
 }
 .process-area .col-lg-3.col-md-12:nth-child(2) .process-icon,.process-area .col-lg-3.col-md-12:nth-child(2) .no{
-    background: #fe4b7b0% 0% no-repeat padding-box;
+    background: #fe4b7b 0% 0% no-repeat padding-box;
 }
 .process-area .col-lg-3.col-md-12:nth-child(3) .process-icon,.process-area .col-lg-3.col-md-12:nth-child(3) .no{
     background: #27ae61 0% 0% no-repeat padding-box;
@@ -8605,10 +8605,10 @@ margin-bottom: 10px;
     position: absolute;
     right: 3%;
     bottom: 7%;
-     animation: alltuchtopdown 5s infinite;
-      -webkit-animation: alltuchtopdown 5s infinite;
-      animation-delay: 0s;
-      -webkit-animation-delay: 3s;
+    animation: alltuchtopdown 5s infinite;
+    -webkit-animation: alltuchtopdown 5s infinite;
+    animation-delay: 0s;
+    -webkit-animation-delay: 3s;
 }
 
 
