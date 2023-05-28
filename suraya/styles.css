@@ -1,0 +1,65 @@
+.box{
+    background-color: pink;
+    min-height: 50px;
+    font-size: 2rem;
+}
+
+.picture-with-margin{
+    margin: 10px;
+    
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .custom-height { /*to customize row height*/
+    height: 20px; /* Set your desired height */
+  }
+  
+  .image-container {
+    background-image: url(images/sky.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+  }
+  
+  .content {
+    text-align: center;
+    margin: 200px;
+    padding: 20px;
+    color: #0b0b0b; /* Set desired text color */
+    font-family: 'Londrina Solid', cursive;
+  }
+  
+  .custom-button {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.4s linear;
+  }
+  
+  .solid-bg-colour{
+    background-color: white;
+  }
+
+
+
+ /* .custom-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 9px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-color: transparent transparent transparent white;
+  }*/
+  
