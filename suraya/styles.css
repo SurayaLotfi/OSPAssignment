@@ -22,7 +22,7 @@
     background-image: url(images/sky.jpg);
     background-size: cover;
     background-position: center;
-    height: 300px;
+    width: 400%;
     position: relative;
   
   }
@@ -61,7 +61,7 @@
 
   .image-with-text img{ /*for image property*/
   
-    margin-right: 10px;
+    margin-right: 40px;
   }
   
   .custom-button {
@@ -78,8 +78,6 @@
   .solid-bg-colour{
     background-color: white;
   }
-
-
 
 
     .write-post-container{

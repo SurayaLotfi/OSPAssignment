@@ -21,7 +21,7 @@
     <meta charset="UTF-8">
     <?php
     //connect to database
-    $connection = mysqli_connect('localhost', 'root', '', 'stories');
+    $connection = mysqli_connect('localhost', 'root', '', 'assignmentosp');
     mysqli_set_charset($connection, 'utf8');
 
 
@@ -79,7 +79,7 @@
                                            </li>
 
                                           <li class="has-sub"> 
-                                              <a href="community.html">Community Forum</a>
+                                              <a href="community.php">Community Forum</a>
                                           </li>
 
                                           <li class="has-sub">
