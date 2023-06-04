@@ -18,7 +18,7 @@
                           
         $stmt -> bind_param("sss", $username, $title, $description);
         $stmt -> execute();
-        echo "Story has been Submitted";
+        
         $stmt-> close();
         $connection -> close();
 

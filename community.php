@@ -1,5 +1,6 @@
 <?php
 include_once ("php/communityscript.php");
+include_once ("suraya/connect.php");
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
