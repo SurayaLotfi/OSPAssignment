@@ -120,7 +120,16 @@
                     <div class="col-lg-8">
                         <div class="blog-details-wrap">
                             <div class="details__content pb-30">
-                                <h1>Title</h1>
+                                <div class="col-lg-8">
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <h1>Title</h1>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <a href="#comments" class="btn">JOIN THIS</a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="details__content-img">
                                     <img src="img/blog/b_details01.jpg" alt="">
                                 </div>
@@ -269,7 +278,7 @@
         <script src="js/js_isotope.pkgd.min.js"></script>
         <script src="js/imagesloaded.min.js"></script>
         <script src="js/parallax.min.js"></script>
-         <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
         <script src="js/jquery.counterup.min.js"></script>
         <script src="js/jquery.scrollUp.min.js"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
