@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
+        <?php  session_start(); ?>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Say No to Bully</title>
@@ -30,7 +31,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="img/logo/nl2.png" alt="logo"></a>
+                                    <a href="index.php"><img src="img/logo/nl2.png" alt="logo"></a>
                                 </div>
                             </div>
                         <div class="col-xl-7 col-lg-7">
@@ -39,7 +40,7 @@
                                     <nav id="mobile-menu">
                                          <ul>
                                             <li class="has-sub">
-                                                <a href="index.html">Home</a>
+                                                <a href="index.php">Home</a>
                                             </li>
                                           
                                              <li class="has-sub">
@@ -47,32 +48,36 @@
                                              </li>
 
                                             <li class="has-sub"> 
-                                                <a href="community.html">Community Forum</a>
+                                                <a href="community.php">Community Forum</a>
                                             </li>
 
                                             <li class="has-sub">
-                                                <a href="contact.html">Contact Us</a></li>                                               
+                                                <a href="contact.php">Contact Us</a>
+                                            </li>
+
+                                            <li class="has-sub">
+                                                <a href="volunteer.php">Join Us</a>
+                                            </li>                                                
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>   
-                            <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                                <div class="login">
-                                    <ul class="horizontal-buttons">
-                                        <li><div class="header-btn second-header-btn">
-                                            <a href="volunteer.html" class="btn">Join Us</a>
-                                        </div></li>
-                                        <!-- <li><div class="header-btn second-header-btn">
-                                            <a href="#" class="btn"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
-                                        </div></li> -->
-                                    </ul>
-                                </div>
                             </div>
-                    
-                            
-                                <div class="col-12">
-                                    <div class="mobile-menu"></div>
-                                </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile-menu"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,19 +104,19 @@
 		<!-- /search-popup -->
             <!-- slider-area -->
             <section id="parallax" class="slider-area slider-four fix p-relative">
-               <div class="slider-shape ss-one layer" data-depth="0.10"><img src="img/bg/slider_shape01.png" alt="shape"></div>
+                <div class="slider-shape ss-one layer" data-depth="0.10"><img src="img/bg/slider_shape01.png" alt="shape"></div>
                 <div class="slider-shape ss-two layer" data-depth="0.30"><img src="img/bg/slider_shape02.png" alt="shape"></div>
                 <div class="slider-shape ss-three layer" data-depth="0.40"><img src="img/bg/slider_shape03.png" alt="shape"></div>
                 <div class="slider-active">
-				<div class="single-slider slider-bg d-flex align-items-center" style="background: url(img/slider/slider_img_bg.png) no-repeat; ">
-                    <div class="img-main" data-animation="fadeInLeft" data-delay=".2s" > <img src="img/slider/try4.png" alt="slider-overlay"></div>
+				<div class="single-slider slider-bg d-flex align-items-center" style="background: url(img/slider/slider_bg.png) no-repeat; ">
+                    <div class="img-main" data-animation="fadeInLeft" data-delay=".2s" > <img src="img/slider/slider_bg.png" alt="slider-overlay"></div>
                         <div class="container">
                            <div class="row justify-content-center align-items-center">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="slider-content s-slider-content pt-100">
                                         <h5 data-animation="fadeInUp" data-delay=".4s" style="margin-top: -30px;">KIDS AGAINST BULLYING</h5>
                                          <h2 data-animation="fadeInUp" data-delay=".4s">SAY <span>NO</span> TO</h2>
-                                         <h2 data-animation="fadeInUp" data-delay=".4s"><div class ="big-text" style="margin-top: -50px;">BULLY !!</div></h2>
+                                         <h2 data-animation="fadeInUp" data-delay=".4s"><div class ="big-text" style="margin-top: -50px;">BULLY!</div></h2>
                                         <p data-animation="fadeInUp" data-delay=".6s" style="margin-top: -30px;">"People are going to bring you down because of your drive.
                                             Ultimately, it makes you a stronger person to turn
                                             your cheek and go the other way." ~Selena Gomez</p>
@@ -204,6 +209,7 @@
                                     <div class="second-services-content">
                                         <h5>Telenita Helpline</h5>
                                         <p>Counselors, Volunteers <br> provides legal information and counselling services to survivors.</p>
+                                        <a href="tel:+60162374221">016 2374221</a>
                                         <a href="https://www.awam.org.my/">https://www.awam.org.my</a>
                                     </div>
                                 </div>
@@ -219,6 +225,7 @@
                                     <div class="second-services-content">
                                         <h5>MIASA Crisis Helpline</h5>
                                         <p>Peers, Volunteers <br> provides 24/7, free and confidential support by phone.</p>
+                                        <a href="tel:+1800820066">1-800-820066</a>
                                         <a href="https://www.miasa.org.my/">miasa.org.my</a>
                                     </div>
                                 </div>
@@ -233,7 +240,8 @@
                                     </div>
                                     <div class="second-services-content">
                                         <h5>Malaysian Mental Health Association</h5>
-                                        <p>Counselors, Volunteers <br> dedicated to providing free and confidential support and information by phone.</p>
+                                        <p>Counselors, Volunteers <br> dedicated to provide confidential support and information by phone.</p>
+                                        <a href="tel:+60327806803">+60327806803</a>
                                         <a href="https://mmha.org.my/">https://mmha.org.my</a>
                                     </div>
                                 </div>
@@ -371,11 +379,11 @@
                                 </div>
                                 <div class="footer-link">
                                     <ul>                                        
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="index.php">Home</a></li>
                                         <li><a href="quiz.html"> Quiz</a></li>
-                                        <li><a href="community.html">  Community Forum</a></li>
-                                        <li><a href="contact.html"> Contact Us</a></li>
-                                        <li><a href="volunteer.html">Join Us</a></li>
+                                        <li><a href="community.php">  Community Forum</a></li>
+                                        <li><a href="contact.php"> Contact Us</a></li>
+                                        <li><a href="volunteer.php">Join Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -414,7 +422,7 @@
                                 </div>
                                <div class="footer-link">
                                 <div class="newslater-area">
-                                    <form name="ajax-form" id="contact-form4" action="#" method="post" class="contact-form newslater">
+                                    <form name="ajax-form" id="contact-form4" action="newsletterprocess.php" method="post" class="contact-form newslater">
                                        <div class="form-group p-relative">
                                           <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
                                           <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
@@ -425,10 +433,7 @@
                                 </div>
                             </div>
                         </div>
-                      
-                        
                     </div>
-                    
                 </div>
             </div>
            <div class="copyright-wrap text-center">
