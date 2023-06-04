@@ -22,8 +22,6 @@
         $stmt-> close();
         $connection -> close();
 
-       }else{
-        echo " error ";
        }
     }
 

@@ -1,6 +1,10 @@
+<?php
+include_once ("php/communityscript.php");
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Share Your Story</title>
@@ -8,7 +12,7 @@
     rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <link rel = "stylesheet" href = "suraya/styles.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap" rel="stylesheet">
@@ -20,16 +24,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> <!--google icons-->
     <meta charset="UTF-8">
     <?php
-    //connect to database
-    $connection = mysqli_connect('localhost', 'root', '', 'assignmentosp');
-    mysqli_set_charset($connection, 'utf8');
-
-
-    if (!$connection) {
-        die('Connection Failed: ' . mysqli_connect_error());
+    if(isset($_GET['page-nr'])){
+        $id = $_GET['page-nr'];
+    }else {
+        $id = 1;
     }
-    
-    // Rest of your code...
 
 ?>
         <meta charset="utf-8">
@@ -52,8 +51,10 @@
         <link rel="stylesheet" href="css/default.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <link rel = "stylesheet" href = "suraya/styles.css">
+        <link rel = "stylesheet" href = "suraya/sharestory.css">
     </head>
-    <body>
+    <body id="<?php echo $id ?>">
         <!-- header -->
         <header class="header-area header-three">  	
             <div id="header-sticky" class="menu-area">
@@ -140,72 +141,213 @@
                 </div>
             </section>
             <!-- breadcrumb-area-end -->
-            <!--content-->
-            <div class="container-fluid no-padding">
-                <div class="row">
 
-                <!--Filter-->
-                <div class="container">
+            <!--First Row-->
+            <div class="container-fluid no-padding">
+                <div class="row-6">
+
+                <!----------First Content (filter, storie & pagination)-------->
+
+                <!--Display total stories posted-->
+            <div class="container">
                 <div class="row">
                         <div class="solid-bg-colour">
-                            <div class="image-with-text">
-                             80 posts     |
-                             <a href="">
-                                <img src="suraya/images/filter.png" alt="filter" style="width: 50px; margin-left: 10px;"/>
-                            </a>
-                            Sort By: Most Popular
+                <!-- Button for filtering-->  
+                            <div class="filter" style="margin: 0;">
+                                    <ul>
+                                        <li style="font-size: 20px;"> <?php echo $nr_of_rows . " stories"?> </li>
+                                        <li><a href="?filter=most-popular"><i i class="fa fa-thumbs-up" style="margin-right:10px">Sort By</i></a></li>
+                                        <li><a href="shareyourstory.php"><button type="button" class="btn btn-light" style=" margin-left:  900px 0;">
+                                        Share Your Own Story</button></a></li>
+                                    </ul>
                             </div>
-                        </div>  
-                    </div>
-                </div>
+                        </div>
+                     </div>   
+                 </div>
                 
+
                 <!--Stories Content-->
-                <div class="row">
-                    <div class="image-container" style="background-image: url(suraya/images/bullied-background-body.jpg); height: 2000px;">
+             <div class="row-6">
+        <!-- <div class="image-container" style="background-image: url(suraya/images/bullied-background-body.jpg); height: 2000px;">
+                   
+            <div class="overlay"></div>
+                <br>
+                    <br> -->
                         
-                        <div class="overlay"></div>
-                        <br>
-                        <br>
-                        
-                        <div class="container">
-                       
-                                        <?php
-                                               $query = "SELECT * FROM stories;"; //one semicolon for sql language, one for php language
-                                               $results = mysqli_query($connection, $query);
-                                               $resultsCheck = mysqli_num_rows($results);
-                                                if ($resultsCheck > 0 ){
-                                                    while($row = mysqli_fetch_assoc($results)){
-                                                        ?>
-                                                            <div class="write-post-container" style="font-size: 30px;">
-                                                                <?php echo $row['title'] ; ?>
-        
-                                                                <hr class = "custom-line" style="background-color: white;">
-        
-                                                                <div style = "font-family: 'Rubik', sans-serif; font-size: 15px; margin:5px;"><i>
-                                                                    <?php echo $row['date']; ?>
-                                                                </div></i>
-        
-                                                                <div style="font-size: 25px; margin: 5px;">
-                                                                    <?php echo $row['username']; ?>
-                                                                </div>
-        
-                                                                <div class="description">     
-                                                                    <?php echo $row['description'] ;?>
-                                                                </div>
-                                                            </div>
-                                                   <?php
+                    <div class="container">
+                          <?php
+                                while($row = $results-> fetch_assoc()){
+                                 ?>
+                                    <div class="write-post-container" style="font-size: 30px;">
+                                    <div class="side-by-side">
+                                        <div class="title">
+                                            <?php echo $row['title']; ?>
+                                        </div>
+                                        <div class="blog__btn">
+                                            <a href="#" class="btn">Read More</a>
+                                        </div>
+                                    </div>
+                                         <hr class = "custom-line" style="background-color: white;">
+                                            <div style = "font-family: 'Rubik', sans-serif; font-size: 15px; margin:5px;"><i>
+                                                <?php echo $row['date']; ?>
+                                                    </div></i>
+                                                        <div style="font-size: 25px; margin: 5px;">
+                                                            <?php echo $row['username']; ?>
+                                                        </div>
+                                                        <div class="description">     
+                                                                <?php echo $row['description'] ;?>
+                                                        </div>
+
+                                                <div class="meta-info">
+                                                    <ul>
+                                                         <li><i class="fa fa-eye" style="margin-right:10px"></i>780 views</li>
+                                                         <li><i class="far fa-comments" style="margin-right:10px"></i>35 Comments</li>
+                                                         <li id="like"><a href="#"><i class="fa fa-thumbs-up"style="margin-right:10px"></i>100 Likes</a></li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                     </div>
+                                     <?php
                                                     }
-                                                } ?>
-                                             
-                                       
-                                    
-                            
-                        
+                                                
+                                    ?>
+
+
+  
+                    <!--Display the page info text -->
+                    <div class="page-info">
+                         <?php 
+                             if(!isset($_GET['page-nr'])){
+                             $page = 1;
+                             }else{
+                            $page = $_GET['page-nr'];
+                         }
+                        ?>
+
+                        Showing  <?php echo $page ?> of <?php echo $pages; ?> pages
+                        </div>
+
+                    <div class="pagination">
+                        <!--Go to the first page-->
+                        <a class= "pagination-box" href = "?page-nr=1">First</a>
+
+                        <!--Go to the previous page-->
+                        <?php 
+                            if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){
+                            ?> <a class= "pagination-box" href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>">Previous</a> <?php //previous button will link to the previous page
+                            }else{
+                              ?> <a>Previous</a><?php //stay if page-nr not follow the rule
+                             }
+                        ?>
+                      
+
+                        <!--Output the page numbers-->
+
+                        <div class = "page-numbers">
+                            <?php
+                                for($counter = 1; $counter <= $pages; $counter++){ ?>
+                                    <a class= "pagination-box" href="?page-nr= <?php echo $counter ?>"><?php echo $counter?></a>
+                                <?php
+                                }
+                            ?>
+
+                        </div>
+
+                        <!--Go to Next page-->
+                        <?php
+                             if(!isset($GET['page-nr'])){ //if theres no input on page-nr yet, it means we are at page no 1
+                            ?>
+                              <a class= "pagination-box" href= "?page-nr=2">Next</a> <!--Therefore, link to page no 2-->
+                        <?php 
+                             }else{
+                                if($_GET['page-nr' >= $pages]){ ?>    
+                                    <a class= "pagination-box" href = "">Next</a> 
+                                <?php
+                                }else{
+                                    ?>
+                                    <a class= "pagination-box" href = "?page-nr = <?php echo $_GET['page-nr'] + 1 ?>">Next</a>
+                                    <?php 
+                                }
+                            }
+                            ?>
+                                  
+                        <!--Go to last page-->
+                        <a class= "pagination-box" href ="?page-nr=<?php echo $pages ?>">Last</a>
                     </div>
+
+
+                </div>
                 </div>
                 </div>
             </div>
 
+        <!--Share Your Story -->
+        <div class="container-fluid" ></div>
+        <div class="row" style="background-color:antiquewhite">
+         <!--   <div class="image-container" style="background-image: url(suraya/images/bullied-background-body.jpg); height: 2000px;">
+                
+                <div class="overlay"></div>
+                <br>
+                <br>-->
+
+                <div class="form-container">
+                <div class="container custom-container" >
+                <div class="border">
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <div class="img">
+                                <img src="suraya/images/bullied-background-body.jpg" alt="pic" 
+                                style="width: 400px; ">
+                            </div>  
+                        </div>
+                        <div class="col">
+                                <div class="text-style">
+                                Username
+                                </div>
+                            <div class="input">  
+                                <form method="POST" action="">
+                                    <input type="text" name="username">                              
+                            </div>
+                            <br>
+                            <br>
+                                <div class="text-style">
+                                Email Address:
+                                 </div>
+                            <div class="input"> 
+                                    <input type="text" name="email">                                 
+                            </div>
+                            <br>
+                            <br>
+                                <div class="text-style">
+                                Story Title:
+                                </div>
+                                <div class="input">
+                                
+                                    <input type="text" name="title">
+                                
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row" style="margin: 20px">
+                        <div class="text-style">
+                            Story:
+                            
+                            </div>
+                            <div class="input" >
+                                    <textarea name="description" style="width: 880px; height: 200px; line-height: 1; padding-top: 5px;"></textarea>
+                                    <div class="button-style">
+                                    <input type = "submit" name = "submit" value = "submit"  style="margin-top:20px; padding: 10px; width: 100px">
+                                    </div>
+                                </form>  
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            </div>
+        
+        </div>
+        </div>      
+        </div>                                
 
 
             
@@ -332,5 +474,9 @@
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/element-in-view.js"></script>
         <script src="js/main.js"></script>
+        <script> let links = document.querySelectorAll('.page-numbers > a');
+            let bodyId = parseInt(document.body.id) -1;
+            links[bodyId].classList.add("active-pagination");
+        </script>
     </body>
 </html>
