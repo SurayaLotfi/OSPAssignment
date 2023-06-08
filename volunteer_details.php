@@ -23,44 +23,53 @@
     </head>
     <body>
         <!-- header -->
-        <header class="header-area header-three">  	
-            <div id="header-sticky" class="menu-area">
+        <header class="header-area header-three">
+			<div id="header-sticky" class="menu-area">
                 <div class="container">
                     <div class="second-menu">
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="img/logo/nl2.png" alt="logo"></a>
+                                    <a href="index.php"><img src="img/logo/nl2.png" alt="logo"></a>
                                 </div>
                             </div>
-                            <div class="col-xl-7 col-lg-7">
+                        <div class="col-xl-7 col-lg-7">
                                 <div class="main-menu text-right text-xl-right">
                                     <nav id="mobile-menu">
                                         <ul>
                                             <li class="has-sub">
-                                                <a href="index.html">Home</a>
+                                                <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
                                                 <a href="quiz.html">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
-                                                <a href="community.html">Community Forum</a>
+                                                <a href="community.php">Community Forum</a>
                                             </li>
+
                                             <li class="has-sub">
-                                                <a href="contact.html">Contact Us</a>
-                                            </li>                                               
+                                                <a href="contact.php">Contact Us</a>
+                                            </li>
+
+                                            <li class="has-sub">
+                                                <a href="volunteer.php">Join Us</a>
+                                            </li>                                                
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>   
-                            <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                                <div class="login">
-                                    <ul>
-                                        <li><div class="header-btn second-header-btn">
-                                    <a href="volunteer.html" class="btn">Join Us</a>
-                                </div></li>
-                                    </ul>
-                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="col-12">
                                 <div class="mobile-menu"></div>

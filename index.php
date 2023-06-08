@@ -25,7 +25,7 @@
     <body>
         <!-- header -->
         <header class="header-area header-three">
-			  <div id="header-sticky" class="menu-area">
+			<div id="header-sticky" class="menu-area">
                 <div class="container">
                     <div class="second-menu">
                         <div class="row align-items-center">
@@ -35,18 +35,15 @@
                                 </div>
                             </div>
                         <div class="col-xl-7 col-lg-7">
-                              
                                 <div class="main-menu text-right text-xl-right">
                                     <nav id="mobile-menu">
-                                         <ul>
+                                        <ul>
                                             <li class="has-sub">
                                                 <a href="index.php">Home</a>
                                             </li>
-                                          
-                                             <li class="has-sub">
-                                                 <a href="quiz.html">Quiz</a>
-                                             </li>
-
+                                            <li class="has-sub">
+                                                <a href="quiz.html">Quiz</a>
+                                            </li>
                                             <li class="has-sub"> 
                                                 <a href="community.php">Community Forum</a>
                                             </li>
