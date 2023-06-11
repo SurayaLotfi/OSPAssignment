@@ -27,7 +27,7 @@
     <body>
         <!-- header -->
         <header class="header-area header-three">
-			  <div id="header-sticky" class="menu-area">
+			<div id="header-sticky" class="menu-area">
                 <div class="container">
                     <div class="second-menu">
                         <div class="row align-items-center">
@@ -37,18 +37,15 @@
                                 </div>
                             </div>
                         <div class="col-xl-7 col-lg-7">
-                              
                                 <div class="main-menu text-right text-xl-right">
                                     <nav id="mobile-menu">
-                                         <ul>
+                                        <ul>
                                             <li class="has-sub">
                                                 <a href="index.php">Home</a>
                                             </li>
-                                          
-                                             <li class="has-sub">
-                                                 <a href="quiz.html">Quiz</a>
-                                             </li>
-
+                                            <li class="has-sub">
+                                                <a href="quiz.html">Quiz</a>
+                                            </li>
                                             <li class="has-sub"> 
                                                 <a href="community.php">Community Forum</a>
                                             </li>
@@ -63,12 +60,16 @@
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>   
+                            </div>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
                                 <ul class="horizontal-buttons">
                                     <li>
                                         <div class="header-btn second-header-btn">
-                                            <a href="volunteer.php" class="btn">Sign In</a>
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
                                         </div>
                                     </li>
                                 </ul>
