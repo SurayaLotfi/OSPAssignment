@@ -47,7 +47,7 @@
                                                 <a href="quiz.html">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
-                                                <a href="community.php">Community Forum</a>
+                                                <a href="blog.php">Community Forum</a>
                                             </li>
 
                                             <li class="has-sub">

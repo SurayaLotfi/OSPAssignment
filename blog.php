@@ -1,16 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
+        <?php  session_start(); ?>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Kidso - Modern Kindergarten & Baby Care HTML Template</title>
+        <title>Say No to Bully</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-
-        <!-- Place favicon.ico in the root directory -->
-
+        
 		<!-- CSS here -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/animate.min.css">
@@ -23,71 +21,63 @@
         <link rel="stylesheet" href="css/default.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+
+        <!--Sweet Alert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <!-- header -->
-        <header class="header-area header-three">  	
-			  <div id="header-sticky" class="menu-area">
+        <header class="header-area header-three">
+			<div id="header-sticky" class="menu-area">
                 <div class="container">
                     <div class="second-menu">
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="img/logo/logo.png" alt="logo"></a>
+                                    <a href="index.php"><img src="img/logo/nl2.png" alt="logo"></a>
                                 </div>
                             </div>
-                           <div class="col-xl-7 col-lg-7">
-                              
+                        <div class="col-xl-7 col-lg-7">
                                 <div class="main-menu text-right text-xl-right">
                                     <nav id="mobile-menu">
-                                         <ul>
+                                        <ul>
                                             <li class="has-sub">
-                                                <a href="index.html">Home</a>
+                                                <a href="index.php">Home</a>
                                             </li>
-                                            <li><a href="about.html">About Us</a></li>
-                                          
-                                             <li class="has-sub">
-                                                 <a href="classes.html">Classes</a>
-                                                 <ul>
-                                                    <li><a href="classes.html">Classes</a></li>
-                                                    <li><a href="class-single.html">Class Details</a></li>
-                                                 </ul>
-                                             </li>
-                                              <li class="has-sub"><a href="#">Pages</a>
-												<ul>
-                                                      <li><a href="teachers.html">Teachers</a></li>
-                                                    <li><a href="teacher-single.html">Teacher Details</a></li>
-                                                  </ul>
-											</li>
+                                            <li class="has-sub">
+                                                <a href="quiz.html">Quiz</a>
+                                            </li>
                                             <li class="has-sub"> 
-                                                <a href="blog.html">Blog</a>
-                                                <ul>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
+                                                <a href="blog.php">Community Forum</a>
                                             </li>
 
+                                            <li class="has-sub">
+                                                <a href="contact.php">Contact Us</a>
+                                            </li>
 
-                                            <li><a href="contact.html">Contact</a></li>                                               
+                                            <li class="has-sub">
+                                                <a href="volunteer.php">Join Us</a>
+                                            </li>                                                
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>   
-                            <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                                <div class="login">
-                                    <ul>
-                                        <li><div class="header-btn second-header-btn">
-                                   <a href="contact.html" class="btn">Get Started</a>
-                                </div></li>
-                                    </ul>
-                                
-                                </div>
-                               
                             </div>
-                            
-                                <div class="col-12">
-                                    <div class="mobile-menu"></div>
-                                </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile-menu"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,121 +128,88 @@
             </section>
             <!-- breadcrumb-area-end -->
              <!-- inner-blog -->
+            
+
             <section class="inner-blog pt-120 pb-120">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
-                            <div class="bsingle__post mb-50">
-                                <div class="bsingle__post-thumb">
+                        <section id="posts-container">
+                        <?php
+                            //retrieve data from database
+                            include "connect.php";
+                            
+                            if($_SESSION["logged_in"]){
+                                $query = "SELECT * FROM posts WHERE category = 'Physical Bullying'";
+                                $result = mysqli_query($mysqli, $query);
+                                $total_pb = mysqli_num_rows($result);
+
+                                $query = "SELECT * FROM posts WHERE category = 'Verbal Bullying'";
+                                $result = mysqli_query($mysqli, $query);
+                                $total_vb = mysqli_num_rows($result);
+
+                                $query = "SELECT * FROM posts WHERE category = 'Cyber Bullying'";
+                                $result = mysqli_query($mysqli, $query);
+                                $total_cb = mysqli_num_rows($result);
+
+                                $query = "SELECT * FROM posts WHERE category = 'Others'";
+                                $result = mysqli_query($mysqli, $query);
+                                $total_others = mysqli_num_rows($result);
+
+                                $query = "SELECT * FROM posts";
+                                $result = mysqli_query($mysqli, $query);
+                                $total_all = mysqli_num_rows($result);
+
+                                // check if a category query parameter is present
+                                if (isset($_GET['category'])) {
+                                    $category = $_GET['category'];
+                                    if($category == "All"){
+                                        $sql = "SELECT * FROM posts";
+                                    }else{
+                                        $sql = "SELECT * FROM posts WHERE category = '$category'";
+                                    }
+                                } else {
+                                    $sql = "SELECT * FROM posts ORDER BY id DESC";
+                                }
+                                $result = mysqli_query($mysqli,$sql);
+                                
+                                while($row = mysqli_fetch_assoc($result)){
                                     
-                                </div>
-                                <div class="bsingle__content">
-                                    <div class="meta-info">
-                                        <ul>
-                                            <li><i class="far fa-user"></i>By Zcube</li>
-                                            <li><i class="far fa-comments"></i>35 Comments</li>
-                                        </ul>
+                                    ?>
+                                    <div class="bsingle__post mb-50">
+                                        <div class="bsingle__post-thumb">
+                                            
+                                        </div>
+                                        <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
+                                            <div class="meta-info">
+                                                <ul>
+                                                    <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
+                                                    <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
+                                                    <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li>
+                                                    <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li>
+                                                </ul>
+                                            </div>
+                                            <h2><a href="storydetail.php"><?php echo $row['title']?></a></h2>
+                                                <p><?php echo $row['story']?></p>
+                                            <div class="blog__btn">
+                                            <a href="storydetail.php" class="btn">Read More</a>
+                                            <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
+                                                
+                                                
+                                                    <ul>
+                                                        <li><i class="fa fa-list-alt"></i><?php echo $row['date']?></li>
+                                                        <li><i class="fa fa-list-alt"></i><?php echo $row['category']?></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
                                     </div>
-                                    <h2><a href="blog-details.html">Lorem ipsum dolor sit amet, consectetur
-                                            cing elit, sed do eiusmod tempor.</a></h2>
-                                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                                    <div class="blog__btn">
-                                        <a href="#" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bsingle__post mb-50">
-                                <div class="bsingle__post-thumb video-p">
-                                    <img src="img/blog/inner_b2.jpg" alt="">
-                                    <a href="https://www.youtube.com/watch?v=vKSA_idPZkc" class="video-i popup-video"><i class="fas fa-play"></i></a>
-                                </div>
-                                <div class="bsingle__content">
-                                    <div class="meta-info">
-                                        <ul>
-                                            <li><i class="far fa-user"></i>By Zcube</li>
-                                            <li><i class="far fa-comments"></i>35 Comments</li>
-                                        </ul>
-                                    </div>
-                                    <h2><a href="blog-details.html">There are many variations passages of like consectetur lorem ipsum available.</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                                    <div class="blog__btn">
-                                        <a href="#" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bsingle__post mb-50">
-                                <div class="bsingle__post-thumb blog-active">
-                                    <div class="slide-post">
-                                        <img src="img/blog/inner_b3.jpg" alt="">
-                                    </div>
-                                    <div class="slide-post">
-                                        <img src="img/blog/inner_b2.jpg" alt="">
-                                    </div>
-                                    <div class="slide-post">
-                                        <img src="img/blog/inner_b1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="bsingle__content">
-                                    <div class="meta-info">
-                                        <ul>
-                                            <li><i class="far fa-user"></i>By Zcube</li>
-                                            <li><i class="far fa-comments"></i>35 Comments</li>
-                                        </ul>
-                                    </div>
-                                    <h2><a href="blog-details.html">I must explain to you how all this mistaken idea of denouncing pleasure.</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                                    <div class="blog__btn">
-                                        <a href="#" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bsingle__post mb-50">
-                                <div class="bsingle__post-thumb embed-responsive embed-responsive-16by9">
-                                    <iframe height="300" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/547295505&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                                </div>
-                                <div class="bsingle__content">
-                                    <div class="meta-info">
-                                        <ul>
-                                            <li><i class="far fa-user"></i>By Zcube</li>
-                                            <li><i class="far fa-comments"></i>35 Comments</li>
-                                        </ul>
-                                    </div>
-                                    <h2><a href="blog-details.html">There are many variations passages of like consectetur lorem ipsum available.</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                                    <div class="blog__btn">
-                                        <a href="#" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bsingle__post mb-50">
-                                <div class="bsingle__content">
-                                    <div class="meta-info">
-                                        <ul>
-                                            <li><i class="far fa-user"></i>By Zcube</li>
-                                            <li><i class="far fa-comments"></i>35 Comments</li>
-                                        </ul>
-                                    </div>
-                                    <h2><a href="blog-details.html">On the other hand, we denounce with of righteous indignation and dislike men.</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                                    <div class="blog__btn">
-                                        <a href="#" class="btn">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bsingle__post mb-50">
-                                <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
-                                    <div class="meta-info">
-                                        <ul>
-                                            <li><i class="far fa-user"></i>By Zcube</li>
-                                            <li><i class="far fa-clock"></i>19 hours ago</li>
-                                        </ul>
-                                    </div>
-                                    <div class="quote-icon">
-                                        <img src="img/icon/blockquote.png" alt="">
-                                    </div>
-                                    <h2><a href="blog-details.html">We denounce with of righteous one indignation and dislike men.</a></h2>
-                                </div>
-                            </div>
+                                    <?php
+                                }
+                            }
+                        ?>
+
                             <div class="pagination-wrap mb-50">
                                 <nav>
                                     <ul class="pagination">
@@ -266,10 +223,11 @@
                                     </ul>
                                 </nav>
                             </div>
+                        </section>
                         </div>
                          <div class="col-sm-12 col-md-12 col-lg-4">
                            <aside class="sidebar-widget">
-                              <section id="search-3" class="widget widget_search">
+                              <!-- <section id="search-3" class="widget widget_search">
                                  <h2 class="widget-title">Search</h2>
                                  <form role="search" method="get" class="search-form" action="http://wordpress.zcube.in/finco/">
                                     <label>
@@ -278,7 +236,24 @@
                                     </label>
                                     <input type="submit" class="search-submit" value="Search" />
                                  </form>
-                              </section>
+                              </section> -->
+                              <section id="categories-1" class="widget widget_categories">
+                                <h2 class="widget-title">Filter By</h2>
+                                <ul>
+                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=MostRecent">Most Recent</a></li>
+                                    <li class="cat-item cat-item-16"><a href="fetch_posts.php?category=MostPopular">Most Popular</a></li>
+                                </ul>
+                                </section>
+                              <section id="categories-1" class="widget widget_categories">
+                                <h2 class="widget-title">Categories</h2>
+                                <ul>
+                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=All">All</a> (<?php echo $total_all?>)</li>
+                                    <li class="cat-item cat-item-16"><a href="fetch_posts.php?category=PhysicalBully">Physical Bullying</a> (<?php echo $total_pb?>)</li>
+                                    <li class="cat-item cat-item-23"><a href="fetch_posts.php?category=CyberBullying">Cyber Bullying</a> (<?php echo $total_cb?>)</li>
+                                    <li class="cat-item cat-item-18"><a href="fetch_posts.php?category=VerbalBullying">Verbal Bullying</a> (<?php echo $total_vb?>)</li>
+                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=Others">Others</a> (<?php echo $total_others?>)</li>
+                                </ul>
+                                </section>
                               <section id="custom_html-5" class="widget_text widget widget_custom_html">
                                  <h2 class="widget-title">Follow Us</h2>
                                  <div class="textwidget custom-html-widget">
@@ -291,33 +266,32 @@
                                     </div>
                                  </div>
                               </section>
-                              <section id="categories-1" class="widget widget_categories">
-                                 <h2 class="widget-title">Categories</h2>
-                                 <ul>
-                                    <li class="cat-item cat-item-16"><a href="#">Branding</a> (4)</li>
-                                    <li class="cat-item cat-item-23"><a href="#">Corporat</a> (3)</li>
-                                    <li class="cat-item cat-item-18"><a href="#">Design</a> (3)</li>
-                                    <li class="cat-item cat-item-22"><a href="#">Gallery</a> (3)</li>
-                                 </ul>
-                              </section>
+
                               <section id="recent-posts-4" class="widget widget_recent_entries">
                                  <h2 class="widget-title">Recent Posts</h2>
                                  <ul>
-                                    <li>
-                                       <a href="#">User Experience Psychology And Performance Smshing</a>
-                                       <span class="post-date">August 19, 2020</span>
-                                    </li>
-                                    <li>
-                                       <a href="#">Monthly Web Development Up Cost Of JavaScript</a>
-                                       <span class="post-date">August 19, 2020</span>
-                                    </li>
-                                    <li>
-                                       <a href="#">There are many variation passages of like available.</a>
-                                       <span class="post-date">August 19, 2020</span>
-                                    </li>
+                                 <?php
+                                    $query = "SELECT * FROM posts ORDER BY id DESC LIMIT 3";
+                                    $result = mysqli_query($mysqli,$query);
+                                   
+                                    while( $row = mysqli_fetch_assoc($result)){
+                                        $title = $row['title'];
+                                        $dateString = $row['date'];
+                                        $timestamp = strtotime($dateString);
+                                        $formattedDate = date('F d, Y', $timestamp);
+
+                                        ?>
+                                            <li>
+                                            <a href="#"><?php echo $title?></a>
+                                            <span class="post-date"><?php echo $formattedDate?></span>
+                                            </li>
+
+                                        <?php
+                                    }
+                                 ?>
                                  </ul>
                               </section>
-                              <section id="tag_cloud-1" class="widget widget_tag_cloud">
+                              <!-- <section id="tag_cloud-1" class="widget widget_tag_cloud">
                                  <h2 class="widget-title">Tag</h2>
                                  <div class="tagcloud">
                                      <a href="#" class="tag-cloud-link tag-link-28 tag-link-position-1" style="font-size: 8pt;" aria-label="app (1 item)">app</a>
@@ -328,7 +302,7 @@
                                     <a href="#" class="tag-cloud-link tag-link-26 tag-link-position-6" style="font-size: 8pt;" aria-label="video (1 item)">video</a>
                                     <a href="#" class="tag-cloud-link tag-link-29 tag-link-position-7" style="font-size: 16.4pt;" aria-label="web design (2 items)">web design</a>
                                  </div>
-                              </section>
+                              </section> -->
                            </aside>
                         </div>
                     </div>
@@ -358,7 +332,7 @@
                               
                            </div>
                             
-                       <form action="/kidso/php/submitstory.php" method="post" class="contact-form mt-35">
+                       <form action="submitstory.php" method="post" class="contact-form mt-35">
                            <div class="row">
                            <div class="col-lg-12">
                                <div class="contact-field p-relative c-name mb-30">                                    
@@ -383,12 +357,31 @@
                                    <textarea name="story" id="story" cols="30" rows="10" placeholder="Share Your Story"></textarea>
                                </div>
                                <div class="slider-btn">                                          
-                                           <button class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
+                                           <button type="submit" name="submit" class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
                                        </div>                             
                            </div>
                            </div>
                        
                    </form>
+                   <!--If success post-->
+                   <?php 
+                        if(isset($_GET['status'])){
+                            $status = $_GET['status'];
+
+                            if($status === 'success'){
+                                ?>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: 'Your story has been posted!'
+                                })
+                                </script>
+                                
+                        <?php
+                        
+                            }
+                        }?>
                            
                            </div>
                        
@@ -528,5 +521,27 @@
         <script src="js/bootstrap.min.js"></script>
         <!--Sweet Alert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--Dynamic Page-->
+        <script>
+            $(document).ready(function() {
+                $('.cat-item a').click(function(e) {
+                e.preventDefault();
+                var category = $(this).text().trim();
+
+                $.ajax({
+                    url: 'fetch_posts.php',
+                    method: 'GET',
+                    data: { category: category },
+                    success: function(response) {
+                    // Update the content in the #posts-container div
+                    $('#posts-container').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                    console.log(error);
+                    }
+                });
+                });
+            });
+            </script>
     </body>
 </html>
