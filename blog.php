@@ -1,7 +1,8 @@
+<?php  session_start(); ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
-        <?php  session_start(); ?>
+        
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Say No to Bully</title>
