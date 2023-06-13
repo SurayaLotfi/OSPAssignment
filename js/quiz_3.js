@@ -100,7 +100,7 @@ function unCheckRadioButtons() {
 // function for insert score 
 //NANTI TAMBAH USER_ID
 function handleEndGame() {
-    fetch(`insertScore.php?score=${playerScore}`)
+    fetch(`insertScoreQuiz3.php?score=${playerScore}`)
     let remark = null
     let remarkColor = null
 
