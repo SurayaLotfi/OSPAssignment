@@ -22,7 +22,7 @@ session_start();
             }elseif($category == "Most Recent"){
                 $sql = "SELECT * FROM posts ORDER BY id DESC";
             }elseif($category == "Most Popular"){
-                $sql = "SELECT * FROM posts ORDER BY (likes+views) DESC";
+                $sql = "SELECT * FROM posts ORDER BY (comments+views) DESC";
             }else{
                 $sql = "SELECT * FROM posts";
             }
@@ -35,7 +35,7 @@ session_start();
         
         
         while($row = mysqli_fetch_assoc($result)){
-            
+            $post_id = $row['id'];
             ?>
             <div class="bsingle__post mb-50">
                 <div class="bsingle__post-thumb">
@@ -46,14 +46,14 @@ session_start();
                         <ul>
                             <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
                             <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
-                            <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li>
+                            <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li> -->
                             <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li>
                         </ul>
                     </div>
-                    <h2><a href="storydetail.php"><?php echo $row['title']?></a></h2>
+                    <h2><a href="storydetail.php?post_id=<?php echo $post_id?>"><?php echo $row['title']?></a></h2>
                         <p><?php echo $row['story']?></p>
                     <div class="blog__btn">
-                    <a href="storydetail.php" class="btn">Read More</a>
+                    <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a>
                     <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
                         
                         

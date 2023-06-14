@@ -104,19 +104,19 @@
 		</div>
 		<!-- /search-popup -->
             <!-- breadcrumb-area -->
-            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrc-bg.jpg);">
+            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp.png);">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-left">
                                 <div class="breadcrumb-title">
-                                    <h2>Blog</h2>    
+                                    <h2>Stories</h2>    
                                     <div class="breadcrumb-wrap">
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Stories</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -174,8 +174,9 @@
                                 }
                                 $result = mysqli_query($mysqli,$sql);
                                 
+                                
                                 while($row = mysqli_fetch_assoc($result)){
-                                    
+                                    $post_id = $row['id']; //getting each post id   
                                     ?>
                                     <div class="bsingle__post mb-50">
                                         <div class="bsingle__post-thumb">
@@ -186,14 +187,14 @@
                                                 <ul>
                                                     <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
                                                     <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
-                                                    <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li>
+                                                    <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li> -->
                                                     <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li>
                                                 </ul>
                                             </div>
                                             <h2><a href="storydetail.php"><?php echo $row['title']?></a></h2>
                                                 <p><?php echo $row['story']?></p>
                                             <div class="blog__btn">
-                                            <a href="storydetail.php" class="btn">Read More</a>
+                                            <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a>
                                             <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
                                                 
                                                 
@@ -359,7 +360,7 @@
                                </div>
                                <div class="slider-btn">                                          
                                            <button type="submit" name="submit" class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
-                                       </div>                             
+                                </div>                             
                            </div>
                            </div>
                        
