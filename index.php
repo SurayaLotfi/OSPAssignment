@@ -46,7 +46,7 @@
                                                 <a href="quiz.html">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
-                                                <a href="community.php">Community Forum</a>
+                                                <a href="blog.php">Community Forum</a>
                                             </li>
 
                                             <li class="has-sub">
@@ -390,7 +390,7 @@
                                     <ul>                                        
                                         <li><a href="index.php">Home</a></li>
                                         <li><a href="quiz.html"> Quiz</a></li>
-                                        <li><a href="community.php">  Community Forum</a></li>
+                                        <li><a href="blog.php">  Community Forum</a></li>
                                         <li><a href="contact.php"> Contact Us</a></li>
                                         <li><a href="volunteer.php">Join Us</a></li>
                                     </ul>
