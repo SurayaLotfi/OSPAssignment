@@ -11,11 +11,13 @@
     
   </head>
   <body>
+
+    <?php $sourcePage = isset($_GET['source']) ? $_GET['source'] : 'index'; ?>
     
-    <!-- Signup Form -->
+    <!-- Login Form -->
     <section class="home show">
     <div class="form_container">
-    <form method="POST" action="loginprocess.php">
+    <form method="POST" action="loginprocess.php?source=<?php echo $sourcePage; ?>">
             <h2>Login</h2>
 
             <?php
@@ -39,6 +41,21 @@
             }
             ?>
 
+            <?php
+            if (isset($_GET['success'])) {
+                $successMessage = "";
+                // Handle different error cases
+                switch ($_GET['success']) {
+                case "registered":
+                    $successMessage = "Account registered.";
+                    break;
+                }
+                echo '<div class="success-message">';
+                echo '<span>' . $successMessage . '</span>';
+                echo '</div>';
+            }
+            ?>
+
             <div class="input_box">
                 <input type="username" placeholder="Enter your username" name="username" required />
                 <i class="uil uil-user email"></i>
@@ -52,9 +69,24 @@
                 <input type="submit" value="Login">
             </div>
 
-            <div class="login_signup">Don't have an account? <a href="signup.php" id="signup">Signup</a></div>
+            <div class="login_signup">Don't have an account? <a href="signup.php?source=<?php echo $sourcePage; ?>" id="signup">Signup</a></div>
             </form>
     </div>
     </section>
+
+    <script src="js/script1.js"></script>
+    <style>
+        .success-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            background-color: #124d10;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+            }
+    </style>
   </body>
 </html>

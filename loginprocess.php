@@ -22,20 +22,42 @@ if ($result->num_rows > 0) {
     $storedPassword = $row['password'];
 
     // Verify the submitted password against the stored hashed password
+    // Get the source page parameter
+    $sourcePage = $_GET['source'];
+
     if ($password == $storedPassword) {
-        // Password is correct, start the session and redirect to a logged-in page
+        // Password is correct, start the session and redirect to a logged-in page based on the source page
         $_SESSION['logged_in'] = true;
         $_SESSION['username'] = $username;
-        header('Location: index.php');
+
+        // Set the appropriate redirect URL based on the source page
+        switch ($sourcePage) {
+            case 'volunteer':
+                header('Location: volunteer.php');
+                break;
+            case 'community':
+                header('Location: community.php');
+                break;
+            case 'quiz':
+                header('Location: quiz.php');
+                break;
+            case 'contact':
+                header('Location: contact.php');
+                break;
+            default:
+                header('Location: index.php');
+                break;
+        }
+
         exit();
     } else {
-        // Password is incorrect, redirect to the login page
-        header('Location: login.php?error=incorrect_password');
+            // Password is incorrect, redirect to the login page
+            header('Location: login.php?error=incorrect_password&source=' . $sourcePage);
+            exit();
+        }
+    } else {
+        // User does not exist, redirect to the login page
+        header('Location: login.php?error=user_not_found&source=' . $sourcePage);
         exit();
     }
-} else {
-    // User does not exist, redirect to the login page
-    header('Location: login.php?error=user_not_found');
-    exit();
-}
-?>
+    ?>

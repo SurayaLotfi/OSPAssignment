@@ -11,11 +11,13 @@
     
   </head>
   <body>
+
+    <?php $sourcePage = isset($_GET['source']) ? $_GET['source'] : 'index'; ?>
     
     <!-- Signup Form -->
     <section class="home show">
     <div class="form_container">
-        <form method="POST" action="signupprocess.php">
+        <form method="POST" action="signupprocess.php?source=<?php echo $sourcePage; ?>">
         <h2>Signup</h2>
 
         <?php
@@ -26,8 +28,8 @@
             case "username_exists":
                 $errorMessage = "Username already exists.";
                 break;
-            default:
-                $errorMessage = "An error occurred.";
+            case "invalid_email":
+                $errorMessage = "Invalid email.";
                 break;
             }
             echo '<div class="error-message">';
@@ -41,6 +43,10 @@
             <i class="uil uil-user email"></i>
         </div>
         <div class="input_box">
+                <input type="email" placeholder="Enter your email" name="email" required />
+                <i class="uil uil-envelope-alt email"></i>
+            </div>
+        <div class="input_box">
             <input type="password" placeholder="Create password" name="password" required />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
@@ -49,7 +55,7 @@
             <input type="submit" value="Sign Up">
         </div>
 
-        <div class="login_signup">Already have an account? <a href="login.php" id="login">Login</a></div>
+        <div class="login_signup">Already have an account? <a href="login.php?source=<?php echo $sourcePage; ?>" id="login">Login</a></div>
         </form>
     </div>
     </section>

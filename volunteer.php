@@ -1,3 +1,6 @@
+<?php
+include "connect.php";
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -23,6 +26,19 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Londrina Solid">
+
+        <style>
+            .welcome-message {
+                position: absolute;
+                bottom: -60px; /* Adjust the value to position the text lower */
+                left: 0;
+                right: 0;
+                color: #ffffff;
+                text-align: right;
+                font-size: 16px;
+            }
+        </style>
+        
     </head>
     <body>
         <!-- header -->
@@ -66,9 +82,9 @@
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=volunteer" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php" class="btn">Sign In</a>
+                                                <a href="login.php?source=volunteer" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
@@ -93,20 +109,28 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-left">
                                 <div class="breadcrumb-title">
-                                    <h2>Volunteering</h2>    
+                                    <h2>Activity</h2>    
                                     <div class="breadcrumb-wrap">
                               
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Volunteering</li>
-                                    </ol>
-                                </nav>
-                            </div>
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Activity</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="welcome-message">
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                                        $username = $_SESSION['username'];
+                                        echo 'You\'re logged in as <u>' . $username . '</u>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </section>
@@ -192,165 +216,58 @@
                 <div class="animations-08"><img src="img/bg/an-img-08.png" alt="contact-bg-an-01"></div>
                 <div class="animations-09"><img src="img/bg/an-img-09.png" alt="contact-bg-an-01"></div>
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="class-item mb-30">
-                                <div class="class-img">
-                                    <div class="class-img-outer">
-                                        <img src="img/class/1.png" alt="class image">
-                                    </div>
-                                </div>
-                                <div class="class-content">
-                                    <h4 class="title">Public Justice's Anti-Bullying Campaign</a></h4>
-                                    <p>designed to hold schools accountable when they fail to protect our children and to force them to take appropriate steps to respond to bullying.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Location:</span>
-                                            <span class="class-size">SK Kuala Lumpur</span>
-                                        </li>
-                                        <li>
-                                            <span>Date:</span>
-                                            <span class="class-size class-size-2">26 May 2023 - 28 May 2023 </span>
-                                        </li>
-                                        <li>
-                                            <span class="class-more"><a href="class-single.html">Join</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="class-item mb-30">
-                                <div class="class-img">
-                                    <div class="class-img-outer">
-                                        <img src="img/class/2.png" alt="class image">
-                                    </div>
-                                </div>
-                                <div class="class-content">
-                                    <h4 class="title">Coalition Against Bullying for Children and Youth (Cabcy)</a></h4>
-                                    <p>Voluntary Welfare Organisation set up to help children, youth and adults recognise the different forms of bullying, its effects on the targets of bullying and what can be done to help reduce or prevent bullying.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Location:</span>
-                                            <span class="class-size">Sejiwa Orphanage</span>
-                                        </li>
-                                        <li>
-                                            <span>Date:</span>
-                                            <span class="class-size class-size-2">8 June 2023 - 10 June 2023 </span>
-                                        </li>
-                                        <li>
-                                            <span class="class-more"><a href="class-single.html">Join</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="class-item mb-30">
-                                <div class="class-img">
-                                    <div class="class-img-outer">
-                                        <img src="img/class/3.png" alt="class image">
-                                    </div>
-                                </div>
-                                <div class="class-content">
-                                    <h4 class="title">Anti-Bullying Talk/Workshop</a></h4>
-                                    <p>to raise awareness about bullying and provide participants with strategies and skills to prevent and address bullying situations.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Location:</span>
-                                            <span class="class-size">SMK Setia Budi</span>
-                                        </li>
-                                        <li>
-                                            <span>Date:</span>
-                                            <span class="class-size class-size-2">29 May 2023 - 2 June 2023 </span>
-                                        </li>
-                                        <li>
-                                            <span class="class-more"><a href="class-single.html">Join</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="class-item mb-30">
-                                <div class="class-img">
-                                    <div class="class-img-outer">
-                                        <img src="img/class/4.png" alt="class image">
-                                    </div>
-                                </div>
-                                <div class="class-content">
-                                    <h4 class="title">Public Justice's Anti-Bullying Campaign</a></h4>
-                                    <p>designed to hold schools accountable when they fail to protect our children and to force them to take appropriate steps to respond to bullying.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Location:</span>
-                                            <span class="class-size">SK Kuala Lumpur</span>
-                                        </li>
-                                        <li>
-                                            <span>Date:</span>
-                                            <span class="class-size class-size-2">26 May 2023 - 28 May 2023 </span>
-                                        </li>
-                                        <li>
-                                            <span class="class-more"><a href="class-single.html">Join</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="class-item mb-30">
-                                <div class="class-img">
-                                    <div class="class-img-outer">
-                                        <img src="img/class/5.png" alt="class image">
-                                    </div>
-                                </div>
-                                <div class="class-content">
-                                    <h4 class="title">Coalition Against Bullying for Children and Youth (Cabcy)</a></h4>
-                                    <p>Voluntary Welfare Organisation set up to help children, youth and adults recognise the different forms of bullying, its effects on the targets of bullying and what can be done to help reduce or prevent bullying.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Location:</span>
-                                            <span class="class-size">Sejiwa Orphanage</span>
-                                        </li>
-                                        <li>
-                                            <span>Date:</span>
-                                            <span class="class-size class-size-2">8 June 2023 - 10 June 2023 </span>
-                                        </li>
-                                        <li>
-                                            <span class="class-more"><a href="class-single.html">Join</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-12">
-                            <div class="class-item mb-30">
-                                <div class="class-img">
-                                    <div class="class-img-outer">
-                                        <img src="img/class/6.png" alt="class image">
-                                    </div>
-                                </div>
-                                <div class="class-content">
-                                    <h4 class="title">Anti-Bullying Talk/Workshop</a></h4>
-                                    <p>to raise awareness about bullying and provide participants with strategies and skills to prevent and address bullying situations.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Location:</span>
-                                            <span class="class-size">SMK Setia Budi</span>
-                                        </li>
-                                        <li>
-                                            <span>Date:</span>
-                                            <span class="class-size class-size-2">29 May 2023 - 2 June 2023 </span>
-                                        </li>
-                                        <li>
-                                            <span class="class-more"><a href="class-single.html">Join</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row justify-content-center">
+                    <?php
+                    // Fetch data from the 'activity' table
+                    $query = "SELECT * FROM activity";
+                    $result = $mysqli->query($query);
+
+                    // Check if the query was successful
+                    if ($result === false) {
+                        echo "Error executing the query: " . $mysqli->error;
+                        // Handle the query error appropriately for your application
+                        exit();
+                    }
+
+                    // Iterate through each activity and generate the HTML dynamically
+                    while ($activity = $result->fetch_assoc()) {
+                        $title = $activity['title'];
+                        $description = $activity['description'];
+                        $location = $activity['location'];
+                        $startDate = $activity['start_date'];
+                        $endDate = $activity['end_date'];
+                        $image = $activity['Img'];
+
+                        echo '<div class="col-xl-12 col-lg-12 col-md-12">';
+                        echo '<div class="class-item mb-30">';
+                        echo '<div class="class-img">';
+                        echo '<div class="class-img-outer">';
+                        echo '<img src="' . $image . '" alt="class image">';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '<div class="class-content">';
+                        echo '<h4 class="title">' . $title . '</h4>';
+                        echo '<p>' . $description . '</p>';
+                        echo '<ul class="schedule">';
+                        echo '<li>';
+                        echo '<span>Location:</span>';
+                        echo '<span class="class-size">' . $location . '</span>';
+                        echo '</li>';
+                        echo '<li>';
+                        echo '<span>Date:</span>';
+                        echo '<span class="class-size class-size-2">' . $startDate . ' - ' . $endDate . '</span>';
+                        echo '</li>';
+                        echo '<li>';
+                        echo '<span class="class-more"><a href="volunteer_details.php">Join</a></span>';
+                        echo '</li>';
+                        echo '</ul>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                    ?>
                 </div>
+            </div>
             </section>
 
             

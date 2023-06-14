@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css/default.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+
     </head>
     <body>
         <!-- header -->
@@ -64,9 +65,9 @@
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=index" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php" class="btn">Sign In</a>
+                                                <a href="login.php?source=index" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
@@ -85,7 +86,7 @@
         <main>
             
             <!-- search-popup -->
-		<div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
+		<!-- <div class="modal fade bs-example-modal-lg search-bg popup1" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content search-popup">
 					<div class="text-center">
@@ -97,7 +98,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- /search-popup -->
             <!-- slider-area -->
             <section id="parallax" class="slider-area slider-four fix p-relative">
@@ -111,7 +112,18 @@
                            <div class="row justify-content-center align-items-center">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="slider-content s-slider-content pt-100">
-                                        <h5 data-animation="fadeInUp" data-delay=".4s" style="margin-top: -30px;">KIDS AGAINST BULLYING</h5>
+                                        <?php
+                                        // Check if the user is logged in
+                                        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                                            $username = $_SESSION['username']; ?>
+                                            <h5 data-animation="fadeInUp" data-delay=".4s" style="margin-top: -30px;">WELCOME, <?php echo $username ?></h5>
+                                        <?php 
+                                        }
+                                        else { ?>
+                                            <h5 data-animation="fadeInUp" data-delay=".4s" style="margin-top: -30px;">WELCOME, GUEST</h5>
+                                        <?php
+                                        }
+                                        ?>
                                          <h2 data-animation="fadeInUp" data-delay=".4s">SAY <span>NO</span> TO</h2>
                                          <h2 data-animation="fadeInUp" data-delay=".4s"><div class ="big-text" style="margin-top: -50px;">BULLY!</div></h2>
                                         <p data-animation="fadeInUp" data-delay=".6s" style="margin-top: -30px;">"People are going to bring you down because of your drive.
