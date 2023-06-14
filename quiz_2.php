@@ -1,6 +1,7 @@
 <?php 
+
 include "connection.php";
-$sql = "SELECT * FROM quiz_2 ";
+$sql = "SELECT * FROM quiz_2";
 // retrieve score and insert into database
 //data to display scoreboard
 $result = $conn->query($sql);

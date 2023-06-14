@@ -1,6 +1,6 @@
 <?php 
 include "connection.php";
-$sql = "SELECT * FROM quiz ";
+$sql = "SELECT * FROM quiz";
 // retrieve score and insert into database
 //data to display scoreboard
 $result = $conn->query($sql);
@@ -370,7 +370,7 @@ input[type=radio]:checked ~ .option {
                     <label for="option-two" class="option" id="option-two-label"></label>
                 </span>
               
-
+<!-- 
                 <span>
                     <input type="radio" id="option-three" name="option" class="radio" value="optionC" />
                     <label for="option-three" class="option" id="option-three-label"></label>
@@ -380,7 +380,7 @@ input[type=radio]:checked ~ .option {
                 <span>
                     <input type="radio" id="option-four" name="option" class="radio" value="optionD" />
                     <label for="option-four" class="option" id="option-four-label"></label>
-                </span>
+                </span> -->
 
 
             </div>
