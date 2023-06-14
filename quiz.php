@@ -142,7 +142,7 @@
                                         </li>
                                         <li>
                                             <div class="header-btn second-header-btn">
-                                            <a href="registration.php" class="btn">Start</a>
+                                            <a href="quiz_1.php" class="btn">Start</a>
                                         </li>
                             </ul>
                             </div>
