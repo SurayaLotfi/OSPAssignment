@@ -134,6 +134,34 @@ include "connect.php";
     </div>
   </div>
 </div>
+
+<!--Modal for delete post-->
+            <div class="modal fade custom-modal" id="deletepostmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"> 
+                <form action="delete_post.php" method="post" enctype="multipart/form-data" >
+                    <input type = "text" name="post_id" id="deletepost_id">
+                    <!-- <input type = "hidden" name="delete_id" id="delete_id"> -->
+                    <div style="margin: 50px">
+                        <h3>Are you sure you want to delete your post?</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button  type="submit" class="btn btn-info"  name="delete">Delete</button>
+
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
         <!-- main-area -->
         <main>
             
@@ -196,7 +224,7 @@ include "connect.php";
                                 $result = mysqli_query($mysqli,$sql);
 
                                 while($row = mysqli_fetch_assoc($result)){
-                                    
+                                    $post_username = $row['username'];
                                     ?>
                                     <div class="bsingle__post mb-50">
                                         <div class="bsingle__post-thumb">
@@ -205,10 +233,15 @@ include "connect.php";
                                         <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
                                             <div class="meta-info">
                                                 <ul>
+                                                    <li style="display: none;"><input type="hidden" class="post-id" value="<?php echo $post_id; ?>"></li>
                                                     <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
                                                     <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
                                                     <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li> -->
                                                     <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li>
+                                                    <?php if($post_username == $_SESSION['username']){ ?>
+                                                    <li><i class="fas fa-edit"></i><a href="edit_post.php?post_id=<?php echo $post_id; ?>">Edit</a></li>
+                                                    <li><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class='delete-post'>Delete</a></li>
+                                                    <?php } ?>
                                                 </ul>
                                             </div>
                                             <h2><a href="storydetail.php"><?php echo $row['title']?></a></h2>
@@ -310,6 +343,7 @@ include "connect.php";
                                                     <li><i class="far fa-comments"></i> <?php echo date("F d, Y h:i a", strtotime($comment->created_at)); ?> Comments</li>
                                                     <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li>
                                                     <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li> -->
+                                                    
                                                 </ul>
                                             </div>
                                             
@@ -858,5 +892,29 @@ include "connect.php";
                 });
             });
             </script>
+
+                    <!--Delete-->
+        <script>
+            $(document).ready(function() {
+                var scrollPosition; // Variable to store the scroll position
+
+                $('.delete-post').on('click', function() {
+                    // Store the current scroll position
+                    scrollPosition = $(window).scrollTop();
+
+                    // Show the modal
+                    $('#deletepostmodal').modal('show');
+
+                    // Retrieve the post ID
+                    var postId = $(this).closest('.bsingle__post').find('.post-id').val();
+                    $('#deletepost_id').val(postId);
+                });
+
+                $('#deletepostmodal').on('hidden.bs.modal', function() {
+                    // Restore the scroll position after the modal is closed
+                    $(window).scrollTop(scrollPosition);
+                });
+                });
+        </script>
     </body>
 </html>

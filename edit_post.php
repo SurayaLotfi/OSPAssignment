@@ -1,4 +1,52 @@
-<?php  session_start(); ?>
+<?php  session_start(); 
+include "connect.php";
+//incrementing view count
+
+    if(isset($_GET['post_id'])){
+    $post_id = $_GET['post_id'];
+    $query = "SELECT * FROM posts WHERE id = $post_id";
+    $result = mysqli_query($mysqli, $query);
+    if($result){
+        $row = mysqli_fetch_assoc($result);
+        //retrieve all data
+        $title = $row['title'];
+        $story = $row['story'];
+        $category = $row['category'];
+    }else{
+        echo '
+        <script type = "text/javascript">
+          alert("Unsuccessful");
+          window.location = "create.php";
+        </script>';
+    }
+
+    //edit
+    if(isset($_POST['edit'])){
+
+        $new_title = mysqli_real_escape_string($mysqli, $_POST['title']);
+        $new_story = mysqli_real_escape_string($mysqli, $_POST['story']);
+        $new_category = mysqli_real_escape_string($mysqli, $_POST['category']);
+
+        //escape string is to escape speacial characters in the user input before storing it into variables
+        //which causes errors.
+        //it wont delete the special characters, instead it will just fix it into the correct syntax. this is why its important.
+
+        $updateQuery = "UPDATE posts SET title = '$new_title', story = '$new_story', category = '$new_category' WHERE id = $post_id";
+        $result = mysqli_query($mysqli, $updateQuery);
+
+        if($result){
+            header("Location: edit_post.php?post_id=$post_id&status=editsuccess");
+        }else{
+            header("Location: edit_post.php?post_id=$post_id&status=error");
+        }
+    }
+
+    
+
+    
+    }
+
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -85,35 +133,34 @@
             </div>
         </header>
         <!-- header-end -->
-        <!--Delete Modal-->
-            <!-- Modal for delete -->
-                <div class="modal fade custom-modal" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body"> 
-                <form action="delete_post.php" method="post" enctype="multipart/form-data" >
-                    <input type = "text" name="post_id" id="post_id">
-                    <!-- <input type = "hidden" name="delete_id" id="delete_id"> -->
-                    <div style="margin: 50px">
-                        <h3>Are you sure you want to delete your post?</h3>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button  type="submit" class="btn btn-info"  name="delete">Delete</button>
 
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
-      
+    <!-- Modal for delete -->
+    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"> 
+      <form action="comment.php" method="post" enctype="multipart/form-data" >
+        <input type = "hidden" name="post_id" id="post_id">
+        <input type = "hidden" name="delete_id" id="delete_id">
+        <div style="margin: 50px">
+            <h3>Are you sure you want to delete your comment?</h3>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button  type="submit" class="btn btn-info"  name="delete">Delete</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- main-area -->
         <main>
             
@@ -139,13 +186,13 @@
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-left">
                                 <div class="breadcrumb-title">
-                                    <h2>Stories</h2>    
+                                    <h2>Edit Post</h2>    
                                     <div class="breadcrumb-wrap">
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Stories</li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="blog.php">Back to All Stories</a></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -163,50 +210,20 @@
             <section class="inner-blog pt-120 pb-120">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col">
                         <section id="posts-container">
                         <?php
                             //retrieve data from database
                             include "connect.php";
                             
-                            if($_SESSION["logged_in"]){
-                                $query = "SELECT * FROM posts WHERE category = 'Physical Bullying'";
-                                $result = mysqli_query($mysqli, $query);
-                                $total_pb = mysqli_num_rows($result);
-
-                                $query = "SELECT * FROM posts WHERE category = 'Verbal Bullying'";
-                                $result = mysqli_query($mysqli, $query);
-                                $total_vb = mysqli_num_rows($result);
-
-                                $query = "SELECT * FROM posts WHERE category = 'Cyber Bullying'";
-                                $result = mysqli_query($mysqli, $query);
-                                $total_cb = mysqli_num_rows($result);
-
-                                $query = "SELECT * FROM posts WHERE category = 'Others'";
-                                $result = mysqli_query($mysqli, $query);
-                                $total_others = mysqli_num_rows($result);
-
-                                $query = "SELECT * FROM posts";
-                                $result = mysqli_query($mysqli, $query);
-                                $total_all = mysqli_num_rows($result);
-
-                                // check if a category query parameter is present
-                                if (isset($_GET['category'])) {
-                                    $category = $_GET['category'];
-                                    if($category == "All"){
-                                        $sql = "SELECT * FROM posts";
-                                    }else{
-                                        $sql = "SELECT * FROM posts WHERE category = '$category'";
-                                    }
-                                } else {
-                                    $sql = "SELECT * FROM posts ORDER BY id DESC";
-                                }
+                            if($_SESSION["logged_in"]){  //check whether the user is logged in or not
+                                if(isset($_GET['post_id'])){
+                                $post_id = $_GET['post_id']; //get post id, so we can only show the post with the chosen id
+                                $sql = "SELECT * FROM posts WHERE id = $post_id";
                                 $result = mysqli_query($mysqli,$sql);
-                                
-                                
+
                                 while($row = mysqli_fetch_assoc($result)){
-                                    $post_id = $row['id']; //getting each post id   
-                                    $post_username = $row['username']; //getting the current post's username
+                                    
                                     ?>
                                     <div class="bsingle__post mb-50">
                                         <div class="bsingle__post-thumb">
@@ -215,25 +232,45 @@
                                         <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
                                             <div class="meta-info">
                                                 <ul>
-                                                    <li style="display: none;"><input type="hidden" class="post-id" value="<?php echo $post_id; ?>"></li>
                                                     <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
                                                     <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
                                                     <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li> -->
                                                     <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li>
-                                                    <?php if($post_username == $_SESSION['username']){ ?>
-                                                    <li><i class="fas fa-edit"></i><a href="edit_post.php?post_id=<?php echo $post_id; ?>">Edit</a></li>
-                                                    <li><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class='delete-post'>Delete</a></li>
-                                                    <?php 
-                                                    }
-                                                    ?>
                                                 </ul>
                                             </div>
-                                            <!-- <div class="editable-content"> -->
-                                                <h2 class="post-title"><?php echo $row['title']; ?></h2>
-                                                <p class="post-story"><?php echo $row['story']; ?></p>
-                                            <!-- </div> -->
-                                            <div class="blog__btn">
-                                            <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a>
+
+                 <form action="" method="post" class="contact-form mt-35">
+                           <div class="row">
+                           <div class="col-lg-12">
+                               <div class="contact-field p-relative c-name mb-30">                                    
+                                   <input type="text" value='<?php echo $title ?>' id="title" name="title" placeholder="Title" required>
+                               </div>                               
+                           </div>
+                           <div class="col-lg-12">                               
+                               <div class="contact-field p-relative c-subject mb-30">                                   
+                                    <div class="form-group">
+                                        <label for="department-select"><h6>Select Category</h6></label>
+                                        <select class="form-control" id="category-select" name="category">
+                                        <option value="Verbal Bullying" <?php if($category == 'Verbal Bullying') echo 'selected'; ?>>Verbal Bullying</option>
+                                        <option value="Physical Bullying" <?php if($category == 'Physical Bullying') echo 'selected'; ?>>Physical Bullying</option>
+                                        <option value="Cyber Bullying" <?php if($category == 'Cyber Bullying') echo 'selected'; ?>>Cyber Bullying</option>
+                                        <option value="Others" <?php if($category == 'Others') echo 'selected'; ?>>Others</option>
+                                        </select>
+                                    </div>
+                               </div>
+                           </div>		
+                           <div class="col-lg-12">
+                               <div class="contact-field p-relative c-message mb-30">                                  
+                                   <textarea name="story" id="story" cols="30" rows="10" placeholder="Share Your Story"><?php echo $story ?></textarea>
+                               </div>
+                               <div class="blog__btn">                                          
+                                           <button type="submit" name="edit" class="btn" data-animation="fadeInRight" data-delay=".8s">Edit Now</button>				
+                                </div>                             
+                           </div>
+                           </div>
+                       
+                   </form>
+                                            
                                             <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
                                                 
                                                 
@@ -248,10 +285,15 @@
                                     </div>
                                     <?php
                                 }
+                            
                             }
+                        }
                         ?>
+                       
+                        
 
-                            <div class="pagination-wrap mb-50">
+
+                            <!-- <div class="pagination-wrap mb-50">
                                 <nav>
                                     <ul class="pagination">
                                         <li class="page-item"><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
@@ -265,9 +307,9 @@
                                 </nav>
                             </div>
                         </section>
-                        </div>
-                         <div class="col-sm-12 col-md-12 col-lg-4">
-                           <aside class="sidebar-widget">
+                        </div> -->
+                         <!-- <div class="col-sm-12 col-md-12 col-lg-4">
+                           <aside class="sidebar-widget"> -->
                               <!-- <section id="search-3" class="widget widget_search">
                                  <h2 class="widget-title">Search</h2>
                                  <form role="search" method="get" class="search-form" action="http://wordpress.zcube.in/finco/">
@@ -278,12 +320,11 @@
                                     <input type="submit" class="search-submit" value="Search" />
                                  </form>
                               </section> -->
-                              <section id="categories-1" class="widget widget_categories">
+                              <!-- <section id="categories-1" class="widget widget_categories">
                                 <h2 class="widget-title">Filter By</h2>
                                 <ul>
                                     <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=MostRecent">Most Recent</a></li>
                                     <li class="cat-item cat-item-16"><a href="fetch_posts.php?category=MostPopular">Most Popular</a></li>
-                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=MyPosts">My Posts</a></li>
                                 </ul>
                                 </section>
                               <section id="categories-1" class="widget widget_categories">
@@ -332,7 +373,7 @@
                                     }
                                  ?>
                                  </ul>
-                              </section>
+                              </section> -->
                               <!-- <section id="tag_cloud-1" class="widget widget_tag_cloud">
                                  <h2 class="widget-title">Tag</h2>
                                  <div class="tagcloud">
@@ -345,13 +386,13 @@
                                     <a href="#" class="tag-cloud-link tag-link-29 tag-link-position-7" style="font-size: 16.4pt;" aria-label="web design (2 items)">web design</a>
                                  </div>
                               </section> -->
-                           </aside>
+                           <!-- </aside>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
             <!-- inner-blog-end -->
-            <!-- contact-area -->
+            <!-- contact-area
             <section id="contact" class="contact-area after-none contact-bg pt-120 pb-120 p-relative fix"  style="background: #f8f9fe;">
                 <div class="animations-12"><img src="img/bg/slider_shape03.png" alt="an-img-01"></div>
                <div class="animations-13"><img src="img/bg/an-img-12.png" alt="contact-bg-an-01"></div>
@@ -400,13 +441,13 @@
                                </div>
                                <div class="slider-btn">                                          
                                            <button type="submit" name="submit" class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
-                                </div>                             
+                                       </div>                             
                            </div>
                            </div>
                        
-                   </form>
+                   </form> -->
                    <!--If success post-->
-                   <?php 
+                    <?php 
                         if(isset($_GET['status'])){
                             $status = $_GET['status'];
 
@@ -416,7 +457,7 @@
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Success!',
-                                    text: 'Post has been posted!'
+                                    text: 'Comment has been posted!'
                                 })
                                 </script>      
                         <?php
@@ -426,7 +467,7 @@
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Success!',
-                                    text: 'Post has been Deleted.'
+                                    text: 'Comment has been Deleted.'
                                 })
                                 </script>      
                         <?php
@@ -594,7 +635,6 @@
         <script src="js/bootstrap.min.js"></script>
         <!--Sweet Alert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
         <!--Dynamic Page-->
         <script>
             $(document).ready(function() {
@@ -618,29 +658,51 @@
             });
             </script>
 
-        <!--Delete-->
-        <script>
+            <script>
+            
+            function showReplyForm(self) {
+                var commentId = self.getAttribute("data-id");
+                if (document.getElementById("form-" + commentId).style.display == "") {
+                    document.getElementById("form-" + commentId).style.display = "none";
+                } else {
+                    document.getElementById("form-" + commentId).style.display = "";
+                }
+            }
+            
+            </script>
+
+            <script>
+            
+            function showReplyForReplyForm(self) {
+                var commentId = self.getAttribute("data-id");
+                var name = self.getAttribute("data-name");
+            
+                if (document.getElementById("form-" + commentId).style.display == "") {
+                    document.getElementById("form-" + commentId).style.display = "none";
+                } else {
+                    document.getElementById("form-" + commentId).style.display = "";
+                }
+            
+                document.querySelector("#form-" + commentId + " textarea[name=comment]").value = "@" + name;
+                document.getElementById("form-" + commentId).scrollIntoView();
+            }
+            
+            </script>
+
+            <script>
             $(document).ready(function() {
-                var scrollPosition; // Variable to store the scroll position
-
-                $('.delete-post').on('click', function() {
-                    // Store the current scroll position
-                    scrollPosition = $(window).scrollTop();
-
-                    // Show the modal
-                    $('#deletemodal').modal('show');
-
-                    // Retrieve the post ID
+                $('.delete-link').on('click', function() {
+                $('#deletemodal').modal('show');
+                    var id = $(this).closest('.bsingle__post').find('.comment-id').val();
                     var postId = $(this).closest('.bsingle__post').find('.post-id').val();
+
+                    console.log("ID:", id);
+                    console.log("Post ID:", postId);
+
+                    $('#delete_id').val(id);
                     $('#post_id').val(postId);
                 });
-
-                $('#deletemodal').on('hidden.bs.modal', function() {
-                    // Restore the scroll position after the modal is closed
-                    $(window).scrollTop(scrollPosition);
-                });
-                });
-        </script>
-
+            });
+            </script>
     </body>
 </html>
