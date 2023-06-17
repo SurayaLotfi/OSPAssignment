@@ -186,23 +186,27 @@ if ($result) {
                                             else{
                                                 // Retrieve user notel and fullname
                                                 $query1 = "SELECT * FROM users WHERE username = '$username'";
+                                                //echo 'username: '.$username;
                                                 $result1 = mysqli_query($mysqli, $query1);
 
                                                 $row1 = mysqli_fetch_assoc($result1);
                                                 $_SESSION['user_id'] = $row1['user_id'];
-                                                $notel = $row1['telephone'];
+                                                //echo 'userid session '.$_SESSION['user_id'];
+                                                $notel = '011';
+                                                //$notel = $row1['phone'];
                                                 echo 'no tel: '.$notel;
-                                                $fname = $row1['fullname'];
+                                                $fname = 'fazirul';
+                                                //$fname = $row1['fullname'];
                                                 echo 'fullnmae: '.$fname;
 
                                                 // If notel or fname Null, pop-up to enter name and notel
-                                                if ($notel === NULL || $fname === NULL) {
+                                                if ($notel == NULL || $fname == NULL) {
                                                     echo '<button class="btn">JOIN</button>';
                                                     //function here, Azrul!!!
                                                 } else { // notel, fname already filled
                                                     echo '<form method="post" action="join_activity.php">';
-                                                    echo '<input type="hidden" name="activity_id" value="' . $activity_id . '">'; // Add a hidden input field to pass the activity_id
-                                                    echo '<button class="btn" type="submit" name="join">JOIN</button>';
+                                                    echo '<input type="hidden" name="activity_id" value="' . $id . '">'; // Add a hidden input field to pass the activity_id
+                                                    echo '<button class="btn" type="submit" name="join">JOIN terus</button>';
                                                     echo '</form>';
                                                 }                                       
                                             }
