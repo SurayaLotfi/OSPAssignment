@@ -1,5 +1,12 @@
 <?php
+session_start();
 include "connect.php";
+if(!empty($_SESSION['username'])){
+    $username = $_SESSION['username'];
+
+}else{
+    header("location: login.php");
+}
 ?>
 
 <!doctype html>
@@ -133,8 +140,17 @@ include "connect.php";
                     <?php 
                      $sql = "SELECT * FROM quiz";
                      $result = mysqli_query($mysqli,$sql);
+
                      $i = 0;
                      while($row = mysqli_fetch_assoc($result)){
+                        $title = $row['title'];
+                        $total = $row['total'];
+                        $correct = $row['correct'];
+                        $time = $row['time'];
+                        $eid = $row['eid'];
+                        $answered = mysqli_query($mysqli, "SELECT score FROM history WHERE eid='$eid' AND username = '$username'")  or die('Error98');
+                        $rowcount = mysqli_num_rows($answered);
+
                         $i++;
                     ?>
                     <div class="col-xl-4 col-lg-4 col-md-6">
@@ -151,12 +167,20 @@ include "connect.php";
                                     <ul class="schedule">
                                         <li>
                                             <span>Total Questions:</span>
-                                            <span class="class-size">2 Questions</span>
+                                            <span class="class-size"><?php echo $total ?> Questions</span>
                                         </li>
+                                        <?php if($rowcount == 0){?>
                                         <li>
                                             <div class="header-btn second-header-btn">
-                                            <a href="quiz<?php echo $i?>.php" class="btn">Start</a>
+                                            <a href="quiz_detail.php?q=quiz&step=2&eid=<?php echo $eid ?>&n=1&t=<?php echo $total ?>" class="btn">Start</a>
                                         </li>
+                                        <?php } 
+                                        else {?>
+                                        <li>
+                                            <div class="header-btn second-header-btn">
+                                            <a href="quizUpdate.php?q=quizre&step=25&eid=<?php echo $eid ?>&n=1&t=<?php echo $total ?>" class="btn">Restart</a>
+                                        </li>
+                                        <?php }?>
                             </ul>
                             </div>
                            
@@ -169,7 +193,6 @@ include "connect.php";
         </section>
     </div>
         <!-- class area start -->        
-
 
 
 
