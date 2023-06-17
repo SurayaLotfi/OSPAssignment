@@ -1,10 +1,13 @@
 <?php
 session_start();
+$username = $_SESSION['username'] ?? null;
 
 include "connect.php";
 
-$id = 1; //replace with get
-$joined = NULL;
+$id = $_GET['id']; //replace with get
+echo 'activity id: '.$id;
+$joined = $_GET['joined'] ?? null; //replace with 
+echo 'joined?: '.$joined;
 
 // GET THE ACTIVITY ROW / DATA
 $query = 
@@ -32,7 +35,6 @@ if ($result) {
     // Query execution failed
     echo "Error: " . mysqli_error($mysqli);
 }
-
 ?>
 
 <html class="no-js" lang="zxx">
@@ -169,25 +171,27 @@ if ($result) {
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-11">
-                                            <h1>Title</h1>
+                                            <h1><?php echo $activityTitle; ?></h1>
                                         </div>
                                         <div class="col-lg-1">
-                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): 
-                                            //query to get user in user_activity
-                                            $query = "SELECT * FROM activity where activity.id = $id;";?>
-                                            <?php if ($joined === true): ?>
-                                                <button class="btn">UNJOIN</button>
-                                            <?php else: ?> 
-                                                <button class="btn">JOIN THIS</button>
-                                                <?php if (condition1): ?>
-                                                    // Code for condition 1
-                                                <?php else: ?>
-                                                    <a href="page.php" class="btn">JOIN THIS</a>
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        <?php else: ?>
-                                            <a href="login.php" class="btn">JOIN THIS</a>
-                                        <?php endif; ?>
+                                        <?php 
+                                        
+                                        // Check if the user is logged in
+                                        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+                                            //check if the user joined the activity or not
+                                            if ($joined == true) {
+                                                echo '<button class="btn">UNJOIN</button>';
+                                            }   
+                                            //if not join yet
+                                            else{
+                                                echo '<button class="btn">JOIN</button>';
+                                            }
+                                        }
+                                        //if user not log in yet
+                                        else {
+                                            echo '<button class="btn">JOIN (not logged in)</button>';
+                                        }
+                                        ?>
                                         </div>
                                     </div>
                                 </div>
