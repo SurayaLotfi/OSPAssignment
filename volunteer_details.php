@@ -8,10 +8,11 @@ $joined = NULL;
 
 // GET THE ACTIVITY ROW / DATA
 $query = 
-"SELECT *
-FROM user
-JOIN user_activity ON user.user_id = user_activity.user_id
-JOIN activity ON user_activity.activity_id = activity.id;
+"SELECT users.*, activity.* 
+FROM users 
+JOIN user_activity ON users.user_id = user_activity.user_id 
+JOIN activity ON user_activity.activity_id = activity.id 
+where activity.id = $id;
 ";
 
 // Execute the query
@@ -29,6 +30,8 @@ if ($result) {
     $activityLocation = $row['location'];
     $activityStart = $row['start_date'];
     $activityEnd = $row['end_date'];
+    $activityMaxPart = $row['max_participant'];
+    $activityCurPart = $row['current_participant'];
 } else {
     // Query execution failed
     echo "Error: " . mysqli_error($mysqli);
@@ -160,6 +163,7 @@ if ($result) {
             </div>
         </section>
         <!-- breadcrumb-area-end -->
+        
         <!-- volunteer-details-content -->
         <section class="b-details-p pt-120 pb-120">
             <div class="container">
@@ -170,7 +174,7 @@ if ($result) {
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-11">
-                                            <h1>Title</h1>
+                                            <h1><?php echo $activityTitle; ?></h1>
                                         </div>
                                         <div class="col-lg-1">
                                             <a href="#comments" class="btn">JOIN THIS</a>
@@ -178,9 +182,9 @@ if ($result) {
                                     </div>
                                 </div>
                                 <div class="details__content-img">
-                                    <img src="img/blog/b_details01.jpg" alt="">
+                                    <img src="<?php echo $activityImg; ?>" alt="">
                                 </div>
-                                <p>In a world where kindness triumphs over cruelty, our dedicated volunteers stand at the forefront of a movement aimed at reducing bullies and fostering a more compassionate society. Through their tireless efforts, they create safe spaces and educational programs that empower individuals to embrace empathy, understanding, and respect. From organizing anti-bullying workshops to providing support and guidance to victims, our volunteers work passionately to combat the pervasive issue of bullying. Together, we strive to build a community where every voice is heard, where differences are celebrated, and where the cycle of bullying is replaced with compassion and inclusivity. Join us in our mission to create a world free from fear, where kindness reigns supreme, and every individual feels valued and protected. Together, we can make a lasting impact and inspire a future generation that stands up against bullies and champions the power of compassion.</p>
+                                <p><?php echo $activityDescription; ?></p>
                             </div>
                             <!-- #JOIN VOLUNTEER-->
                             <!-- <div id="comments" class="comments-area  mt-45">
@@ -204,16 +208,29 @@ if ($result) {
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <aside class="sidebar-widget">
                             <section id="cause-area" class="widget">
-                                <h2 class="widget-title">Cause Area</h2>
-                                <p>Health & Medicine, Media & Broadcasting, People with Disabilities</p>
                                 <h2 class="widget-title">Location</h2>
-                                <p>Petaling Jaya</p>
+                                <p><?php echo $activityLocation; ?></p>
                                 <h2 class="widget-title">Start Date</h2>
-                                <p>10/6/2023</p>
+                                <p><?php echo $activityStart; ?></p>
                                 <h2 class="widget-title">End Date</h2>
-                                <p>17/6/2023</p>
+                                <p><?php echo $activityEnd; ?></p>
                                 <h2 class="widget-title">Duration</h2>
-                                <p>7 Days</p>
+                                <p>
+                                <?php
+                                    // Convert start and end dates to DateTime objects
+                                    $startDate = new DateTime($activityStart);
+                                    $endDate = new DateTime($activityEnd);
+
+                                    // Calculate the duration as the difference between the two dates
+                                    $duration = $endDate->diff($startDate)->format('%a');
+
+                                    if ($duration == 1) {
+                                        echo $duration . ' day';
+                                    } else {
+                                        echo $duration . ' days';
+                                    }
+                                    ?>
+                                </p>
                                 <h2 class="widget-title">Slots left</h2>
                                 <p>49/50 people</p>
                             </section>
