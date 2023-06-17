@@ -206,7 +206,7 @@ if ($result) {
                                                 } else { // notel, fname already filled
                                                     echo '<form method="post" action="join_activity.php">';
                                                     echo '<input type="hidden" name="activity_id" value="' . $id . '">'; // Add a hidden input field to pass the activity_id
-                                                    echo '<button class="btn" type="submit" name="join">JOIN terus</button>';
+                                                    echo '<button class="btn" type="submit" name="join">JOIN</button>';
                                                     echo '</form>';
                                                 }                                       
                                             }
@@ -214,7 +214,7 @@ if ($result) {
                                         //if user not log in yet
                                         else {
                                             echo '<li>';
-                                            echo '<span class="class-more"><a href="login.php" class="btn">JOIN (unsignedin)</a></span>';
+                                            echo '<span class="class-more"><a href="login.php" class="btn">JOIN</a></span>';
                                             echo '</li>';
                                         }
                                         ?>
@@ -247,42 +247,59 @@ if ($result) {
                         <!-- #right side -->
                     <div class="col-sm-12 col-md-12 col-lg-4">
                     <aside class="sidebar-widget">
-                            <section id="cause-area" class="widget">
-                                <h2 class="widget-title">Location</h2>
-                                <p><?php echo $activityLocation; ?></p>
-                                <h2 class="widget-title">Start Date</h2>
-                                <p><?php echo $activityStart; ?></p>
-                                <h2 class="widget-title">End Date</h2>
-                                <p><?php echo $activityEnd; ?></p>
-                                <h2 class="widget-title">Duration</h2>
-                                <p>
+                        <section id="cause-area" class="widget">
+                            <h2 class="widget-title">Location</h2>
+                            <p><?php echo $activityLocation; ?></p>
+                            <h2 class="widget-title">Start Date</h2>
+                            <p><?php echo $activityStart; ?></p>
+                            <h2 class="widget-title">End Date</h2>
+                            <p><?php echo $activityEnd; ?></p>
+                            <h2 class="widget-title">Duration</h2>
+                            <p>
+                            <?php
+                                // Convert start and end dates to DateTime objects
+                                $startDate = new DateTime($activityStart);
+                                $endDate = new DateTime($activityEnd);
+
+                                // Calculate the duration as the difference between the two dates
+                                $duration = $endDate->diff($startDate)->format('%a');
+
+                                if ($duration == 1) {
+                                    echo $duration . ' day';
+                                } else {
+                                    echo $duration . ' days';
+                                }
+                                ?>
+                            </p>
+                            <h2 class="widget-title">Slots left</h2>
+                            <p>
                                 <?php
-                                    // Convert start and end dates to DateTime objects
-                                    $startDate = new DateTime($activityStart);
-                                    $endDate = new DateTime($activityEnd);
+                                $activityMaxPart = $row['max_participant'];
+                                $activityCurPart = $row['current_participant'];
 
-                                    // Calculate the duration as the difference between the two dates
-                                    $duration = $endDate->diff($startDate)->format('%a');
-
-                                    if ($duration == 1) {
-                                        echo $duration . ' day';
-                                    } else {
-                                        echo $duration . ' days';
-                                    }
-                                    ?>
-                                </p>
-                                <h2 class="widget-title">Slots left</h2>
-                                <p>
-                                    <?php
-                                    $activityMaxPart = $row['max_participant'];
-                                    $activityCurPart = $row['current_participant'];
-
-                                    // $slotsLeft = $activityMaxPart - $activityCurPart;
-                                    echo $activityCurPart . '/' . $activityMaxPart . ' people';
-                                    ?>
-                                </p>
-                            </section>
-                        </aside>
+                                // $slotsLeft = $activityMaxPart - $activityCurPart;
+                                echo $activityCurPart . '/' . $activityMaxPart . ' people';
+                                ?>
+                            </p>
+                        </section>
+                        <section id="cause-area" class="widget">
+                        <div class="row">
+                            <div class="col pt-15 pb-15">
+                                <a class="button" href="#edit">Edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-15 pb-15">
+                                <a class="button" href="#delete">Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-15 pb-15">
+                                <a class="button" href="#join">Join</a>
+                            </div>
+                        </div>
+                        </section>
+                    </aside>
                     </div>
                     <!-- #right side end -->
                 </div>
