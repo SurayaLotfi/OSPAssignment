@@ -162,8 +162,7 @@ if(!empty($_SESSION['username'])){
                             </div>
                             <div class="class-content">
                                 <h4 class="title"><?php echo $row['title']?></a></h4>
-                                <p>There are a lot of schools that have different rituals with bullying hence, causes more harm than good. 
-                                    The quiz below will help see if you have all your facts right when it comes to bullying.</p>
+                                <p><?php echo $row['description']?></p>
                                     <ul class="schedule">
                                         <li>
                                             <span>Total Questions:</span>
