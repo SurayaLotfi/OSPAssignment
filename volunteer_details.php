@@ -1,10 +1,13 @@
 <?php
 session_start();
+$username = $_SESSION['username'] ?? null;
 
 include "connect.php";
 
-$id = 1; //replace with get
-$joined = NULL;
+$id = $_GET['id']; //replace with get
+//echo 'activity id: '.$id;
+$joined = $_GET['joined'] ?? null; //replace with 
+//echo 'joined?: '.$joined;
 
 // GET THE ACTIVITY ROW / DATA
 $query = 
@@ -32,7 +35,6 @@ if ($result) {
     // Query execution failed
     echo "Error: " . mysqli_error($mysqli);
 }
-
 ?>
 
 <html class="no-js" lang="zxx">
@@ -169,32 +171,60 @@ if ($result) {
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-11">
-                                            <h1>Title</h1>
+                                            <h1><?php echo $activityTitle; ?></h1>
                                         </div>
                                         <div class="col-lg-1">
-                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): 
-                                            //query to get user in user_activity
-                                            $query = "SELECT * FROM activity where activity.id = $id;";?>
-                                            <?php if ($joined === true): ?>
-                                                <button class="btn">UNJOIN</button>
-                                            <?php else: ?> 
-                                                <button class="btn">JOIN THIS</button>
-                                                <?php if (condition1): ?>
-                                                    // Code for condition 1
-                                                <?php else: ?>
-                                                    <a href="page.php" class="btn">JOIN THIS</a>
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        <?php else: ?>
-                                            <a href="login.php" class="btn">JOIN THIS</a>
-                                        <?php endif; ?>
+                                        <?php 
+                                        
+                                        // Check if the user is logged in
+                                        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+                                            //logged in and joined
+                                            if ($joined == 1) {
+                                                echo '<button class="btn">UNJOIN</button>';
+                                            }   
+                                            //if logged in but not join yet
+                                            else{
+                                                // Retrieve user notel and fullname
+                                                $query1 = "SELECT * FROM users WHERE username = '$username'";
+                                                //echo 'username: '.$username;
+                                                $result1 = mysqli_query($mysqli, $query1);
+
+                                                $row1 = mysqli_fetch_assoc($result1);
+                                                $_SESSION['user_id'] = $row1['user_id'];
+                                                //echo 'userid session '.$_SESSION['user_id'];
+                                                $notel = '011';
+                                                //$notel = $row1['phone'];
+                                                echo 'no tel: '.$notel;
+                                                $fname = 'fazirul';
+                                                //$fname = $row1['fullname'];
+                                                echo 'fullnmae: '.$fname;
+
+                                                // If notel or fname Null, pop-up to enter name and notel
+                                                if ($notel == NULL || $fname == NULL) {
+                                                    echo '<button class="btn">JOIN</button>';
+                                                    //function here, Azrul!!!
+                                                } else { // notel, fname already filled
+                                                    echo '<form method="post" action="join_activity.php">';
+                                                    echo '<input type="hidden" name="activity_id" value="' . $id . '">'; // Add a hidden input field to pass the activity_id
+                                                    echo '<button class="btn" type="submit" name="join">JOIN</button>';
+                                                    echo '</form>';
+                                                }                                       
+                                            }
+                                        }
+                                        //if user not log in yet
+                                        else {
+                                            echo '<li>';
+                                            echo '<span class="class-more"><a href="login.php" class="btn">JOIN</a></span>';
+                                            echo '</li>';
+                                        }
+                                        ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="details__content-img">
-                                    <img src="img/blog/b_details01.jpg" alt="">
+                                    <img src="<?php echo $activityImg; ?>" alt="">
                                 </div>
-                                <p>In a world where kindness triumphs over cruelty, our dedicated volunteers stand at the forefront of a movement aimed at reducing bullies and fostering a more compassionate society. Through their tireless efforts, they create safe spaces and educational programs that empower individuals to embrace empathy, understanding, and respect. From organizing anti-bullying workshops to providing support and guidance to victims, our volunteers work passionately to combat the pervasive issue of bullying. Together, we strive to build a community where every voice is heard, where differences are celebrated, and where the cycle of bullying is replaced with compassion and inclusivity. Join us in our mission to create a world free from fear, where kindness reigns supreme, and every individual feels valued and protected. Together, we can make a lasting impact and inspire a future generation that stands up against bullies and champions the power of compassion.</p>
+                                <p><?php echo $activityDescription; ?></p>
                             </div>
                             <!-- #JOIN VOLUNTEER-->
                             <!-- <div id="comments" class="comments-area  mt-45">
@@ -217,42 +247,59 @@ if ($result) {
                         <!-- #right side -->
                     <div class="col-sm-12 col-md-12 col-lg-4">
                     <aside class="sidebar-widget">
-                            <section id="cause-area" class="widget">
-                                <h2 class="widget-title">Location</h2>
-                                <p><?php echo $activityLocation; ?></p>
-                                <h2 class="widget-title">Start Date</h2>
-                                <p><?php echo $activityStart; ?></p>
-                                <h2 class="widget-title">End Date</h2>
-                                <p><?php echo $activityEnd; ?></p>
-                                <h2 class="widget-title">Duration</h2>
-                                <p>
+                        <section id="cause-area" class="widget">
+                            <h2 class="widget-title">Location</h2>
+                            <p><?php echo $activityLocation; ?></p>
+                            <h2 class="widget-title">Start Date</h2>
+                            <p><?php echo $activityStart; ?></p>
+                            <h2 class="widget-title">End Date</h2>
+                            <p><?php echo $activityEnd; ?></p>
+                            <h2 class="widget-title">Duration</h2>
+                            <p>
+                            <?php
+                                // Convert start and end dates to DateTime objects
+                                $startDate = new DateTime($activityStart);
+                                $endDate = new DateTime($activityEnd);
+
+                                // Calculate the duration as the difference between the two dates
+                                $duration = $endDate->diff($startDate)->format('%a');
+
+                                if ($duration == 1) {
+                                    echo $duration . ' day';
+                                } else {
+                                    echo $duration . ' days';
+                                }
+                                ?>
+                            </p>
+                            <h2 class="widget-title">Slots left</h2>
+                            <p>
                                 <?php
-                                    // Convert start and end dates to DateTime objects
-                                    $startDate = new DateTime($activityStart);
-                                    $endDate = new DateTime($activityEnd);
+                                $activityMaxPart = $row['max_participant'];
+                                $activityCurPart = $row['current_participant'];
 
-                                    // Calculate the duration as the difference between the two dates
-                                    $duration = $endDate->diff($startDate)->format('%a');
-
-                                    if ($duration == 1) {
-                                        echo $duration . ' day';
-                                    } else {
-                                        echo $duration . ' days';
-                                    }
-                                    ?>
-                                </p>
-                                <h2 class="widget-title">Slots left</h2>
-                                <p>
-                                    <?php
-                                    $activityMaxPart = $row['max_participant'];
-                                    $activityCurPart = $row['current_participant'];
-
-                                    // $slotsLeft = $activityMaxPart - $activityCurPart;
-                                    echo $activityCurPart . '/' . $activityMaxPart . ' people';
-                                    ?>
-                                </p>
-                            </section>
-                        </aside>
+                                // $slotsLeft = $activityMaxPart - $activityCurPart;
+                                echo $activityCurPart . '/' . $activityMaxPart . ' people';
+                                ?>
+                            </p>
+                        </section>
+                        <section id="cause-area" class="widget">
+                        <div class="row">
+                            <div class="col pt-15 pb-15">
+                                <a class="button" href="#edit">Edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-15 pb-15">
+                                <a class="button" href="#delete">Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-15 pb-15">
+                                <a class="button" href="#join">Join</a>
+                            </div>
+                        </div>
+                        </section>
+                    </aside>
                     </div>
                     <!-- #right side end -->
                 </div>
