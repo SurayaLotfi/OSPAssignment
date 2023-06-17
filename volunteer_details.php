@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+include "connect.php";
+
+$id = 1; //replace with get
+$joined = NULL;
+
+// GET THE ACTIVITY ROW / DATA
+$query = 
+"SELECT *
+FROM user
+JOIN user_activity ON user.user_id = user_activity.user_id
+JOIN activity ON user_activity.activity_id = activity.id;
+";
+
+// Execute the query
+$result = mysqli_query($mysqli, $query);
+
+// Check if the query was successful
+if ($result) {
+    // Fetch the row data
+    $row = mysqli_fetch_assoc($result);
+
+    // Access the column values
+    $activityTitle = $row['title'];
+    $activityImg = $row['Img'];
+    $activityDescription = $row['description'];
+    $activityLocation = $row['location'];
+    $activityStart = $row['start_date'];
+    $activityEnd = $row['end_date'];
+} else {
+    // Query execution failed
+    echo "Error: " . mysqli_error($mysqli);
+}
+
+?>
+
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
