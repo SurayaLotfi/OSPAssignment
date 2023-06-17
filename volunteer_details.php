@@ -172,11 +172,13 @@ if ($result) {
                                             <h1>Title</h1>
                                         </div>
                                         <div class="col-lg-1">
-                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): 
+                                            //query to get user in user_activity
+                                            $query = "SELECT * FROM activity where activity.id = $id;";?>
                                             <?php if ($joined === true): ?>
                                                 <button class="btn">UNJOIN</button>
-                                            <?php else: ?>
-                                                <button class="btn">JOIN THIS haha</button>
+                                            <?php else: ?> 
+                                                <button class="btn">JOIN THIS</button>
                                                 <?php if (condition1): ?>
                                                     // Code for condition 1
                                                 <?php else: ?>
@@ -214,20 +216,41 @@ if ($result) {
                     </div>
                         <!-- #right side -->
                     <div class="col-sm-12 col-md-12 col-lg-4">
-                        <aside class="sidebar-widget">
+                    <aside class="sidebar-widget">
                             <section id="cause-area" class="widget">
-                                <h2 class="widget-title">Cause Area</h2>
-                                <p>Health & Medicine, Media & Broadcasting, People with Disabilities</p>
                                 <h2 class="widget-title">Location</h2>
-                                <p>Petaling Jaya</p>
+                                <p><?php echo $activityLocation; ?></p>
                                 <h2 class="widget-title">Start Date</h2>
-                                <p>10/6/2023</p>
+                                <p><?php echo $activityStart; ?></p>
                                 <h2 class="widget-title">End Date</h2>
-                                <p>17/6/2023</p>
+                                <p><?php echo $activityEnd; ?></p>
                                 <h2 class="widget-title">Duration</h2>
-                                <p>7 Days</p>
+                                <p>
+                                <?php
+                                    // Convert start and end dates to DateTime objects
+                                    $startDate = new DateTime($activityStart);
+                                    $endDate = new DateTime($activityEnd);
+
+                                    // Calculate the duration as the difference between the two dates
+                                    $duration = $endDate->diff($startDate)->format('%a');
+
+                                    if ($duration == 1) {
+                                        echo $duration . ' day';
+                                    } else {
+                                        echo $duration . ' days';
+                                    }
+                                    ?>
+                                </p>
                                 <h2 class="widget-title">Slots left</h2>
-                                <p>49/50 people</p>
+                                <p>
+                                    <?php
+                                    $activityMaxPart = $row['max_participant'];
+                                    $activityCurPart = $row['current_participant'];
+
+                                    // $slotsLeft = $activityMaxPart - $activityCurPart;
+                                    echo $activityCurPart . '/' . $activityMaxPart . ' people';
+                                    ?>
+                                </p>
                             </section>
                         </aside>
                     </div>
