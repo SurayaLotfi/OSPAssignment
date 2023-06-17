@@ -3,15 +3,13 @@ session_start();
 
 include "connect.php";
 
-$id = 1; //replace with get
-$joined = NULL;
+$id = $_GET['id'];
+$joined = true; //NEED TO SEE USER_ACTIVITY TABLE ()
 
 // GET THE ACTIVITY ROW / DATA
 $query = 
-"SELECT users.*, activity.* 
-FROM users 
-JOIN user_activity ON users.user_id = user_activity.user_id 
-JOIN activity ON user_activity.activity_id = activity.id 
+"SELECT * 
+FROM activity
 where activity.id = $id;
 ";
 
@@ -177,7 +175,20 @@ if ($result) {
                                             <h1><?php echo $activityTitle; ?></h1>
                                         </div>
                                         <div class="col-lg-1">
-                                            <a href="#comments" class="btn">JOIN THIS</a>
+                                            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                                            <?php if ($joined === true): ?>
+                                                <button class="btn">UNJOIN</button>
+                                            <?php else: ?>
+                                                <button class="btn">JOIN THIS</button>
+                                            <?php if (condition1): ?>
+                                                // Code for condition 1
+                                            <?php else: ?>
+                                                <a href="page.php" class="btn">JOIN THIS</a>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php else: ?>
+                                                <a href="login.php" class="btn">JOIN THIS</a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -232,7 +243,15 @@ if ($result) {
                                     ?>
                                 </p>
                                 <h2 class="widget-title">Slots left</h2>
-                                <p>49/50 people</p>
+                                <p>
+                                    <?php
+                                    $activityMaxPart = $row['max_participant'];
+                                    $activityCurPart = $row['current_participant'];
+
+                                    // $slotsLeft = $activityMaxPart - $activityCurPart;
+                                    echo $activityCurPart . '/' . $activityMaxPart . ' people';
+                                    ?>
+                                </p>
                             </section>
                         </aside>
                     </div>
