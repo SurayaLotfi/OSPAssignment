@@ -172,7 +172,7 @@ include "connect.php";
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-10">
-
+                        <form action="test.php" method="post">
                         <?php 
                             $sql = "SELECT questions.qid, answers.qid, questions.qns, answers.ansid FROM `questions` INNER JOIN `answers` ON questions.qid=answers.qid WHERE `eid` = 'bmafq111';";
                             $result = mysqli_query($mysqli,$sql);
@@ -180,7 +180,8 @@ include "connect.php";
                             while($row = mysqli_fetch_assoc($result)){
                             $i++;
                     ?>
-                                <section id="posts-container">
+                    
+                            <section id="posts-container">
                                 <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
                                             <div class="meta-info">
                                                 <ul>
@@ -206,34 +207,35 @@ include "connect.php";
                                                 </ul>
                                             </div>
                                 </div>
-                                </section>
+                            </section>
                                 <?php
                                     }
                                 ?>
-
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Submit</button></div>';
+</form>
                                 <!-- submit button -->
 
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
                         <ul class="horizontal-buttons">
                             <li>
-                                <div class="header-btn second-header-btn">
-                                    <class="btn">Submit
 
-                                <?php
-                                // Check if the optionid is equal to the answerid
-                                if ($row2['optionid'] == $row['ansid']) {
-                                // Award a mark or perform any desired action
-                                $mark = 1;
-                                } else {
-                                $mark = 0;
-                                }
-                                ?>
+                            
+
+
+                    <?php
+                        if (isset($_POST['submit'])) {
+                        $selectedOption = $_POST[$row['qid']]; // Get the selected option value
+        
+                        // Compare the selected option with the answer ID
+                        if ($selectedOption == $row['answerid']) {
+                            echo "Correct answer!";
+                        // Increment the user's score or perform other actions
+                        } else {
+                        echo "Wrong answer!";
+        }
+    }
+?>
                                 
-                                    <?php if(isset($_SESSION['logged_in'])) { ?>
-                                        <a href="logout.php" class="btn">Submit</a>
-                                    <?php } else { ?>
-                                        <a href="login.php" class="btn">Sign In</a>
-                                    <?php } ?>
                                     
                                 </div>
                             </li>
