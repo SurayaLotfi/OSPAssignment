@@ -1,3 +1,40 @@
+<?php
+session_start();
+
+include "connect.php";
+
+$id = 1; //replace with get
+$joined = NULL;
+
+// GET THE ACTIVITY ROW / DATA
+$query = 
+"SELECT *
+FROM activity
+where activity.id = $id;
+";
+
+// Execute the query
+$result = mysqli_query($mysqli, $query);
+
+// Check if the query was successful
+if ($result) {
+    // Fetch the row data
+    $row = mysqli_fetch_assoc($result);
+
+    // Access the column values
+    $activityTitle = $row['title'];
+    $activityImg = $row['Img'];
+    $activityDescription = $row['description'];
+    $activityLocation = $row['location'];
+    $activityStart = $row['start_date'];
+    $activityEnd = $row['end_date'];
+} else {
+    // Query execution failed
+    echo "Error: " . mysqli_error($mysqli);
+}
+
+?>
+
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
@@ -135,7 +172,22 @@
                                             <h1>Title</h1>
                                         </div>
                                         <div class="col-lg-1">
-                                            <a href="#comments" class="btn">JOIN THIS</a>
+                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): 
+                                            //query to get user in user_activity
+                                            $query = "SELECT * FROM activity where activity.id = $id;";?>
+                                            <?php if ($joined === true): ?>
+                                                <button class="btn">UNJOIN</button>
+                                            <?php else: ?> 
+                                                <button class="btn">JOIN THIS</button>
+                                                <?php if (condition1): ?>
+                                                    // Code for condition 1
+                                                <?php else: ?>
+                                                    <a href="page.php" class="btn">JOIN THIS</a>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <a href="login.php" class="btn">JOIN THIS</a>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +197,7 @@
                                 <p>In a world where kindness triumphs over cruelty, our dedicated volunteers stand at the forefront of a movement aimed at reducing bullies and fostering a more compassionate society. Through their tireless efforts, they create safe spaces and educational programs that empower individuals to embrace empathy, understanding, and respect. From organizing anti-bullying workshops to providing support and guidance to victims, our volunteers work passionately to combat the pervasive issue of bullying. Together, we strive to build a community where every voice is heard, where differences are celebrated, and where the cycle of bullying is replaced with compassion and inclusivity. Join us in our mission to create a world free from fear, where kindness reigns supreme, and every individual feels valued and protected. Together, we can make a lasting impact and inspire a future generation that stands up against bullies and champions the power of compassion.</p>
                             </div>
                             <!-- #JOIN VOLUNTEER-->
-                            <div id="comments" class="comments-area  mt-45">
+                            <!-- <div id="comments" class="comments-area  mt-45">
                                 <div id="respond" class="comment-respond">
                                     <h3 id="reply-title" class="comment-reply-title">Join Us <small><a rel="nofollow" id="cancel-comment-reply-link" href="/finco/?p=2112#respond" style="display:none;">Cancel reply</a></small></h3>
                                     <form action="http://wordpress.zcube.in/finco/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
@@ -158,26 +210,47 @@
                                         </p>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- #JOIN VOLUNTEER (END) -->
                         </div>
                     </div>
                         <!-- #right side -->
                     <div class="col-sm-12 col-md-12 col-lg-4">
-                        <aside class="sidebar-widget">
+                    <aside class="sidebar-widget">
                             <section id="cause-area" class="widget">
-                                <h2 class="widget-title">Cause Area</h2>
-                                <p>Health & Medicine, Media & Broadcasting, People with Disabilities</p>
                                 <h2 class="widget-title">Location</h2>
-                                <p>Petaling Jaya</p>
+                                <p><?php echo $activityLocation; ?></p>
                                 <h2 class="widget-title">Start Date</h2>
-                                <p>10/6/2023</p>
+                                <p><?php echo $activityStart; ?></p>
                                 <h2 class="widget-title">End Date</h2>
-                                <p>17/6/2023</p>
+                                <p><?php echo $activityEnd; ?></p>
                                 <h2 class="widget-title">Duration</h2>
-                                <p>7 Days</p>
+                                <p>
+                                <?php
+                                    // Convert start and end dates to DateTime objects
+                                    $startDate = new DateTime($activityStart);
+                                    $endDate = new DateTime($activityEnd);
+
+                                    // Calculate the duration as the difference between the two dates
+                                    $duration = $endDate->diff($startDate)->format('%a');
+
+                                    if ($duration == 1) {
+                                        echo $duration . ' day';
+                                    } else {
+                                        echo $duration . ' days';
+                                    }
+                                    ?>
+                                </p>
                                 <h2 class="widget-title">Slots left</h2>
-                                <p>49/50 people</p>
+                                <p>
+                                    <?php
+                                    $activityMaxPart = $row['max_participant'];
+                                    $activityCurPart = $row['current_participant'];
+
+                                    // $slotsLeft = $activityMaxPart - $activityCurPart;
+                                    echo $activityCurPart . '/' . $activityMaxPart . ' people';
+                                    ?>
+                                </p>
                             </section>
                         </aside>
                     </div>

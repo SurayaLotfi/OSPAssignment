@@ -1,3 +1,6 @@
+<?php
+include "connect.php";
+?>
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -23,6 +26,8 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
     </head>
+
+    
     <body>
         <!-- header -->
         <header class="header-area header-three">  	
@@ -41,11 +46,11 @@
                                   <nav id="mobile-menu">
                                        <ul>
                                           <li class="has-sub">
-                                              <a href="index.html">Home</a>
+                                              <a href="index.php">Home</a>
                                           </li>
                                         
                                            <li class="has-sub">
-                                               <a href="quiz.html">Quiz</a>
+                                               <a href="quiz.php">Quiz</a>
                                                <ul>
                                                 <li><a href="quiz.html">Quizzes</a></li>
                                                 <li><a href="class-single.html">History</a></li>
@@ -55,11 +60,11 @@
                                            </li>
 
                                           <li class="has-sub"> 
-                                              <a href="community.html">Community Forum</a>
+                                              <a href="community.php">Community Forum</a>
                                           </li>
 
                                           <li class="has-sub">
-                                            <a href="contact.html">Contact Us</a>
+                                            <a href="contact.php">Contact Us</a>
                                           </li> 
                                                                                         
                                       </ul>
@@ -124,163 +129,43 @@
             <div class="animations-09"><img src="img/bg/an-img-09.png" alt="contact-bg-an-01"></div>
             <div class="container">
                 <div class="row justify-content-center">
+                    <!-- Add PHP scripts here -->
+                    <?php 
+                     $sql = "SELECT * FROM quiz";
+                     $result = mysqli_query($mysqli,$sql);
+                     $i = 0;
+                     while($row = mysqli_fetch_assoc($result)){
+                        $i++;
+                    ?>
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="class-item mb-30">
                             <div class="class-img">
                                 <div class="class-img-outer">
-                                    <img src="https://i.pinimg.com/564x/7c/fc/07/7cfc076bf8997e4ee072fd090099e848.jpg" alt="class image">
+                                    <img src="<?php echo $row['image']?>" alt="class image">
                                 </div>                                    
                             </div>
                             <div class="class-content">
-                                <h4 class="title">Bullying Myths And Facts Quiz! Trivia</a></h4>
+                                <h4 class="title"><?php echo $row['title']?></a></h4>
                                 <p>There are a lot of schools that have different rituals with bullying hence, causes more harm than good. 
                                     The quiz below will help see if you have all your facts right when it comes to bullying.</p>
                                     <ul class="schedule">
                                         <li>
                                             <span>Total Questions:</span>
-                                            <span class="class-size">10 Questions</span>
+                                            <span class="class-size">2 Questions</span>
                                         </li>
                                         <li>
                                             <div class="header-btn second-header-btn">
-                                            <a href="quiz_1.php" class="btn">Start</a>
+                                            <a href="quiz<?php echo $i?>.php" class="btn">Start</a>
                                         </li>
                             </ul>
                             </div>
                            
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="class-item mb-30">
-                            <div class="class-img">
-                                <div class="class-img-outer">
-                                    <img src="	https://i.pinimg.com/564x/99/c4/19/99c41950caf141dbcbd6c6364e3a51e2.jpg" alt="class image">
-                                </div>                                    
-                            </div>
-                            <div class="class-content">
-                                <h4 class="title">Bullying Kids Quiz Questions</a></h4>
-                                <p>Do you now everything there is to know about bullying? 
-                                    Bullying can greatly affect your child's ability to learn and grow emotionally, socially and cognitively.
-                                    Here's a chance to be tested on what you know.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Total Questions:</span>
-                                            <span class="class-size">6 Questions</span>
-                                        </li>
-                                        <li>
-                                            <div class="header-btn second-header-btn">
-                                            <a href="volunteer.html" class="btn">Start</a>
-                                        </li>
-                            </ul>
-                            </div>
-                           
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="class-item mb-30">
-                            <div class="class-img">
-                                <div class="class-img-outer">
-                                    <img src="https://i.pinimg.com/564x/14/df/af/14dfafa22f6e55be1dbe0ad58f4f35e7.jpg" alt="class image">
-                                </div>                                    
-                            </div>
-                            <div class="class-content">
-                                <h4 class="title">Am I A Bully?</a></h4>
-                                <p>It's great that you have come here on a path of self-improvement. 
-                                    This interactive quiz will determine how people react in a social situation. 
-                                    Take this 'Am I A Bully? Quiz' and
-                                    don't forget to answer honestly to get an accurate answer.</p>
-                                 <ul class="schedule">
-                                <li>
-                                    <span>Total Questions:</span>
-                                    <span class="class-size">7 Questions</span>
-                                </li>
-                                <li>
-                                    <div class="header-btn second-header-btn">
-                                    <a href="volunteer.html" class="btn">Start</a>
-                                </li>
-                            </ul>
-                            </div>
-                           
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="class-item mb-30">
-                            <div class="class-img">
-                                <div class="class-img-outer">
-                                    <img src="https://i.pinimg.com/564x/cc/b8/26/ccb8264da0d6bedd5ce9cb064adf680a.jpg" alt="class image">
-                                </div>                                    
-                            </div>
-                            <div class="class-content">
-                                <h4 class="title">The Ultimate Bullying Quiz (Part 1)</a></h4>
-                                <p>A school environment that includes bullying greatly impacts your child's feeling of safety at school.  
-                                    Take this quiz and find out how you can reduce the incidence of school bullying.</p>
-                                 <ul class="schedule">
-                                <li>
-                                    <span>Total Questions:</span>
-                                    <span class="class-size">8 Questions</span>
-                                </li>
-                                <li>
-                                    <div class="header-btn second-header-btn">
-                                    <a href="volunteer.html" class="btn">Start</a>
-                                </li>
-                            </ul>
-                            </div>
-                           
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="class-item mb-30">
-                            <div class="class-img">
-                                <div class="class-img-outer">
-                                    <img src="https://i.pinimg.com/564x/40/e1/66/40e166a29525ec8ee927d19d6ea3e059.jpg" alt="class image">
-                                </div>                                    
-                            </div>
-                            <div class="class-content">
-                                <h4 class="title">The Ultimate Bullying Quiz (Part 2)</a></h4>
-                                <p>A school environment that includes bullying greatly impacts your child's feeling of safety at school.  
-                                    Take this quiz and find out how you can reduce the incidence of school bullying.</p>
-                                 <ul class="schedule">
-                                <li>
-                                    <span>Total Questions:</span>
-                                    <span class="class-size">6 Questions</span>
-                                </li>
-                                <li>
-                                    <div class="header-btn second-header-btn">
-                                    <a href="volunteer.html" class="btn">Start</a>
-                                </li>
-                            </ul>
-                            </div>
-                           
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="class-item mb-30">
-                            <div class="class-img">
-                                <div class="class-img-outer">
-                                    <img src="https://i.pinimg.com/564x/9a/ae/5d/9aae5d5fe725ae76e76085ef1b16bb09.jpg" alt="class image">
-                                </div>                                    
-                            </div>
-                            <div class="class-content">
-                                <h4 class="title"><a href="class-single.html">Cyberbullying. Test your knowledge!</a></h4>
-                                <p>
-                                    This quiz is designed to help you learn about cyberbullying, understand its impact, and develop strategies to stay safe and support others online.
-                                    Choose the best answer and good luck!.</p>
-                                    <ul class="schedule">
-                                        <li>
-                                            <span>Total Questions:</span>
-                                            <span class="class-size">10 Questions</span>
-                                        </li>
-                                        <li>
-                                            <div class="header-btn second-header-btn">
-                                            <a href="volunteer.html" class="btn">Start</a>
-                                        </li>
-                            </ul>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-              
-            </div>
+                    <?php 
+                    }
+                    ?>
+                    
         </section>
     </div>
         <!-- class area start -->        

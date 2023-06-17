@@ -1,5 +1,6 @@
 <?php
 include "connect.php";
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -60,7 +61,7 @@ include "connect.php";
                                                 <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
-                                                <a href="quiz.html">Quiz</a>
+                                                <a href="quiz.php">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -231,6 +232,7 @@ include "connect.php";
 
                     // Iterate through each activity and generate the HTML dynamically
                     while ($activity = $result->fetch_assoc()) {
+                        $activity_id = $activity['id'];
                         $title = $activity['title'];
                         $description = $activity['description'];
                         $location = $activity['location'];
@@ -255,11 +257,46 @@ include "connect.php";
                         echo '</li>';
                         echo '<li>';
                         echo '<span>Date:</span>';
-                        echo '<span class="class-size class-size-2">' . $startDate . ' - ' . $endDate . '</span>';
+                        echo '<span class="class-size class-size-2">' . date('d M Y', strtotime($startDate)) . ' - ' . date('d M Y', strtotime($endDate)) . '</span>';
                         echo '</li>';
-                        echo '<li>';
-                        echo '<span class="class-more"><a href="volunteer_details.php">Join</a></span>';
-                        echo '</li>';
+                        // Check if the user is logged in
+                        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                            $username = $_SESSION['username'];
+
+                            // Retrieve user ID based on the username
+                            $query1 = "SELECT user_id FROM users WHERE username = '$username'";
+                            $result1 = mysqli_query($mysqli, $query1);
+
+                            $row1 = mysqli_fetch_assoc($result1);
+                            $user_id = $row1['user_id'];
+
+                            // Retrieve activity ID(s) associated with the user
+                            $query2 = "SELECT activity_id FROM user_activity WHERE user_id = '$user_id'";
+                            $result2 = mysqli_query($mysqli, $query2);
+
+                            $activity_ids = [];
+                            while ($row2 = mysqli_fetch_assoc($result2)) {
+                                $activity_ids[] = $row2['activity_id'];
+                            }
+
+                            // Check if the desired activity ID exists in the user's activity IDs
+                            if (in_array($activity_id, $activity_ids)) {
+                                echo '<li>';
+                                echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '">Joined</a></span>';
+                                echo '</li>';
+                            } else {
+                                // activity not joined yet
+                                echo '<li>';
+                                echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '">Join</a></span>';
+                                echo '</li>';
+                            }
+                        }
+                        else{
+                            // user not signed in
+                            echo '<li>';
+                            echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '">Join</a></span>';
+                            echo '</li>';
+                        }
                         echo '</ul>';
                         echo '</div>';
                         echo '</div>';
