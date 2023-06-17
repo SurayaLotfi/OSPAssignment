@@ -179,7 +179,7 @@ if ($result) {
                                         <?php if ($joined === true): ?>
                                             <button class="btn">UNJOIN</button>
                                         <?php else: ?>
-                                            <button class="btn">JOIN THIS</button>
+                                            <button class="btn">JOIN THIS haha</button>
                                             <?php if (condition1): ?>
                                                 // Code for condition 1
                                             <?php else: ?>
