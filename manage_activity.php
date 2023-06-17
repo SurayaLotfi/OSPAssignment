@@ -1,3 +1,7 @@
+<?php
+include "connect.php";
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--divinectorweb.com-->
@@ -9,28 +13,115 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
     
 </head>
-<body>
-   <h3>Your Company</h3>
-	<h5>We Are Award Winning Web Design Agency From NewYork. We will help you improve your website and digital marketing, to increase your leads and sales online.</h5>
-	<div class="box">
-		<a class="button" href="#divOne">Contact US</a>
-	</div>
-	<div class="overlay" id="divOne">
-		<div class="wrapper">
-			<h2>Please Fill up The Form</h2><a class="close" href="#">&times;</a>
-			<div class="content">
-				<div class="container">
-					<form>
-						<label>Full Name</label>
-						<input placeholder="Your name.." type="text">
-						<label>Phone Number</label>
-						<input placeholder="Your last name.." type="text">
-						<input type="submit" value="Submit">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+    <body>
+    <h3>Your Company</h3>
+        <h5>We Are Award Winning Web Design Agency From NewYork. We will help you improve your website and digital marketing, to increase your leads and sales online.</h5>
+        <div class="box">
+            <a class="button" href="#edit">Edit</a>
+            <a class="button" href="#delete">Delete</a>
+        </div>
+        <?php
+        // Retrieve the user_id from the query string parameter
+        // $user_id = $_GET['id'];
+        $user_id = 1;
+
+        // Fetch data from the 'users' table for the specified user_id
+        $query = "SELECT * FROM users WHERE user_id = $user_id";
+        $result = mysqli_query($mysqli, $query);
+
+        if (!$result) {
+            // Handle the query error appropriately for your application
+            echo "Error executing the query: " . mysqli_error($mysqli);
+            exit();
+        }
+
+        // Retrieve the user details
+        $user = mysqli_fetch_assoc($result);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+            // Retrieve the updated values from the form
+            $phone = $_POST['phone'];
+            $fullname = $_POST['fullname'];
+
+            // Update the user details in the database
+            $updateQuery = "UPDATE users SET phone = '$phone', fullname = '$fullname' WHERE user_id = $user_id";
+            $updateResult = mysqli_query($mysqli, $updateQuery);
+
+            if ($updateResult) {
+                // Redirect back to the volunteer_details.php page
+                header("Location: volunteer_details.php?id=$user_id");
+                exit();
+            } else {
+                // Handle the update error appropriately for your application
+                echo "Error updating users details: " . mysqli_error($mysqli);
+                exit();
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
+            // Delete the user from the user_activity table
+            $deleteQuery = "DELETE FROM user_activity WHERE user_id = $user_id";
+            $deleteResult = mysqli_query($mysqli, $deleteQuery);
+    
+            if ($deleteResult) {
+                // Redirect back to the volunteer_details.php page
+                header("Location: volunteer_details.php?id=$user_id");
+                exit();
+            } else {
+                // Handle the delete error appropriately for your application
+                echo "Error deleting user: " . mysqli_error($mysqli);
+                exit();
+            }
+        }
+
+    ?>
+
+    <!-- Edit button -->
+    <div class="overlay" id="edit">
+        <div class="wrapper">
+            <h2>Change your details</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <div class="container">
+                    <form action="" method="post" style="width:50vw; min-width:300px;">
+                        <div class="mb-3">
+                            <label class="form-label">Phone:</label>
+                            <input type="text" class="form-control" name="phone" value="<?php echo $user['phone']; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name:</label>
+                            <input type="text" class="form-control" name="fullname" value="<?php echo $user['fullname']; ?>">
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-success" name="submit">Update</button>
+                            <a href="volunteer_details.php?id=<?php echo $user_id; ?>" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Delete button -->
+    <div class="overlay" id="delete">
+        <div class="wrapper">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <div class="container">
+                    <form action="" method="post" style="width:50vw; min-width:300px;">
+                        <p>Are you sure you want to delete this user?</p>
+
+                        <div>
+                            <button type="submit" class="btn btn-danger" name="confirm">Delete</button>
+                            <a href="volunteer_details.php?id=<?php echo $user_id; ?>" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <style>
         body {
