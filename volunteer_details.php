@@ -5,9 +5,9 @@ $username = $_SESSION['username'] ?? null;
 include "connect.php";
 
 $id = $_GET['id']; //replace with get
-echo 'activity id: '.$id;
+//echo 'activity id: '.$id;
 $joined = $_GET['joined'] ?? null; //replace with 
-echo 'joined?: '.$joined;
+//echo 'joined?: '.$joined;
 
 // GET THE ACTIVITY ROW / DATA
 $query = 
@@ -178,27 +178,49 @@ if ($result) {
                                         
                                         // Check if the user is logged in
                                         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
-                                            //check if the user joined the activity or not
-                                            if ($joined == true) {
+                                            //logged in and joined
+                                            if ($joined == 1) {
                                                 echo '<button class="btn">UNJOIN</button>';
                                             }   
-                                            //if not join yet
+                                            //if logged in but not join yet
                                             else{
-                                                echo '<button class="btn">JOIN</button>';
+                                                // Retrieve user notel and fullname
+                                                $query1 = "SELECT * FROM users WHERE username = '$username'";
+                                                $result1 = mysqli_query($mysqli, $query1);
+
+                                                $row1 = mysqli_fetch_assoc($result1);
+                                                $_SESSION['user_id'] = $row1['user_id'];
+                                                $notel = $row1['telephone'];
+                                                echo 'no tel: '.$notel;
+                                                $fname = $row1['fullname'];
+                                                echo 'fullnmae: '.$fname;
+
+                                                // If notel or fname Null, pop-up to enter name and notel
+                                                if ($notel === NULL || $fname === NULL) {
+                                                    echo '<button class="btn">JOIN</button>';
+                                                    //function here, Azrul!!!
+                                                } else { // notel, fname already filled
+                                                    echo '<form method="post" action="join_activity.php">';
+                                                    echo '<input type="hidden" name="activity_id" value="' . $activity_id . '">'; // Add a hidden input field to pass the activity_id
+                                                    echo '<button class="btn" type="submit" name="join">JOIN</button>';
+                                                    echo '</form>';
+                                                }                                       
                                             }
                                         }
                                         //if user not log in yet
                                         else {
-                                            echo '<button class="btn">JOIN (not logged in)</button>';
+                                            echo '<li>';
+                                            echo '<span class="class-more"><a href="login.php" class="btn">JOIN (unsignedin)</a></span>';
+                                            echo '</li>';
                                         }
                                         ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="details__content-img">
-                                    <img src="img/blog/b_details01.jpg" alt="">
+                                    <img src="<?php echo $activityImg; ?>" alt="">
                                 </div>
-                                <p>In a world where kindness triumphs over cruelty, our dedicated volunteers stand at the forefront of a movement aimed at reducing bullies and fostering a more compassionate society. Through their tireless efforts, they create safe spaces and educational programs that empower individuals to embrace empathy, understanding, and respect. From organizing anti-bullying workshops to providing support and guidance to victims, our volunteers work passionately to combat the pervasive issue of bullying. Together, we strive to build a community where every voice is heard, where differences are celebrated, and where the cycle of bullying is replaced with compassion and inclusivity. Join us in our mission to create a world free from fear, where kindness reigns supreme, and every individual feels valued and protected. Together, we can make a lasting impact and inspire a future generation that stands up against bullies and champions the power of compassion.</p>
+                                <p><?php echo $activityDescription; ?></p>
                             </div>
                             <!-- #JOIN VOLUNTEER-->
                             <!-- <div id="comments" class="comments-area  mt-45">

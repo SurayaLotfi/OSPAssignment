@@ -282,12 +282,12 @@ include "connect.php";
                             // Check if the desired activity ID exists in the user's activity IDs
                             if (in_array($activity_id, $activity_ids)) {
                                 echo '<li>';
-                                echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '&joined=true">Joined</a></span>';
+                                echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '&joined=1">Joined</a></span>';
                                 echo '</li>';
                             } else {
                                 // activity not joined yet
                                 echo '<li>';
-                                echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '&joined=false">Join</a></span>';
+                                echo '<span class="class-more"><a href="volunteer_details.php?id=' . $activity_id . '&joined=0">Join</a></span>';
                                 echo '</li>';
                             }
                         }
