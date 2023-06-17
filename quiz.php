@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
     </head>
+
+    
     <body>
         <!-- header -->
         <header class="header-area header-three">  	

@@ -1,9 +1,15 @@
+<html>
+    <head>
+        <body>
+
+ 
 <?php
 session_start();
     //retrieve data from database
     include "connect.php";
     
     if($_SESSION["logged_in"]){
+        $username = $_SESSION['username'];
         
         // check if a category query parameter is present
         if (isset($_GET['category'])) {
@@ -23,20 +29,47 @@ session_start();
                 $sql = "SELECT * FROM posts ORDER BY id DESC";
             }elseif($category == "Most Popular"){
                 $sql = "SELECT * FROM posts ORDER BY (comments+views) DESC";
-            }else{
-                $sql = "SELECT * FROM posts";
-            }
-        } else {
-            $sql = "SELECT * FROM posts";
-            
+            }elseif($category == "My Posts"){
+                $sql = "SELECT * FROM posts WHERE username = '$username'";
+            }else {
+            $sql = "SELECT * FROM posts"; 
         }
 
         $result = mysqli_query($mysqli,$sql);
-        
-        
+        if($result){
+            
         while($row = mysqli_fetch_assoc($result)){
             $post_id = $row['id'];
+            $post_username = $row['username']; //getting the current post's username
             ?>
+                    <!--Delete Modal-->
+            <!-- Modal for delete -->
+            <div class="modal fade custom-modal" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"> 
+                <form action="delete_post.php" method="post" enctype="multipart/form-data" >
+                    <input type = "text" name="post_id" id="post_id">
+                    <!-- <input type = "hidden" name="delete_id" id="delete_id"> -->
+                    <div style="margin: 50px">
+                        <h3>Are you sure you want to delete your post?</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button  type="submit" class="btn btn-info"  name="delete">Delete</button>
+
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
             <div class="bsingle__post mb-50">
                 <div class="bsingle__post-thumb">
                     
@@ -44,10 +77,17 @@ session_start();
                 <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
                     <div class="meta-info">
                         <ul>
+                             <li style="display: none;"><input type="hidden" class="post-id" value="<?php echo $post_id; ?>"></li>
                             <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
                             <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
                             <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li> -->
                             <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li>
+                            <?php if($post_username == $_SESSION['username']){ ?>
+                                <li><i class="fas fa-edit"></i><a href="edit_post.php?post_id=<?php echo $post_id; ?>">Edit</a></li>
+                                <li><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class='delete-post'>Delete</a></li>
+                            <?php 
+                                 }
+                            ?>
                         </ul>
                     </div>
                     <h2><a href="storydetail.php?post_id=<?php echo $post_id?>"><?php echo $row['title']?></a></h2>
@@ -66,7 +106,38 @@ session_start();
                 </div>
                 
             </div>
+
             <?php
+            }
+        }else{
         }
     }
+ }
 ?>
+
+    <script>
+            $(document).ready(function() {
+                var scrollPosition; // Variable to store the scroll position
+
+                $('.delete-post').on('click', function() {
+                    // Store the current scroll position
+                    scrollPosition = $(window).scrollTop();
+
+                    // Show the modal
+                    $('#deletemodal').modal('show');
+
+                    // Retrieve the post ID
+                    var postId = $(this).closest('.bsingle__post').find('.post-id').val();
+                    $('#post_id').val(postId);
+                });
+
+                $('#deletemodal').on('hidden.bs.modal', function() {
+                    // Restore the scroll position after the modal is closed
+                    $(window).scrollTop(scrollPosition);
+                });
+                });
+    </script>
+
+        </body>
+    </head>
+</html>
