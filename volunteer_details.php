@@ -145,7 +145,7 @@
                                 <p>In a world where kindness triumphs over cruelty, our dedicated volunteers stand at the forefront of a movement aimed at reducing bullies and fostering a more compassionate society. Through their tireless efforts, they create safe spaces and educational programs that empower individuals to embrace empathy, understanding, and respect. From organizing anti-bullying workshops to providing support and guidance to victims, our volunteers work passionately to combat the pervasive issue of bullying. Together, we strive to build a community where every voice is heard, where differences are celebrated, and where the cycle of bullying is replaced with compassion and inclusivity. Join us in our mission to create a world free from fear, where kindness reigns supreme, and every individual feels valued and protected. Together, we can make a lasting impact and inspire a future generation that stands up against bullies and champions the power of compassion.</p>
                             </div>
                             <!-- #JOIN VOLUNTEER-->
-                            <div id="comments" class="comments-area  mt-45">
+                            <!-- <div id="comments" class="comments-area  mt-45">
                                 <div id="respond" class="comment-respond">
                                     <h3 id="reply-title" class="comment-reply-title">Join Us <small><a rel="nofollow" id="cancel-comment-reply-link" href="/finco/?p=2112#respond" style="display:none;">Cancel reply</a></small></h3>
                                     <form action="http://wordpress.zcube.in/finco/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
@@ -158,7 +158,7 @@
                                         </p>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- #JOIN VOLUNTEER (END) -->
                         </div>
                     </div>
