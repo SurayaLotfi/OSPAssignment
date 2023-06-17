@@ -9,9 +9,8 @@ $joined = NULL;
 // GET THE ACTIVITY ROW / DATA
 $query = 
 "SELECT *
-FROM user
-JOIN user_activity ON user.user_id = user_activity.user_id
-JOIN activity ON user_activity.activity_id = activity.id;
+FROM activity
+where activity.id = $id;
 ";
 
 // Execute the query
@@ -174,16 +173,16 @@ if ($result) {
                                         </div>
                                         <div class="col-lg-1">
                                         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
-                                        <?php if ($joined === true): ?>
-                                            <button class="btn">UNJOIN</button>
-                                        <?php else: ?>
-                                            <button class="btn">JOIN THIS haha</button>
-                                            <?php if (condition1): ?>
-                                                // Code for condition 1
+                                            <?php if ($joined === true): ?>
+                                                <button class="btn">UNJOIN</button>
                                             <?php else: ?>
-                                                <a href="page.php" class="btn">JOIN THIS</a>
+                                                <button class="btn">JOIN THIS haha</button>
+                                                <?php if (condition1): ?>
+                                                    // Code for condition 1
+                                                <?php else: ?>
+                                                    <a href="page.php" class="btn">JOIN THIS</a>
+                                                <?php endif; ?>
                                             <?php endif; ?>
-                                        <?php endif; ?>
                                         <?php else: ?>
                                             <a href="login.php" class="btn">JOIN THIS</a>
                                         <?php endif; ?>
