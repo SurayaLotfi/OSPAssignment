@@ -175,20 +175,20 @@ if ($result) {
                                             <h1><?php echo $activityTitle; ?></h1>
                                         </div>
                                         <div class="col-lg-1">
-                                            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
-                                            <?php if ($joined === true): ?>
-                                                <button class="btn">UNJOIN</button>
-                                            <?php else: ?>
-                                                <button class="btn">JOIN THIS</button>
+                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+                                        <?php if ($joined === true): ?>
+                                            <button class="btn">UNJOIN</button>
+                                        <?php else: ?>
+                                            <button class="btn">JOIN THIS</button>
                                             <?php if (condition1): ?>
                                                 // Code for condition 1
                                             <?php else: ?>
                                                 <a href="page.php" class="btn">JOIN THIS</a>
                                             <?php endif; ?>
-                                            <?php endif; ?>
-                                            <?php else: ?>
-                                                <a href="login.php" class="btn">JOIN THIS</a>
-                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                        <?php else: ?>
+                                            <a href="login.php" class="btn">JOIN THIS</a>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
