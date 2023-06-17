@@ -233,7 +233,7 @@ include "connect.php";
                                         <div class="bsingle__content quote-post" style="background-image:url(img/bg/quote_bg.png)">
                                             <div class="meta-info">
                                                 <ul>
-                                                    <li style="display: none;"><input type="hidden" class="post-id" value="<?php echo $post_id; ?>"></li>
+                                                     <li style="display: none;"><input type="hidden" class="post-id" value="<?php echo $post_id; ?>"></li>
                                                     <li><i class="far fa-user"></i>By <?php echo $row['username']?></li>
                                                     <li><i class="far fa-comments"></i><?php echo $row['comments']?> Comments</li>
                                                     <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li> -->
