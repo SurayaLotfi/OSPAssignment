@@ -8,7 +8,7 @@ $query1 = "SELECT * FROM users WHERE username = '$username'";
 $result1 = mysqli_query($mysqli, $query1);
 
 $row1 = mysqli_fetch_assoc($result1);
-$_SESSION['user_id'] = $row1['user_id'];
+$_SESSION['user_id'] = $row1['user_id'] ?? null;
 
 $id = $_GET['act_id']; //replace with get
 //echo 'activity id: '.$id;
@@ -44,13 +44,10 @@ if ($result) {
     echo "Error: " . mysqli_error($mysqli);
 }
 
-
-
-?>
-<?php
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     // Retrieve the user_id from the query string parameter
     // $user_id = $_GET['id'];
-    $user_id = $_SESSION['user_id']; 
+    $user_id = $_SESSION['user_id'];
     $act_id = $id;
 
     // // Fetch data from the 'users' table for the specified user_id
@@ -65,6 +62,8 @@ if ($result) {
 
     // Retrieve the user details
     $user = mysqli_fetch_assoc($result);
+}
+    
     
     // edit case
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
