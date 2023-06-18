@@ -316,6 +316,11 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                             </li>
                                             <li class="has-sub">
                                                 <a href="quiz.php">Quiz</a>
+                                                <ul>
+                                                <li><a href="quiz.php">Quizzes</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
+                                                </ul>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -555,9 +560,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                 <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
                             </div>
                             <div class="footer-social">                                    
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a ><i class="fab fa-facebook-f"></i></a>
+                                <a ><i class="fab fa-twitter"></i></a>
+                                <a ><i class="fab fa-instagram"></i></a>
                             </div>        
                         </div>
                     </div>
@@ -568,11 +573,11 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             </div>
                             <div class="footer-link">
                                 <ul>                                        
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="quiz.html"> Quiz</a></li>
-                                    <li><a href="community.html">  Community Forum</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
-                                    <li><a href="volunteer.html">Join Us</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="quiz.php"> Quiz</a></li>
+                                    <li><a href="blog.php">  Community Forum</a></li>
+                                    <li><a href="contact.php"> Contact Us</a></li>
+                                    <li><a href="volunteer.php">Join Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -594,9 +599,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                 </li>
                                <li><i class="icon fal fa-envelope"></i>
                                     <span>
-                                        <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
+                                        <a href="mailto:reach-us@osp.fsktm">reach-us@osp.fsktm</a>
                                    <br>
-                                        <a href="mailto:help@example.com">help@example.com</a>
+                                        <a href="mailto:bully@awareness.org">bully@awareness.org</a>
                                    </span>
                                 </li>
                             </ul>
@@ -619,7 +624,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
             </div>
         </div>
         </footer>
-        <!-- footer-end -->
+    <!-- footer-end -->
 
         <!-- Edit button -->
         <div class="overlay" id="edit">
