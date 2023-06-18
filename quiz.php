@@ -60,19 +60,22 @@ if(!empty($_SESSION['username'])){
                                                <a href="quiz.php">Quiz</a>
                                                <ul>
                                                 <li><a href="quiz.html">Quizzes</a></li>
-                                                <li><a href="class-single.html">History</a></li>
-                                                <li><a href="class-single.html">Score</a></li>
-                                                <li><a href="class-single.html">Ranking</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
                                                 </ul>
                                            </li>
 
                                           <li class="has-sub"> 
-                                              <a href="community.php">Community Forum</a>
+                                              <a href="blog.php">Community Forum</a>
                                           </li>
 
                                           <li class="has-sub">
                                             <a href="contact.php">Contact Us</a>
-                                          </li> 
+                                          </li>
+                                          
+                                          <li class="has-sub">
+                                                <a href="volunteer.php">Join Us</a>
+                                          </li>    
                                                                                         
                                       </ul>
                                   </nav>
@@ -114,8 +117,10 @@ if(!empty($_SESSION['username'])){
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Quiz</li>
+                                        <li class="breadcrumb-item "><a href="historyQuiz.php"></a>History</li>
+                                        <li class="breadcrumb-item"><a href="rankingQuiz.php"></a>Ranking</li>
                                     </ol>
                                 </nav>
                             </div>

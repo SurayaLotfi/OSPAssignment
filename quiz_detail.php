@@ -182,6 +182,8 @@ if(!empty($_SESSION['username'])){
 			</div>
 		</div>
 		<!-- /search-popup -->
+
+        
             <!-- breadcrumb-area -->
             <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp.png);">
                 <div class="container">
@@ -189,13 +191,13 @@ if(!empty($_SESSION['username'])){
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-left">
                                 <div class="breadcrumb-title">
-                                    <h2>Personal Stories</h2>    
+                                    <h2>Questions</h2>    
                                     <div class="breadcrumb-wrap">
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page"><a href="blog.php">Back to All Stories</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="blog.php">Back to All Quizzes</a></li>
                                     </ol>
                                 </nav>
                             </div>

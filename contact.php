@@ -42,7 +42,7 @@
                                                 <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
-                                                <a href="quiz.html">Quiz</a>
+                                                <a href="quiz.php">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
