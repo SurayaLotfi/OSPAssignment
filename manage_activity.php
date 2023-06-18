@@ -24,7 +24,7 @@ session_start();
         <?php
         // Retrieve the user_id from the query string parameter
         // $user_id = $_GET['id'];
-        $user_id = 2;
+        $user_id = 1;
         $act_id = 2;
 
         // Fetch data from the 'users' table for the specified user_id
