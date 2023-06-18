@@ -146,7 +146,7 @@ if(empty($_SESSION['username'])){
 		</div>
 		<!-- /search-popup -->
             <!-- breadcrumb-area -->
-            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp.png);">
+            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp2.png)">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -163,6 +163,15 @@ if(empty($_SESSION['username'])){
                                     </ol>
                                 </nav>
                             </div>
+                                </div>
+                                <div class="welcome-message">
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                                        $username = $_SESSION['username'];
+                                        echo 'You\'re logged in as <u>' . $username . '</u>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
