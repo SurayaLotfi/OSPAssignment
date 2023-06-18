@@ -59,20 +59,23 @@ if(!empty($_SESSION['username'])){
                                            <li class="has-sub">
                                                <a href="quiz.php">Quiz</a>
                                                <ul>
-                                                <li><a href="quiz.html">Quizzes</a></li>
-                                                <li><a href="class-single.html">History</a></li>
-                                                <li><a href="class-single.html">Score</a></li>
-                                                <li><a href="class-single.html">Ranking</a></li>
+                                                <li><a href="quiz.php">Quizzes</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
                                                 </ul>
                                            </li>
 
                                           <li class="has-sub"> 
-                                              <a href="community.php">Community Forum</a>
+                                              <a href="blog.php">Community Forum</a>
                                           </li>
 
                                           <li class="has-sub">
                                             <a href="contact.php">Contact Us</a>
-                                          </li> 
+                                          </li>
+                                          
+                                          <li class="has-sub">
+                                                <a href="volunteer.php">Join Us</a>
+                                          </li>    
                                                                                         
                                       </ul>
                                   </nav>
@@ -114,8 +117,10 @@ if(!empty($_SESSION['username'])){
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Quiz</li>
+                                        <li class="breadcrumb-item"><a href="historyQuiz.php">History</a></li>
+                                        <li class="breadcrumb-item"><a href="rankingQuiz.php">Ranking</a></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -162,8 +167,7 @@ if(!empty($_SESSION['username'])){
                             </div>
                             <div class="class-content">
                                 <h4 class="title"><?php echo $row['title']?></a></h4>
-                                <p>There are a lot of schools that have different rituals with bullying hence, causes more harm than good. 
-                                    The quiz below will help see if you have all your facts right when it comes to bullying.</p>
+                                <p><?php echo $row['description']?></p>
                                     <ul class="schedule">
                                         <li>
                                             <span>Total Questions:</span>

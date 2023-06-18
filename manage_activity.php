@@ -19,11 +19,13 @@ session_start();
         <div class="box">
             <a class="button" href="#edit">Edit</a>
             <a class="button" href="#delete">Delete</a>
+            <a class="button" href="#join">Join</a>
         </div>
         <?php
         // Retrieve the user_id from the query string parameter
         // $user_id = $_GET['id'];
-        $user_id = 1;
+        $user_id = 2;
+        $act_id = 2;
 
         // Fetch data from the 'users' table for the specified user_id
         $query = "SELECT * FROM users WHERE user_id = $user_id";
@@ -60,7 +62,7 @@ session_start();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
             // Delete the user from the user_activity table
-            $deleteQuery = "DELETE FROM user_activity WHERE user_id = $user_id";
+            $deleteQuery = "DELETE FROM user_activity WHERE user_id = $user_id AND activity_id = $act_id";
             $deleteResult = mysqli_query($mysqli, $deleteQuery);
     
             if ($deleteResult) {
@@ -70,6 +72,39 @@ session_start();
             } else {
                 // Handle the delete error appropriately for your application
                 echo "Error deleting user: " . mysqli_error($mysqli);
+                exit();
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['join'])) {
+            // Get the form values
+            $fullName = $_POST['fullName'];
+            $phoneNumber = $_POST['phoneNumber'];
+            
+            // Insert the user into the users table
+            $updateUserQuery = "UPDATE users SET phone = '$phoneNumber', fullname = '$fullName' WHERE user_id = $user_id";
+            $insertUserResult = mysqli_query($mysqli, $updateUserQuery);
+        
+            if ($insertUserResult) {
+                // Get the newly inserted user_id
+                // $user_id = mysqli_insert_id($mysqli);
+                
+                // Insert the user_activity record
+                $insertActivityQuery = "INSERT INTO user_activity (user_id, activity_id) VALUES ('$user_id', '$act_id')";
+                $insertActivityResult = mysqli_query($mysqli, $insertActivityQuery);
+        
+                if ($insertActivityResult) {
+                    // Redirect back to the volunteer_details.php page
+                    header("Location: volunteer_details.php?id=$user_id");
+                    exit();
+                } else {
+                    // Handle the insert error appropriately for your application
+                    echo "Error inserting user activity: " . mysqli_error($mysqli);
+                    exit();
+                }
+            } else {
+                // Handle the insert error appropriately for your application
+                echo "Error inserting user: " . mysqli_error($mysqli);
                 exit();
             }
         }
@@ -117,6 +152,25 @@ session_start();
                             <button type="submit" class="btn btn-danger" name="confirm">Delete</button>
                             <a href="volunteer_details.php?id=<?php echo $user_id; ?>" class="btn btn-secondary">Cancel</a>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Join button -->
+    <div class="overlay" id="join">
+        <div class="wrapper">
+            <h2>Please Fill up The Form</h2><a class="close" href="#">&times;</a>
+            <div class="content">
+                <div class="container">
+                    <form method="post">
+                        <label>Full Name</label>
+                        <input placeholder="Your name.." type="text" name="fullName">
+                        <label>Phone Number</label>
+                        <input placeholder="01X-XXXXXXX" type="text" name="phoneNumber">
+                        <input type="submit" value="Submit" name="join">
                     </form>
                 </div>
             </div>

@@ -1,3 +1,7 @@
+<?php
+include "connect.php";
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -42,7 +46,7 @@
                                                 <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
-                                                <a href="quiz.html">Quiz</a>
+                                                <a href="quiz.php">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -124,27 +128,27 @@
     </div>
 	<div class="row text-center pl-100 pr-100">
 		<div class="col-xs-12 col-sm-4 col-md-4">
-			<i class="fas fa-code"></i>
-			<h3>AZRUL</h3>
+        <img src="img/team/Visa.png" style="max-width: 200px; height: auto;">
+			<h3>VISALINI</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
 		<div class="col-xs-12 col-sm-4 col-md-4">
-			<img src="img/team/suraya.jpg" style="max-width: 200px; height: auto;">
+			<img src="img/team/Suraya.png" style="max-width: 200px; height: auto;">
 			<h3>SURAYA</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
 		<div class="col-xs-12 col-sm-4 col-md-4">
-			<i class="fab fa-css3"></i>
+        <img src="img/team/Filzah.png" style="max-width: 200px; height: auto;">
 			<h3>FILZAH</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
         <div class="col-xs-12 col-sm-6 col-md-6">
-			<i class="fas fa-bold"></i>
-			<h3>VISALINI</h3>
+        <img src="img/team/Azrul.png" style="max-width: 200px; height: auto;">
+			<h3>AZRUL</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6">
-			<img src="img/team/Faiz.jpg" style="max-width: 200px; height: auto;">
+			<img src="img/team/Faiz.png" style="max-width: 200px; height: auto;">
 			<h3>FAIZ</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
@@ -162,8 +166,8 @@
                                         <i class="far fa-map"></i>
                                     </div>
                                     <h5>Office Address</h5>
-                                    <p>380 St Kilda Road, Melbourne <br>
-                                    VIC 3004, Australia</p>
+                                    <p>Faculty of Computer Science and Information Technology UM <br>
+                                    50603 Kuala Lumpur</p>
                                 </div>
 							    <div class="single-cta pb-30 mb-30 wow fadeInUp animated" data-animation="fadeInDown animated" data-delay=".2s">
                                     <div class="f-cta-icon">
@@ -178,7 +182,7 @@
                                         <i class="far fa-envelope-open"></i>
                                     </div>
                                     <h5>Message Us</h5>
-                                    <p> <a href="#">support@example.com</a><br><a href="#">info@example.com</a></p>
+                                    <p> <a href="#">reportbullying@awareness.org</a><br><a href="#">helpstopbullying@awareness.org</a></p>
                                 </div>
                             </div>
                         </div>
@@ -216,33 +220,96 @@
                                     Reach Out for Bullying Awareness Assistance
                                 </h2>
                             </div>
-						<form action="mail.php" method="post" class="contact-form mt-35">
-							<div class="row">
-                                <div class="col-lg-12">
-                                    <div class="contact-field p-relative c-name mb-30">                                    
-                                        <input type="text" id="firstn" name="firstn" placeholder="Full Name" required>
-                                    </div>                               
+                            <form action="" method="post" class="contact-form mt-35" onsubmit="return validateForm()">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="contact-field p-relative c-name mb-30">
+                                            <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+                                            <span class="error" id="fullname-error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="contact-field p-relative c-subject mb-30">
+                                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                                            <span class="error" id="email-error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="contact-field p-relative c-subject mb-30">
+                                            <input type="tel" id="phone" name="phone" placeholder="Phone No." required>
+                                            <span class="error" id="phone-error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="contact-field p-relative c-message mb-30">
+                                            <textarea name="message" id="message" cols="30" rows="10" placeholder="Write to us" required></textarea>
+                                            <span class="error" id="message-error"></span>
+                                        </div>
+                                        <div class="slider-btn">
+                                            <button type="submit" class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s" name="submit">Submit Now</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-12">                               
-                                    <div class="contact-field p-relative c-subject mb-30">                                   
-                                        <input type="text" id="email" name="email" placeholder="Email Address" required>
-                                    </div>
-                                </div>		
-                                <div class="col-lg-12">                               
-                                    <div class="contact-field p-relative c-subject mb-30">                                   
-                                        <input type="text" id="phone" name="phone" placeholder="Phone No." required>
-                                    </div>
-                                </div>	
-                                <div class="col-lg-12">
-                                    <div class="contact-field p-relative c-message mb-30">                                  
-                                        <textarea name="message" id="message" cols="30" rows="10" placeholder="Write comments"></textarea>
-                                    </div>
-                                    <div class="slider-btn">                                          
-                                        <button class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
-                                    </div>                             
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+
+                            <script>
+                                function validateForm() {
+                                    // Reset error messages
+                                    document.getElementById('fullname-error').textContent = '';
+                                    document.getElementById('email-error').textContent = '';
+                                    document.getElementById('phone-error').textContent = '';
+                                    document.getElementById('message-error').textContent = '';
+
+                                    // Get form field values
+                                    var fullname = document.getElementById('fullname').value.trim();
+                                    var email = document.getElementById('email').value.trim();
+                                    var phone = document.getElementById('phone').value.trim();
+                                    var message = document.getElementById('message').value.trim();
+
+                                    // Validate fullname (required)
+                                    if (fullname === '') {
+                                        document.getElementById('fullname-error').textContent = 'Full Name is required';
+                                        return false;
+                                    }
+
+                                    // Validate email (required and format)
+                                    if (email === '') {
+                                        document.getElementById('email-error').textContent = 'Email Address is required';
+                                        return false;
+                                    } else if (!validateEmail(email)) {
+                                        document.getElementById('email-error').textContent = 'Invalid Email Address';
+                                        return false;
+                                    }
+
+                                    // Validate phone (required and format)
+                                    if (phone === '') {
+                                        document.getElementById('phone-error').textContent = 'Phone No. is required';
+                                        return false;
+                                    } else if (!validatePhone(phone)) {
+                                        document.getElementById('phone-error').textContent = 'Invalid Phone No.';
+                                        return false;
+                                    }
+
+                                    // Validate message (required)
+                                    if (message === '') {
+                                        document.getElementById('message-error').textContent = 'Message is required';
+                                        return false;
+                                    }
+
+                                    // All fields are valid, allow form submission
+                                    return true;
+                                }
+
+                                function validateEmail(email) {
+                                    var emailRegex = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/;
+                                    return emailRegex.test(email);
+                                }
+
+                                function validatePhone(phone) {
+                                    var phoneRegex = /^(\+?6?01)[02-46-9]-*[0-9]{7}$|^(\+?6?01)[1]-*[0-9]{8}$/;
+                                    return phoneRegex.test(phone);
+                                }
+                            </script>
                             </div>
 						</div>
 					</div>
@@ -251,6 +318,31 @@
             <!-- contact-area-end -->
         </main>
         <!-- main-area-end -->
+
+        <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+                // Get the form data
+                $fullname = $_POST['fullname'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                $message = $_POST['message'];
+                        
+                // Insert the contact record
+                $insertContactQuery = "INSERT INTO contact (fullname, email, phone, message) VALUES ('$fullname', '$email', '$phone', '$message')";
+                $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
+            
+                if ($insertContactResult) {
+                    // Redirect to a success page or perform additional actions
+                    echo "Contact record inserted successfully";
+                    //need to add success pop-up
+                } else {
+                    // Handle the insert error appropriately for your application
+                    echo "Error inserting contact record: " . mysqli_error($mysqli);
+                }
+            }
+            
+        ?>
+
     <!-- footer -->
     <footer class="footer-bg footer-p">
         <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
@@ -366,7 +458,7 @@
         <script src="js/js_isotope.pkgd.min.js"></script>
         <script src="js/imagesloaded.min.js"></script>
         <script src="js/parallax.min.js"></script>
-         <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
         <script src="js/jquery.counterup.min.js"></script>
         <script src="js/jquery.scrollUp.min.js"></script>
         <script src="js/jquery.meanmenu.min.js"></script>
@@ -376,3 +468,8 @@
         <script src="js/main.js"></script>
     </body>
 </html>
+<style>
+    .error {
+        color: red;
+    }
+</style>
