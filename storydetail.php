@@ -340,7 +340,7 @@ include "connect.php";
                                                     <li style="display: none;"><input type="hidden" class="comment-id" value="<?php echo $comment->id; ?>"></li>
                                                     <li style="display: none;"><input type="hidden" class="post-id" value="<?php echo $comment->post_id; ?>"></li>
                                                     <li><i class="far fa-user"></i>By <?php echo $comment->username; ?></li>
-                                                    <li><i class="far fa-comments"></i> <?php echo date("F d, Y h:i a", strtotime($comment->created_at)); ?> Comments</li>
+                                                    <li><i class="far fa-comments"></i> Commented on <?php echo date("F d, Y h:i a", strtotime($comment->created_at)); ?></li>
                                                     <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li>
                                                     <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li> -->
                                                     
@@ -348,18 +348,12 @@ include "connect.php";
                                             </div>
                                             
                                                 <p><h5><?php echo $comment->comment; ?></h5></p>
-                                            <div class="blog__btn">
+                                            <!-- <div class="blog__btn"> -->
                                             <!-- <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a> -->
-                                            <button class="blog__btn" onclick="showReplyForReplyForm(this);" data-name="<?php echo $reply->username; ?>" data-id="<?php echo $comment->id; ?>"> Reply</button>
-                                            
+                                            <!-- <button class="blog__btn" onclick="showReplyForReplyForm(this);" data-name="<?php echo $reply->username; ?>" data-id="<?php echo $comment->id; ?>"> Reply</button>
+                                            </div> -->
                                             <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
                                                 <ul>
-                                                    <li><a  data-toggle="collapse" href="#replyForm" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                     Reply
-                                                    </a></li>
-                                                    <li><a  data-toggle="collapse" href="#viewreplies" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                     View Replies
-                                                    </a></li>
                                                     <?php
                                                     if($comment->username == $_SESSION['username']){ //only the owner can delete theirs. 
                                                         echo "<li><a href='#' class='delete-link'>Delete</a></li>";
@@ -369,11 +363,12 @@ include "connect.php";
 
                                                 </ul>
                                                 </div>
-                                            </div>
+                                            
                                         </div> 
                                     </div>
+                                    <?php endforeach; ?>
                                 <!--Showing all Replies to the comment-->
-                                
+<!--                                 
                                 <?php foreach ($comment->replies as $reply): ?>
                                     <div class="collapse" id="viewreplies">
                                     <div class="bsingle__post mb-50" style="margin-left: 70px"> 
@@ -384,21 +379,21 @@ include "connect.php";
                                             <div class="meta-info">
                                                 <ul>
                                                     <li><i class="far fa-user"></i>By <?php echo $reply->username; ?></li>
-                                                    <li><i class="far fa-comments"></i> <?php echo date("F d, Y h:i a", strtotime($reply->created_at)); ?> Comments</li>
+                                                    <li><i class="far fa-comments"></i> <?php echo date("F d, Y h:i a", strtotime($reply->created_at)); ?> Comments</li> -->
                                                     <!-- <li><a href="like.php"><i class="fas fa-thumbs-up"></i><?php echo $row['likes']?> Likes</a></li>
                                                     <li><i class="fa fa-eye"></i><?php echo $row['views']?> Views</li> -->
-                                                </ul>
+                                                <!-- </ul>
                                             </div>
                                             
                                                 <p><h5><?php echo $reply->comment; ?></h5></p>
                                         </div> 
                                     </div>
                                     </div> 
-                                    <?php endforeach; ?>
+                                    <?php endforeach; ?> -->
                                 
-                            <?php endforeach; ?>
+                           
                         <!--original comment-->
-                        <ul class="comments">
+                        <!-- <ul class="comments">
                             <?php foreach ($comments as $comment): ?>
                                 <li>
                                     <p>
@@ -412,10 +407,10 @@ include "connect.php";
                                     <p>
                                         <?php echo date("F d, Y h:i a", strtotime($comment->created_at)); ?>
                                     </p>
-                                    <div data-id="<?php echo $comment->id; ?>" onclick="showReplyForm(this);">Reply</div>
+                                    <div data-id="<?php echo $comment->id; ?>" onclick="showReplyForm(this);">Reply</div> -->
 
                                     <!--replies to the comment-->
-                                    <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <!-- <a  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         View Replies
                                     </a>
                                     <div class="collapse" id="collapseExample">
@@ -439,10 +434,10 @@ include "connect.php";
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
-                                    </div>
+                                    </div> -->
                         
-                                    <!--Reply Form-->?
-                                    <div class="collapse" id="replyForm">
+                                    <!--Reply Form-->
+                                    <!-- <div class="collapse" id="replyForm">
                                     <form action="comment.php" method="post" id="form-<?php echo $comment->id; ?>" style="display: none;">
                                         
                                         <input type="hidden" name="reply_of" value="<?php echo $comment->id; ?>" required>
@@ -469,9 +464,9 @@ include "connect.php";
                                     </form>
                                     </div>
 
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                                </li> -->
+                            <!-- <?php endforeach; ?>
+                        </ul> -->
                         <?php
                         //comment system
                         // make sure you have a post ID 1 in your "posts table"

@@ -1,4 +1,10 @@
-<?php  session_start(); ?>
+<?php  session_start(); 
+
+if(empty($_SESSION['username'])){
+    header("location: login.php");
+}
+
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -25,6 +31,8 @@
 
         <!--Sweet Alert-->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!--Smooth Scroll-->
+        <script src="https://cdn.jsdelivr.net/npm/smooth-scroll/dist/smooth-scroll.min.js"></script>
     </head>
     <body>
         <!-- header -->
@@ -144,8 +152,9 @@
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Stories</li>
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="blog.php">Stories</a></li>
+                                        <li class="breadcrumb-item" aria-current="page"><a href ="#contact">Share Your Own Story</a></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -251,19 +260,7 @@
                             }
                         ?>
 
-                            <div class="pagination-wrap mb-50">
-                                <nav>
-                                    <ul class="pagination">
-                                        <li class="page-item"><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-                                        <li class="page-item active"><a href="#">1</a></li>
-                                        <li class="page-item"><a href="#">2</a></li>
-                                        <li class="page-item"><a href="#">3</a></li>
-                                        <li class="page-item"><a href="#">...</a></li>
-                                        <li class="page-item"><a href="#">10</a></li>
-                                        <li class="page-item"><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
+
                         </section>
                         </div>
                          <div class="col-sm-12 col-md-12 col-lg-4">
@@ -296,7 +293,7 @@
                                     <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=Others">Others</a> (<?php echo $total_others?>)</li>
                                 </ul>
                                 </section>
-                              <section id="custom_html-5" class="widget_text widget widget_custom_html">
+                              <!-- <section id="custom_html-5" class="widget_text widget widget_custom_html">
                                  <h2 class="widget-title">Follow Us</h2>
                                  <div class="textwidget custom-html-widget">
                                     <div class="widget-social">
@@ -307,7 +304,7 @@
                                        <a href="#"><i class="fab fa-wordpress"></i></a>
                                     </div>
                                  </div>
-                              </section>
+                              </section> -->
 
                               <section id="recent-posts-4" class="widget widget_recent_entries">
                                  <h2 class="widget-title">Recent Posts</h2>
@@ -362,7 +359,7 @@
                    <div class="row">
                        
                         <div class="col-lg-6 order-1">
-                           <img src="img/bg/contact-img.png" alt="img">							
+                           <img src="img/bg/contact.png" alt="img">							
                        </div>
                        <div class="col-lg-6 order-2">
                            <div class="contact-bg02 wow fadeInLeft  animated">
@@ -642,5 +639,10 @@
                 });
         </script>
 
+                    <!---------Smooth Scroll-------->
+            <script src="smooth-scroll.js"></script>
+            <script>
+                var scroll = new SmoothScroll('a[href*="#"]');
+            </script>
     </body>
 </html>
