@@ -69,7 +69,7 @@ if(!empty($_SESSION['username'])){
                                                 <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
-                                                <a href="quiz.html">Quiz</a>
+                                                <a href="quiz.php">Quiz</a>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -183,7 +183,7 @@ if(!empty($_SESSION['username'])){
 		</div>
 		<!-- /search-popup -->
 
-        
+
             <!-- breadcrumb-area -->
             <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp.png);">
                 <div class="container">
@@ -196,8 +196,8 @@ if(!empty($_SESSION['username'])){
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page"><a href="blog.php">Back to All Quizzes</a></li>
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><a href="quiz.php">Back to All Quizzes</a></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -282,21 +282,21 @@ if(!empty($_SESSION['username'])){
                                     $w=$row['wrong'];
                                     $r=$row['correct'];
                                     $qa=$row['level'];
-                                    echo '<tr style="color:#66CCFF"><td>Total Questions</td><td>'.$qa.'</td></tr>
-                                        <tr style="color:#99cc32"><td>right Answer&nbsp;<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td><td>'.$r.'</td></tr> 
-                                        <tr style="color:red"><td>Wrong Answer&nbsp;<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td><td>'.$w.'</td></tr>
-                                        <tr style="color:#66CCFF"><td>Score&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+                                    echo '<tr style="color:#66CCFF"><td><h4 style="color:#66CCFF">Total Questions</h4></td><td><h4 style="color:#66CCFF">'.$qa.'</h4></td></tr>
+                                        <tr style="color:#99cc32"><td><h4 style="color:#99cc32">Right Answer&nbsp;<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><h4></td><td><h4 style="color:#99cc32">'.$r.'</h4></td></tr> 
+                                        <tr style="color:red"><td><h4 style="color:red">Wrong Answer&nbsp;<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></h4></td><td><h4 style="color:red">'.$w.'</h4></td></tr>
+                                        <tr style="color:#66CCFF"><td><h4 style="color:#66CCFF">Score&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></h4></td><td><h4 style="color:#66CCFF">'.$s.'</td></tr></h4>';
                                     }
                                     $q=mysqli_query($mysqli,"SELECT * FROM rank WHERE  username='$username' " )or die('Error157');
                                     while($row=mysqli_fetch_array($q) )
                                     {
                                     $s=$row['score'];
-                                    echo '<tr style="color:#990000"><td>Overall Score&nbsp;<span class="glyphicon glyphicon-stats" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+                                    echo '<tr style="color:#990000"><td><h4 style="color:#990000">Overall Score&nbsp;<span class="glyphicon glyphicon-stats" aria-hidden="true"></span></h4></td><td><h4 style="color:#990000">'.$s.'</h4></td></tr>';
                                     }
                                    
 
                                     echo '</table></div><br>';
-                                    echo '<center><a href="quiz.php" class="btn" data-animation="fadeInRight" data-delay=".8s">Back to All Quiz</a></center>';
+                                    echo '<div class="header-btn second-header-btn"><center><a href="quiz.php" class="btn" data-animation="fadeInRight" data-delay=".8s">Back to All Quiz</a></center>';
                                     }else{}
                                 
                         ?>
@@ -550,11 +550,11 @@ if(!empty($_SESSION['username'])){
                                 </div>
                                 <div class="footer-link">
                                     <ul>                                        
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html"> About Us</a></li>
-                                        <li><a href="classes.html">  Classes</a></li>
-                                        <li><a href="contact.html"> Contact Us</a></li>
-                                        <li><a href="blog.html">Blog </a></li>
+                                        <li><a href="index.php">Home</a></li>
+                                        <li><a href="about.php"> About Us</a></li>
+                                        <li><a href="classes.php">  Classes</a></li>
+                                        <li><a href="contact.php"> Contact Us</a></li>
+                                        <li><a href="blog.php">Blog </a></li>
                                     </ul>
                                 </div>
                             </div>

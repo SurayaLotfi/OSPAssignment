@@ -44,7 +44,7 @@ if(!empty($_SESSION['username'])){
                       <div class="row align-items-center">
                           <div class="col-xl-2 col-lg-2">
                               <div class="logo">
-                                  <a href="index.html"><img src="img/logo/nl2.png" alt="logo"></a>
+                                  <a href="index.php"><img src="img/logo/nl2.png" alt="logo"></a>
                               </div>
                           </div>
                          <div class="col-xl-7 col-lg-7">
@@ -85,7 +85,7 @@ if(!empty($_SESSION['username'])){
                               <div class="login">
                                   <ul>
                                       <li><div class="header-btn second-header-btn">
-                                 <a href="volunteer.html" class="btn">Join Us</a>
+                                 <a href="volunteer.php" class="btn">Join Us</a>
                               </div></li>
                                   </ul>
                               
@@ -118,7 +118,7 @@ if(!empty($_SESSION['username'])){
                               
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page"><a href="quiz.php">Back to All Quizzes</a></li>
                                     </ol>
                                 </nav>
@@ -144,9 +144,9 @@ if(!empty($_SESSION['username'])){
                 <col style="width: 40%;">
             </colgroup>
             <tr style="color: blue;">
-                <th><b>Rank</b></th>
-                <th><b>Name</b></th>
-                <th><b>Score</b></th>
+                <th><h4 style="color: blue;">Rank</h4></th>
+                <th><h4 style="color: blue;">Name</h4></th>
+                <th><h4 style="color: blue;">Score</h4></th>
             </tr>';
             
             $no = 0; //declare ranking
@@ -156,10 +156,112 @@ if(!empty($_SESSION['username'])){
             $no++;
 
             echo '<tr>
-                    <td><b>' . $no . '</b></td>
-                    <td>' . $username . '</td>
-                    <td>' . $score . '</td>
+                    <td><b><h5>' . $no . '</h5></b></td>
+                    <td><h5>' . $username . '</h5></td>
+                    <td><h5>' . $score . '</h5></td>
                     </tr>';
             }
     echo '</table></div></div>';
 ?>
+
+   <!-- footer -->
+       <footer class="footer-bg footer-p">
+        <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="container">
+                <div class="row justify-content-between">
+                    
+                      <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title mb-15">
+                               <img src="img/logo/nl2.png" alt="img">
+                            </div>
+                            <div class="footer-text mb-20">
+                                <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
+                            </div>
+                            <div class="footer-social">                                    
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Our Links</h2>
+                            </div>
+                            <div class="footer-link">
+                                <ul>                                        
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="quiz.php"> Quiz</a></li>
+                                    <li><a href="blog.php">  Community Forum</a></li>
+                                    <li><a href="contact.php"> Contact Us</a></li>
+                                    <li><a href="volunteer.php">Join Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Contact Us</h2>
+                            </div>
+                            <div class="f-contact">
+                                <ul>
+                                <li>
+                                    <i class="icon fal fa-map-marker-check"></i>
+                                    <span>Faculty of Computer Science and Information Technology</span>
+                                </li>
+                                <li>
+                                    <i class="icon fal fa-phone"></i>
+                                    <span>1800-121-3637<br>+91-7052-101-786</span>
+                                </li>
+                               <li><i class="icon fal fa-envelope"></i>
+                                    <span>
+                                        <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
+                                   <br>
+                                        <a href="mailto:help@example.com">help@example.com</a>
+                                   </span>
+                                </li>
+                            </ul>
+                                
+                                </div>
+                        </div>
+                    </div>  
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title mb-15">
+                              <h2>Subscribe Now !</h2>
+                            </div>
+                           <div class="footer-link">
+                            <div class="newslater-area">
+                                <form name="ajax-form" id="contact-form4" action="#" method="post" class="contact-form newslater">
+                                   <div class="form-group p-relative">
+                                      <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
+                                      <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
+                                   </div>
+                                   <!-- /Form-email -->	
+                                </form>
+                             </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+                
+            </div>
+        </div>
+       <div class="copyright-wrap text-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">                         
+                          Copyright © 2023 UM All rights reserved.  
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
