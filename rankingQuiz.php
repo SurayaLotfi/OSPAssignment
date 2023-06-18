@@ -9,6 +9,19 @@ if(!empty($_SESSION['username'])){
 }
 ?>
 
+<style>
+    .table-container {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    width: 100%;
+  }
+}
+
+</style>
+
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -139,7 +152,7 @@ if(!empty($_SESSION['username'])){
         $q=mysqli_query($mysqli,"SELECT * FROM rank  ORDER BY score DESC " )or die('Error223');
         echo '<div class="panel title">
         <div class="table-responsive" style="padding: 30px;">
-        <table class="table table-striped title1" style="margin: 0 auto; width: 50%;">
+        <table class="table table-striped title1" style="margin: 30px auto; width: 50%;">
             <colgroup>
                 <col style="width: 20%;">
                 <col style="width: 40%;">
@@ -267,3 +280,6 @@ if(!empty($_SESSION['username'])){
         </div>
     </footer>
     <!-- footer-end -->
+
+    </body>
+</html>
