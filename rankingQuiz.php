@@ -9,6 +9,19 @@ if(!empty($_SESSION['username'])){
 }
 ?>
 
+<style>
+    .table-container {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    width: 100%;
+  }
+}
+
+</style>
+
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -81,17 +94,19 @@ if(!empty($_SESSION['username'])){
                                   </nav>
                               </div>
                           </div>   
-                          <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                              <div class="login">
-                                  <ul>
-                                      <li><div class="header-btn second-header-btn">
-                                 <a href="volunteer.php" class="btn">Join Us</a>
-                              </div></li>
-                                  </ul>
-                              
-                              </div>
-                             
-                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                           
                               <div class="col-12">
                                   <div class="mobile-menu"></div>
@@ -137,7 +152,7 @@ if(!empty($_SESSION['username'])){
         $q=mysqli_query($mysqli,"SELECT * FROM rank  ORDER BY score DESC " )or die('Error223');
         echo '<div class="panel title">
         <div class="table-responsive" style="padding: 30px;">
-        <table class="table table-striped title1" style="margin: 0 auto; width: 50%;">
+        <table class="table table-striped title1" style="margin: 30px auto; width: 50%;">
             <colgroup>
                 <col style="width: 20%;">
                 <col style="width: 40%;">
@@ -265,3 +280,6 @@ if(!empty($_SESSION['username'])){
         </div>
     </footer>
     <!-- footer-end -->
+
+    </body>
+</html>
