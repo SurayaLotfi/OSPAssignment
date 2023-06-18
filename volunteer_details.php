@@ -369,7 +369,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Activity</li>
+                                                <li class="breadcrumb-item active" aria-current="page"><a href="volunteer.php">Back to all Activities</a></li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -602,24 +602,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                             </ul>
                                 
                                 </div>
-                        </div>
-                    </div>  
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title mb-15">
-                              <h2>Subscribe Now !</h2>
-                            </div>
-                           <div class="footer-link">
-                            <div class="newslater-area">
-                                <form name="ajax-form" id="contact-form4" action="#" method="post" class="contact-form newslater">
-                                   <div class="form-group p-relative">
-                                      <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
-                                      <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
-                                   </div>
-                                   <!-- /Form-email -->	
-                                </form>
-                             </div>
-                            </div>
                         </div>
                     </div>  
                 </div>

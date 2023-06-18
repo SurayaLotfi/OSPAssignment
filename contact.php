@@ -127,27 +127,27 @@ include "connect.php";
         </div>     
     </div>
 	<div class="row text-center pl-100 pr-100">
-		<div class="col-xs-12 col-sm-4 col-md-4">
+		<div class="col-xs-12 col-sm-12 col-md-4">
         <img src="img/team/Visa.png" style="max-width: 200px; height: auto;">
 			<h3>VISALINI</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4">
+		<div class="col-xs-12 col-sm-12 col-md-4">
 			<img src="img/team/Suraya.png" style="max-width: 200px; height: auto;">
 			<h3>SURAYA</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4">
+		<div class="col-xs-12 col-sm-12 col-md-4">
         <img src="img/team/Filzah.png" style="max-width: 200px; height: auto;">
 			<h3>FILZAH</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
-        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-12 col-md-6">
         <img src="img/team/Azrul.png" style="max-width: 200px; height: auto;">
 			<h3>AZRUL</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="col-xs-12 col-sm-12 col-md-6">
 			<img src="img/team/Faiz.png" style="max-width: 200px; height: auto;">
 			<h3>FAIZ</h3>
 			<p>Bachelor in Computer Science (Information System)</p>
@@ -209,10 +209,7 @@ include "connect.php";
                 <div class="animations-15"><img src="img/bg/an-img-13.png" alt="contact-bg-an-01"></div>
                 <div class="container">
 					<div class="row">
-                        <div class="col-lg-6 order-1">
-                            <img src="img/bg/contact.png" alt="img">							
-                        </div>
-                        <div class="col-lg-6 order-2">
+                        <div class="col order-2">
                             <div class="contact-bg02 wow fadeInLeft  animated">
                             <div class="section-title center-align">
                                 <h5>Contact Us</h5>
@@ -332,9 +329,7 @@ include "connect.php";
                 $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
             
                 if ($insertContactResult) {
-                    // Redirect to a success page or perform additional actions
-                    echo "Contact record inserted successfully";
-                    //need to add success pop-up
+                    header("Location: contact.php?#success-send");
                 } else {
                     // Handle the insert error appropriately for your application
                     echo "Error inserting contact record: " . mysqli_error($mysqli);
@@ -343,12 +338,29 @@ include "connect.php";
             
         ?>
 
+        <div class="overlay" id="success-send">
+            <div class="wrapper">
+                <div class="content">
+                    <div class="form-container">
+                        <h2>The details have been successfully sent</h2>
+                        <button class="btn btn-primary" onclick="closePopup()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function closePopup() {
+                // Redirect back to the volunteer_details.php page
+                window.location.href = "contact.php";
+            }
+        </script>
+
     <!-- footer -->
     <footer class="footer-bg footer-p">
         <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
                 <div class="row justify-content-between">
-                    
                       <div class="col-xl-3 col-lg-3 col-sm-6">
                         <div class="footer-widget mb-30">
                             <div class="f-widget-title mb-15">
@@ -407,28 +419,7 @@ include "connect.php";
                                 </div>
                         </div>
                     </div>  
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title mb-15">
-                              <h2>Subscribe Now !</h2>
-                            </div>
-                           <div class="footer-link">
-                            <div class="newslater-area">
-                                <form name="ajax-form" id="contact-form4" action="#" method="post" class="contact-form newslater">
-                                   <div class="form-group p-relative">
-                                      <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
-                                      <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
-                                   </div>
-                                   <!-- /Form-email -->	
-                                </form>
-                             </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    
                 </div>
-                
             </div>
         </div>
        <div class="copyright-wrap text-center">
@@ -442,7 +433,7 @@ include "connect.php";
                 </div>
             </div>
         </div>
-    </footer>
+        </footer>
     <!-- footer-end -->
 
         <!-- JS here -->
@@ -468,8 +459,109 @@ include "connect.php";
         <script src="js/main.js"></script>
     </body>
 </html>
+
 <style>
-    .error {
+        .error {
         color: red;
     }
-</style>
+        .newbutton {
+            font-size: 1em;
+            padding: 15px 35px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            background: #403e3d;
+            border-radius: 50px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            transition: opacity 500ms;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 9999;
+        }
+        .overlay:target {
+            visibility: visible;
+            opacity: 1;
+        }
+        .wrapper {
+            margin: 70px auto;
+            padding: 20px;
+            background: #e7e7e7;
+            border-radius: 5px;
+            width: 30%;
+            position: relative;
+            transition: all 5s ease-in-out;
+        }
+        .wrapper h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .wrapper .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            transition: all 200ms;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+        }
+        .wrapper .close:hover {
+            color: #06D85F;
+        }
+        .wrapper .content {
+            max-height: 30%;
+            overflow: auto;
+        }
+        /*form*/
+
+        .form-container {
+            border-radius: 5px;
+            background-color: #e7e7e7;
+            padding: 20px 0;
+        }
+        form label {
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        input[type="submit"] {
+            background-color: #413b3b;
+            color: #fff;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .welcome-message {
+                position: absolute;
+                bottom: -60px; /* Adjust the value to position the text lower */
+                left: 0;
+                right: 0;
+                color: #ffffff;
+                text-align: right;
+                font-size: 16px;
+            }
+    </style>

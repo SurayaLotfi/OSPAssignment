@@ -358,7 +358,6 @@ include "connect.php";
         <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
                 <div class="row justify-content-between">
-                    
                       <div class="col-xl-3 col-lg-3 col-sm-6">
                         <div class="footer-widget mb-30">
                             <div class="f-widget-title mb-15">
@@ -368,9 +367,9 @@ include "connect.php";
                                 <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
                             </div>
                             <div class="footer-social">                                    
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a ><i class="fab fa-facebook-f"></i></a>
+                                <a ><i class="fab fa-twitter"></i></a>
+                                <a ><i class="fab fa-instagram"></i></a>
                             </div>        
                         </div>
                     </div>
@@ -381,11 +380,11 @@ include "connect.php";
                             </div>
                             <div class="footer-link">
                                 <ul>                                        
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="quiz.html"> Quiz</a></li>
-                                    <li><a href="community.html">  Community Forum</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
-                                    <li><a href="volunteer.html">Join Us</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="quiz.php"> Quiz</a></li>
+                                    <li><a href="blog.php">  Community Forum</a></li>
+                                    <li><a href="contact.php"> Contact Us</a></li>
+                                    <li><a href="volunteer.php">Join Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -407,9 +406,9 @@ include "connect.php";
                                 </li>
                                <li><i class="icon fal fa-envelope"></i>
                                     <span>
-                                        <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
+                                        <a href="mailto:reach-us@osp.fsktm">reach-us@osp.fsktm</a>
                                    <br>
-                                        <a href="mailto:help@example.com">help@example.com</a>
+                                        <a href="mailto:bully@awareness.org">bully@awareness.org</a>
                                    </span>
                                 </li>
                             </ul>
@@ -417,28 +416,7 @@ include "connect.php";
                                 </div>
                         </div>
                     </div>  
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title mb-15">
-                              <h2>Subscribe Now !</h2>
-                            </div>
-                           <div class="footer-link">
-                            <div class="newslater-area">
-                                <form name="ajax-form" id="contact-form4" action="#" method="post" class="contact-form newslater">
-                                   <div class="form-group p-relative">
-                                      <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
-                                      <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
-                                   </div>
-                                   <!-- /Form-email -->	
-                                </form>
-                             </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    
                 </div>
-                
             </div>
         </div>
        <div class="copyright-wrap text-center">
@@ -452,7 +430,7 @@ include "connect.php";
                 </div>
             </div>
         </div>
-    </footer>
+        </footer>
     <!-- footer-end -->
 
         <!-- JS here -->

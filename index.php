@@ -377,104 +377,85 @@ include "connect.php";
 			
         </main>
         <!-- main-area-end -->
-         <!-- footer -->
-        <footer class="footer-bg footer-p">
-            <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
-                <div class="container">
-                    <div class="row justify-content-between">
-                        
-                          <div class="col-xl-3 col-lg-3 col-sm-6">
-                            <div class="footer-widget mb-30">
-                                <div class="f-widget-title mb-15">
-                                   <img src="img/logo/nl2.png" alt="img">
-                                </div>
-                                <div class="footer-text mb-20">
-                                    <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
-                                </div>
-                                <div class="footer-social">                                    
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </div>        
+        <!-- footer -->
+       <footer class="footer-bg footer-p">
+        <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="container">
+                <div class="row justify-content-between">
+                      <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title mb-15">
+                               <img src="img/logo/nl2.png" alt="img">
                             </div>
-                        </div>
-						<div class="col-xl-2 col-lg-2 col-sm-6">
-                            <div class="footer-widget mb-30">
-                                <div class="f-widget-title">
-                                    <h2>Our Links</h2>
-                                </div>
-                                <div class="footer-link">
-                                    <ul>                                        
-                                        <li><a href="index.php">Home</a></li>
-                                        <li><a href="quiz.html"> Quiz</a></li>
-                                        <li><a href="blog.php">  Community Forum</a></li>
-                                        <li><a href="contact.php"> Contact Us</a></li>
-                                        <li><a href="volunteer.php">Join Us</a></li>
-                                    </ul>
-                                </div>
+                            <div class="footer-text mb-20">
+                                <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
                             </div>
+                            <div class="footer-social">                                    
+                                <a ><i class="fab fa-facebook-f"></i></a>
+                                <a ><i class="fab fa-twitter"></i></a>
+                                <a ><i class="fab fa-instagram"></i></a>
+                            </div>        
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
-                            <div class="footer-widget mb-30">
-                                <div class="f-widget-title">
-                                    <h2>Contact Us</h2>
-                                </div>
-                                <div class="f-contact">
-                                    <ul>
-                                    <li>
-                                        <i class="icon fal fa-map-marker-check"></i>
-                                        <span>Faculty of Computer Science and Information Technology</span>
-                                    </li>
-                                    <li>
-                                        <i class="icon fal fa-phone"></i>
-                                        <span>1800-121-3637<br>+91-7052-101-786</span>
-                                    </li>
-                                   <li><i class="icon fal fa-envelope"></i>
-                                        <span>
-                                            <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
-                                       <br>
-                                            <a href="mailto:help@example.com">help@example.com</a>
-                                       </span>
-                                    </li>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Our Links</h2>
+                            </div>
+                            <div class="footer-link">
+                                <ul>                                        
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="quiz.php"> Quiz</a></li>
+                                    <li><a href="blog.php">  Community Forum</a></li>
+                                    <li><a href="contact.php"> Contact Us</a></li>
+                                    <li><a href="volunteer.php">Join Us</a></li>
                                 </ul>
-                                    
-                                    </div>
-                            </div>
-                        </div>  
-                        <div class="col-xl-3 col-lg-3 col-sm-6">
-                            <div class="footer-widget mb-30">
-                                <div class="f-widget-title mb-15">
-                                  <h2>Subscribe Now !</h2>
-                                </div>
-                               <div class="footer-link">
-                                <div class="newslater-area">
-                                    <form name="ajax-form" id="contact-form4" action="newsletterprocess.php" method="post" class="contact-form newslater">
-                                       <div class="form-group p-relative">
-                                          <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
-                                          <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
-                                       </div>
-                                       <!-- /Form-email -->	
-                                    </form>
-                                 </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-           <div class="copyright-wrap text-center">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12">                         
-                              Copyright © 2023 UM All rights reserved.  
+                    <div class="col-xl-3 col-lg-3 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>Contact Us</h2>
+                            </div>
+                            <div class="f-contact">
+                                <ul>
+                                <li>
+                                    <i class="icon fal fa-map-marker-check"></i>
+                                    <span>Faculty of Computer Science and Information Technology</span>
+                                </li>
+                                <li>
+                                    <i class="icon fal fa-phone"></i>
+                                    <span>1800-121-3637<br>+91-7052-101-786</span>
+                                </li>
+                               <li><i class="icon fal fa-envelope"></i>
+                                    <span>
+                                        <a href="mailto:reach-us@osp.fsktm">reach-us@osp.fsktm</a>
+                                   <br>
+                                        <a href="mailto:bully@awareness.org">bully@awareness.org</a>
+                                   </span>
+                                </li>
+                            </ul>
+                                
+                                </div>
                         </div>
-                        
-                        
-                    </div>
+                    </div>  
                 </div>
             </div>
+        </div>
+       <div class="copyright-wrap text-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">                         
+                          Copyright © 2023 UM All rights reserved.  
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
         </footer>
-        <!-- footer-end -->
+    <!-- footer-end -->
 
 		<!-- JS here -->
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
