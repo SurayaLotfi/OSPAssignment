@@ -84,7 +84,7 @@ $q=mysqli_query($mysqli,"SELECT * FROM rank WHERE username='$username'" )or die(
 $rowcount=mysqli_num_rows($q);
 if($rowcount == 0)
 {
-$q2=mysqli_query($mysqli,"INSERT INTO rank VALUES('$username','$s',NOW())")or die('Error165');
+$q2=mysqli_query($mysqli,"INSERT INTO rank (username, score, time) VALUES('$username','$s',NOW())")or die('Error165');
 }
 else
 {
