@@ -9,14 +9,6 @@ if(!empty($_SESSION['username'])){
 }
 ?>
 
-<style>
-.table-info {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  color: #333;
-  /* Add any other desired font properties */
-}
-    </style>
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -41,6 +33,10 @@ if(!empty($_SESSION['username'])){
         <link rel="stylesheet" href="css/default.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+
+         <!--Sweet Alert-->
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     </head>
 
     
@@ -112,6 +108,67 @@ if(!empty($_SESSION['username'])){
       </header>
       <!-- header-end -->
 
+      <!--Delete Modal-->
+            <!-- Modal for delete -->
+            <div class="modal fade custom-modal" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"> 
+                <form action="deleteHistoryQuiz.php" method="post" enctype="multipart/form-data" >
+                    <input type = "text" name="history_id" id="history_id">
+                    <!-- <input type = "hidden" name="delete_id" id="delete_id"> -->
+                    <div style="margin: 50px">
+                        <h3>Are you sure you want to delete?</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button  type="submit" class="btn btn-info"  name="delete">Delete</button>
+
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+      
+            <!--If deleted quiz history-->
+           <?php 
+                        if(isset($_GET['status'])){
+                            $status = $_GET['status'];
+
+                            if($status === 'deletesuccess'){
+                                ?>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success!',
+                                    text: 'Quiz has been deleted!'
+                                })
+                                </script>      
+                  
+                        <?php
+                            }else{
+                                ?>
+                                <script>
+                                    Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Something went wrong!'
+                                    })
+                                </script>
+                                
+                        <?php
+                        
+
+                            }
+                        }?>
+
         <!-- main-area -->
         <main>
 
@@ -141,6 +198,7 @@ if(!empty($_SESSION['username'])){
             </section>
             <!-- breadcrumb-area-end -->
            
+            
 
            <?php
 
@@ -154,7 +212,8 @@ if(!empty($_SESSION['username'])){
             <td><h4 style="color:green">Question Solved</h4></td>
             <td><h4 style="color:green">Right</h4></td>
             <td><h4 style="color:green">Wrong</h4></td>
-            <td><h4 style="color:green">Score</h4></td>';
+            <td><h4 style="color:green">Score</h4></td>
+            <td><h4 style="color:green">Action</h4></td>';
 
             $no=0;
             while($row=mysqli_fetch_array($q) )
@@ -175,10 +234,42 @@ if(!empty($_SESSION['username'])){
             <td><h5>'.$qa.'</h5></td>
             <td><h5>'.$correct.'</h5></td>
             <td><h5>'.$wrong.'</h5></td>
-            <td><h5>'.$score.'</h5></td></tr>';
+            <td><h5>'.$score.'</h5></td>
+            <td><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="delete-history"> Delete</a></td>
+            </tr>';
+            
             }
             echo'</table></div>';
+
+            
             ?>
+
+
+<!--Delete-->
+<script>
+            $(document).ready(function() {
+                var scrollPosition; // Variable to store the scroll position
+
+                $('.delete-history').on('click', function() {
+                    // Store the current scroll position
+                    scrollPosition = $(window).scrollTop();
+
+                    // Show the modal
+                    $('#deletemodal').modal('show');
+
+                    // Retrieve the history ID
+                    var historyId = $(this).closest('.bsingle__history').find('.history-id').val();
+                    $('#history_id').val(historyId);
+                });
+
+                $('#deletemodal').on('hidden.bs.modal', function() {
+                    // Restore the scroll position after the modal is closed
+                    $(window).scrollTop(scrollPosition);
+                });
+                });
+        </script>
+
+            
 
                <!-- footer -->
        <footer class="footer-bg footer-p">
@@ -281,6 +372,32 @@ if(!empty($_SESSION['username'])){
         </div>
     </footer>
     <!-- footer-end -->
+
+     <!-- JS here -->
+     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/one-page-nav-min.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/ajax-form.js"></script>
+        <script src="js/paroller.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/js_isotope.pkgd.min.js"></script>
+        <script src="js/imagesloaded.min.js"></script>
+        <script src="js/parallax.min.js"></script>
+         <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.counterup.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <script src="js/jquery.meanmenu.min.js"></script>
+        <script src="js/parallax-scroll.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/element-in-view.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!--Sweet Alert-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
