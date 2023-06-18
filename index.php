@@ -1,3 +1,7 @@
+<?php
+include "connect.php";
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -199,10 +203,11 @@
                 <div class="animations-02"><img src="img/bg/an-img-02.png" alt="contact-bg-an-01"></div>
                 <div class="container">
                     <div class="row justify-content-center">
+                        
                         <div class="col-xl-7 col-lg-10">
                             <div class="section-title text-center mb-35">
-                                <h5>Malaysia's</h5>
-                                <h2>Helplines</h2>
+                                <h5>Our</h5>
+                                <h2>Features</h2>
                                
                             </div>
                         </div>
@@ -216,10 +221,8 @@
                                        <img src="img/icon/f-icon1.png"/>
                                     </div>
                                     <div class="second-services-content">
-                                        <h5>Telenita Helpline</h5>
-                                        <p>Counselors, Volunteers <br> provides legal information and counselling services to survivors.</p>
-                                        <a href="tel:+60162374221">016 2374221</a>
-                                        <a href="https://www.awam.org.my/">https://www.awam.org.my</a>
+                                        <h5>Volunteering</h5>
+                                        <p><br>The volunteering section inspire users to take action, raise awareness, and contribute to creating a positive and inclusive environment in communities.</p>
                                     </div>
                                 </div>
                             </div>
@@ -232,14 +235,15 @@
                                        <img src="img/icon/f-icon2.png"/>
                                     </div>
                                     <div class="second-services-content">
-                                        <h5>MIASA Crisis Helpline</h5>
-                                        <p>Peers, Volunteers <br> provides 24/7, free and confidential support by phone.</p>
-                                        <a href="tel:+1800820066">1-800-820066</a>
-                                        <a href="https://www.miasa.org.my/">miasa.org.my</a>
+                                        <h5>Community Forum</h5>
+                                        <p> <br> The community forum section aims to provide a platform for open discussions, and allowing users to share their stories in a supportive and safe environment.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                    
+
                          <div class="col-lg-4 col-md-6 mb-30">
                             <div class="s-single-services text-center">
                                 <img src="img/bg/sr-img03.png" alt="feature">
@@ -248,10 +252,8 @@
                                        <img src="img/icon/f-icon3.png"/>
                                     </div>
                                     <div class="second-services-content">
-                                        <h5>Malaysian Mental Health Association</h5>
-                                        <p>Counselors, Volunteers <br> dedicated to provide confidential support and information by phone.</p>
-                                        <a href="tel:+60327806803">+60327806803</a>
-                                        <a href="https://mmha.org.my/">https://mmha.org.my</a>
+                                    <h5>Quiz</h5>
+                                        <p>  <br> The quiz section provides an interactive and engaging way for users to test their knowledge of bullying-related topics.</p>
                                     </div>
                                 </div>
                             </div>
@@ -300,57 +302,72 @@
                 <div class="animations-10"><img src="img/bg/an-img-10.png" alt="an-img-01"></div>
                 <div class="animations-11"><img src="img/bg/an-img-11.png" alt="an-img-01"></div>
                 <div class="container">
+                
+                
           
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-12">
+
+                       
                             <div class="section-title mb-35"> 
-                                <h5 style="color: rgb(0, 0, 0);">How Does it Work</h5>                     
+                                <br>
+                                <!-- <h5 style="color: rgb(0, 0, 0);">How Does it Work</h5>                      -->
                                 <h2 style="color: rgb(0, 0, 0);">Sign that you are being bullied</h2>
                             </div>
                             <ul>
-                                <li>
-                                    <div class="step-box">
-                                        <div class="dnumber">
-                                            <div class="date-box">01</div>
+
+                            <?php 
+                            $sql = "SELECT * FROM signmain";
+                            $result = mysqli_query($mysqli, $sql);
+                            $i = 0;
+
+                            if ($result) {
+                                // Opening <ul> tag placed outside the while loop
+                        ?>
+                                <ul>
+                        <?php
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $i++;
+                        ?>
+                                    <li>
+                                        <div class="step-box">
+                                            <div class="dnumber">
+                                                <div class="date-box"><?php echo $i; ?></div>
+                                            </div>
+                                            <div class="text">
+                                                <h3 class="content-title"><?php echo $row['topic']; ?></h3>
+                                                <p style="color: black;"><?php echo $row['content']; ?></p>
+                                            </div>
                                         </div>
-                                        <div class="text">
-                                            <h3>Recognizing the Physical Signs</h3>
-                                            <p>Nam et ante vehicula, blandit nunc at, mattis lacus. Donec non rutrum justo. Morbi egestas aliquam sem et consequat.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="step-box">
-                                        <div class="dnumber">
-                                            <div class="date-box">02</div>
-                                        </div>
-                                        <div class="text">
-                                            <h3>Recognizing the Verbal Signs</h3>
-                                            <p>Nam et ante vehicula, blandit nunc at, mattis lacus. Donec non rutrum justo. Morbi egestas aliquam sem et consequat.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="step-box">
-                                        <div class="dnumber">
-                                            <div class="date-box">03</div>
-                                        </div>
-                                        <div class="text">
-                                            <h3>Getting Help</h3>
-                                            <p>Nam et ante vehicula, blandit nunc at, mattis lacus. Donec non rutrum justo. Morbi egestas aliquam sem et consequat.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                        <?php
+                                }
+                                // Closing </ul> tag placed outside the while loop
+                        ?>
+                                </ul>
+                        <?php
+                            }
+                            // Handle any errors that occurred during the query execution
+                            else {
+                                echo "Error: " . mysqli_error($mysqli);
+                            }
+
+                            // Free the result set
+                            mysqli_free_result($result);
+
+                            // Close the database connection
+                            mysqli_close($mysqli);
+                        ?>
+
+                        <br>
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="step-img">
-                                <img src="img/bg/bully_sign.png" alt="class image">
+                                <img src="img/bg/bully_sign.png" alt="class image" style="width: 63%; height: 100vh;">
                             </div>
                            
                         </div>
-                        
-                       
+
 						
                     </div>
                     
