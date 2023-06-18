@@ -86,17 +86,19 @@ if(!empty($_SESSION['username'])){
                                   </nav>
                               </div>
                           </div>   
-                          <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                              <div class="login">
-                                  <ul>
-                                      <li><div class="header-btn second-header-btn">
-                                 <a href="volunteer.html" class="btn">Join Us</a>
-                              </div></li>
-                                  </ul>
-                              
-                              </div>
-                             
-                          </div>
+                          <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                           
                               <div class="col-12">
                                   <div class="mobile-menu"></div>
@@ -121,10 +123,11 @@ if(!empty($_SESSION['username'])){
                 </div>
                 <div class="modal-body"> 
                 <form action="deleteHistoryQuiz.php" method="post" enctype="multipart/form-data" >
-                    <input type = "text" name="history_id" id="history_id">
+                    <input type = "hidden" name="history_id" id="history_id">
+                    <input type = "text" name="username_id" id="username_id">
                     <!-- <input type = "hidden" name="delete_id" id="delete_id"> -->
                     <div style="margin: 50px">
-                        <h3>Are you sure you want to delete?</h3>
+                        <h3>Are you sure you want to delete history of this quiz?</h3>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -203,21 +206,23 @@ if(!empty($_SESSION['username'])){
            <?php
 
     //history start
-    $q=mysqli_query($mysqli,"SELECT * FROM history WHERE username='$username' ORDER BY date DESC " )or die('Error197');
+    $q=mysqli_query($mysqli,"SELECT * FROM history WHERE username='$username' ORDER BY history_id " )or die('Error197');
     echo  '<div class="table-container" style="display: flex; justify-content: center; align-items: center; height: 60vh;">
             <table class="table table-striped title1" style="width: 80%;">
             <tr style="color:green">
-            <td><h4 style="color:green">No.</h4></td>
-            <td><h4 style="color:green">Quiz</h4></td>
-            <td><h4 style="color:green">Question Solved</h4></td>
-            <td><h4 style="color:green">Right</h4></td>
-            <td><h4 style="color:green">Wrong</h4></td>
-            <td><h4 style="color:green">Score</h4></td>
-            <td><h4 style="color:green">Action</h4></td>';
+            <th><h4 style="color:green">No.</h4></th>
+            <th><h4 style="color:green">Quiz</h4></th>
+            <th><h4 style="color:green">Question Solved</h4></th>
+            <th><h4 style="color:green">Right</h4></th>
+            <th><h4 style="color:green">Wrong</h4></th>
+            <th><h4 style="color:green">Score</h4></th>
+            <th><h4 style="color:green">Action</h4></th>';
 
             $no=0;
             while($row=mysqli_fetch_array($q) )
             {
+                $history_id = $row['history_id'];
+                $username = $row['username'];
                 $eid=$row['eid'];
                 $score=$row['score'];
                 $wrong=$row['wrong'];
@@ -229,15 +234,19 @@ if(!empty($_SESSION['username'])){
                      $title=$row['title'];
             }
             $no++;
-            echo '<tr><td><h5>'.$no.'</h5></td>
-            <td><h5>'.$title.'</h5></td>
-            <td><h5>'.$qa.'</h5></td>
-            <td><h5>'.$correct.'</h5></td>
-            <td><h5>'.$wrong.'</h5></td>
-            <td><h5>'.$score.'</h5></td>
-            <td><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="delete-history"> Delete</a></td>
-            </tr>';
-            
+            ?>
+            <tr>
+            <td style="display: none;"><input type="hidden" class="history-id" value="<?php echo $history_id; ?>"></td>
+            <td style="display: none;"><input type="hidden" class="username-id" value="<?php echo $username; ?>"></td>
+            <td><h5><?php echo $no ?></h5></td>
+            <td><h5><?php echo $title ?></h5></td>
+            <td><h5><?php echo $qa ?></h5></td>
+            <td><h5><?php echo $correct ?></h5></td>
+            <td><h5><?php echo $wrong ?></h5></td>
+            <td><h5><?php echo $score ?></h5></td>
+            <td><i class="fa fa-trash" aria-hidden="true"></i><a href="#" class="deletebtn"> Delete</a></td>
+            </tr>
+            <?php
             }
             echo'</table></div>';
 
@@ -245,29 +254,7 @@ if(!empty($_SESSION['username'])){
             ?>
 
 
-<!--Delete-->
-<script>
-            $(document).ready(function() {
-                var scrollPosition; // Variable to store the scroll position
 
-                $('.delete-history').on('click', function() {
-                    // Store the current scroll position
-                    scrollPosition = $(window).scrollTop();
-
-                    // Show the modal
-                    $('#deletemodal').modal('show');
-
-                    // Retrieve the history ID
-                    var historyId = $(this).closest('.bsingle__history').find('.history-id').val();
-                    $('#history_id').val(historyId);
-                });
-
-                $('#deletemodal').on('hidden.bs.modal', function() {
-                    // Restore the scroll position after the modal is closed
-                    $(window).scrollTop(scrollPosition);
-                });
-                });
-        </script>
 
             
 
@@ -400,4 +387,28 @@ if(!empty($_SESSION['username'])){
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+        <!--Delete-->
 
+    <script>
+        $(document).ready(function(){
+           $('.deletebtn').on('click', function(){
+
+                $('#deletemodal').modal('show');
+                //to display current value 
+                $tr = $(this).closest('tr');
+
+                var historyID = $tr.find('.history-id').val();
+                var usernameID = $tr.find('.username-id').val();
+
+                console.log(historyID);
+                console.log(usernameID);
+
+                $('#history_id').val(historyID);
+                $('#username_id').val(usernameID);
+
+           });
+        });
+
+    </script>
+            </body>
+</html>

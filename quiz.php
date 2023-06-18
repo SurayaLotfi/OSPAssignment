@@ -81,17 +81,19 @@ if(!empty($_SESSION['username'])){
                                   </nav>
                               </div>
                           </div>   
-                          <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                              <div class="login">
-                                  <ul>
-                                      <li><div class="header-btn second-header-btn">
-                                 <a href="volunteer.html" class="btn">Join Us</a>
-                              </div></li>
-                                  </ul>
-                              
-                              </div>
-                             
-                          </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                           
                               <div class="col-12">
                                   <div class="mobile-menu"></div>

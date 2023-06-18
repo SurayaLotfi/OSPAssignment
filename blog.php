@@ -54,8 +54,13 @@ if(empty($_SESSION['username'])){
                                                 <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
-                                                <a href="quiz.php">Quiz</a>
-                                            </li>
+                                               <a href="quiz.php">Quiz</a>
+                                               <ul>
+                                                <li><a href="quiz.php">Quizzes</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
+                                                </ul>
+                                           </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
                                             </li>
