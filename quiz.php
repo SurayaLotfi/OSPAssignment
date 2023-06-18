@@ -59,7 +59,7 @@ if(!empty($_SESSION['username'])){
                                            <li class="has-sub">
                                                <a href="quiz.php">Quiz</a>
                                                <ul>
-                                                <li><a href="quiz.html">Quizzes</a></li>
+                                                <li><a href="quiz.php">Quizzes</a></li>
                                                 <li><a href="historyQuiz.php">History</a></li>
                                                 <li><a href="rankingQuiz.php">Ranking</a></li>
                                                 </ul>
@@ -119,8 +119,8 @@ if(!empty($_SESSION['username'])){
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Quiz</li>
-                                        <li class="breadcrumb-item "><a href="historyQuiz.php"></a>History</li>
-                                        <li class="breadcrumb-item"><a href="rankingQuiz.php"></a>Ranking</li>
+                                        <li class="breadcrumb-item"><a href="historyQuiz.php">History</a></li>
+                                        <li class="breadcrumb-item"><a href="rankingQuiz.php">Ranking</a></li>
                                     </ol>
                                 </nav>
                             </div>
