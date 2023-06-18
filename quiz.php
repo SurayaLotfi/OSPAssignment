@@ -9,6 +9,18 @@ if(!empty($_SESSION['username'])){
 }
 ?>
 
+<style>
+    .welcome-message {
+                position: absolute;
+                bottom: -60px; /* Adjust the value to position the text lower */
+                left: 0;
+                right: 0;
+                color: #ffffff;
+                text-align: right;
+                font-size: 16px;
+            }
+</style>
+
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -37,72 +49,70 @@ if(!empty($_SESSION['username'])){
 
     
     <body>
-        <!-- header -->
-        <header class="header-area header-three">  	
-            <div id="header-sticky" class="menu-area">
-              <div class="container">
-                  <div class="second-menu">
-                      <div class="row align-items-center">
-                          <div class="col-xl-2 col-lg-2">
-                              <div class="logo">
-                                  <a href="index.html"><img src="img/logo/nl2.png" alt="logo"></a>
-                              </div>
-                          </div>
-                         <div class="col-xl-7 col-lg-7">
-                            
-                              <div class="main-menu text-right text-xl-right">
-                                  <nav id="mobile-menu">
-                                       <ul>
-                                          <li class="has-sub">
-                                              <a href="index.php">Home</a>
-                                          </li>
-                                        
-                                           <li class="has-sub">
-                                               <a href="quiz.php">Quiz</a>
-                                               <ul>
+          <!-- header -->
+        <header class="header-area header-three">
+			<div id="header-sticky" class="menu-area">
+                <div class="container">
+                    <div class="second-menu">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.php"><img src="img/logo/nl2.png" alt="logo"></a>
+                                </div>
+                            </div>
+                        <div class="col-xl-7 col-lg-7">
+                                <div class="main-menu text-right text-xl-right">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li class="has-sub">
+                                                <a href="index.php">Home</a>
+                                            </li>
+                                            <li class="has-sub">
+                                                <a href="quiz.php">Quiz</a>
+                                                <ul>
                                                 <li><a href="quiz.php">Quizzes</a></li>
                                                 <li><a href="historyQuiz.php">History</a></li>
                                                 <li><a href="rankingQuiz.php">Ranking</a></li>
                                                 </ul>
-                                           </li>
+                                            </li>
+                                            <li class="has-sub"> 
+                                                <a href="blog.php">Community Forum</a>
+                                            </li>
 
-                                          <li class="has-sub"> 
-                                              <a href="blog.php">Community Forum</a>
-                                          </li>
+                                            <li class="has-sub">
+                                                <a href="contact.php">Contact Us</a>
+                                            </li>
 
-                                          <li class="has-sub">
-                                            <a href="contact.php">Contact Us</a>
-                                          </li>
-                                          
-                                          <li class="has-sub">
+                                            <li class="has-sub">
                                                 <a href="volunteer.php">Join Us</a>
-                                          </li>    
-                                                                                        
-                                      </ul>
-                                  </nav>
-                              </div>
-                          </div>   
-                          <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block mt-30 mb-30 text-right text-xl-right">
-                              <div class="login">
-                                  <ul>
-                                      <li><div class="header-btn second-header-btn">
-                                 <a href="volunteer.html" class="btn">Join Us</a>
-                              </div></li>
-                                  </ul>
-                              
-                              </div>
-                             
-                          </div>
-                          
-                              <div class="col-12">
-                                  <div class="mobile-menu"></div>
-                              </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </header>
-      <!-- header-end -->
+                                            </li>                                                
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 text-right mt-30 mb-30 text-right text-xl-right">
+                                <ul class="horizontal-buttons">
+                                    <li>
+                                        <div class="header-btn second-header-btn">
+                                            <?php if(isset($_SESSION['logged_in'])) { ?>
+                                                <a href="logout.php?source=volunteer" class="btn">Sign Out</a>
+                                            <?php } else { ?>
+                                                <a href="login.php?source=volunteer" class="btn">Sign In</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile-menu"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header-end -->
+
         <!-- main-area -->
         <main>
             
@@ -125,6 +135,15 @@ if(!empty($_SESSION['username'])){
                                     </ol>
                                 </nav>
                             </div>
+                                </div>
+                                <div class="welcome-message">
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                                        $username = $_SESSION['username'];
+                                        echo 'You\'re logged in as <u>' . $username . '</u>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -201,12 +220,11 @@ if(!empty($_SESSION['username'])){
 
 
 
-       <!-- footer -->
-       <footer class="footer-bg footer-p">
+        <!-- footer -->
+        <footer class="footer-bg footer-p">
         <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
             <div class="container">
                 <div class="row justify-content-between">
-                    
                       <div class="col-xl-3 col-lg-3 col-sm-6">
                         <div class="footer-widget mb-30">
                             <div class="f-widget-title mb-15">
@@ -216,9 +234,9 @@ if(!empty($_SESSION['username'])){
                                 <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
                             </div>
                             <div class="footer-social">                                    
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a ><i class="fab fa-facebook-f"></i></a>
+                                <a ><i class="fab fa-twitter"></i></a>
+                                <a ><i class="fab fa-instagram"></i></a>
                             </div>        
                         </div>
                     </div>
@@ -229,11 +247,11 @@ if(!empty($_SESSION['username'])){
                             </div>
                             <div class="footer-link">
                                 <ul>                                        
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="quiz.html"> Quiz</a></li>
-                                    <li><a href="community.html">  Community Forum</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
-                                    <li><a href="volunteer.html">Join Us</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="quiz.php"> Quiz</a></li>
+                                    <li><a href="blog.php">  Community Forum</a></li>
+                                    <li><a href="contact.php"> Contact Us</a></li>
+                                    <li><a href="volunteer.php">Join Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -255,9 +273,9 @@ if(!empty($_SESSION['username'])){
                                 </li>
                                <li><i class="icon fal fa-envelope"></i>
                                     <span>
-                                        <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
+                                        <a href="mailto:reach-us@osp.fsktm">reach-us@osp.fsktm</a>
                                    <br>
-                                        <a href="mailto:help@example.com">help@example.com</a>
+                                        <a href="mailto:bully@awareness.org">bully@awareness.org</a>
                                    </span>
                                 </li>
                             </ul>
@@ -265,28 +283,7 @@ if(!empty($_SESSION['username'])){
                                 </div>
                         </div>
                     </div>  
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title mb-15">
-                              <h2>Subscribe Now !</h2>
-                            </div>
-                           <div class="footer-link">
-                            <div class="newslater-area">
-                                <form name="ajax-form" id="contact-form4" action="#" method="post" class="contact-form newslater">
-                                   <div class="form-group p-relative">
-                                      <input class="form-control" id="email2" name="email" type="email" placeholder="Email Address..." value="" required=""> 
-                                      <button type="submit"  id="send2"><i class="far fa-chevron-right"></i></button>
-                                   </div>
-                                   <!-- /Form-email -->	
-                                </form>
-                             </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    
                 </div>
-                
             </div>
         </div>
        <div class="copyright-wrap text-center">
@@ -300,7 +297,7 @@ if(!empty($_SESSION['username'])){
                 </div>
             </div>
         </div>
-    </footer>
+        </footer>
     <!-- footer-end -->
 
         <!-- JS here -->
