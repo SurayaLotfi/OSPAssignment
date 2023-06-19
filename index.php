@@ -226,8 +226,8 @@ include "connect.php";
                                        <img src="img/icon/f-icon1.png"/>
                                     </div>
                                     <div class="second-services-content">
-                                        <h5>Volunteering</h5>
-                                        <p><br>The volunteering section inspire users to take action, raise awareness, and contribute to creating a positive and inclusive environment in communities.</p>
+                                        <h5>Activity</h5>
+                                        <p><br>The activity section inspire users to take action, raise awareness, and contribute to creating a positive and inclusive environment in communities.</p>
                                     </div>
                                 </div>
                             </div>
