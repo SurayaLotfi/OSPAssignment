@@ -201,7 +201,7 @@ if(!empty($_SESSION['username'])){
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-left">
                                 <div class="breadcrumb-title">
-                                    <h2>Activity</h2>    
+                                    <h2>History</h2>    
                                     <div class="breadcrumb-wrap">
                               
                                         <nav aria-label="breadcrumb">

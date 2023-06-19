@@ -125,7 +125,7 @@ if(!empty($_SESSION['username'])){
 
         <!-- main-area -->
         <main>
-            
+
             <!-- breadcrumb-area -->
             <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp2.png)">
                 <div class="container">
@@ -133,7 +133,7 @@ if(!empty($_SESSION['username'])){
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-left">
                                 <div class="breadcrumb-title">
-                                    <h2>Activity</h2>    
+                                    <h2>Ranking</h2>    
                                     <div class="breadcrumb-wrap">
                               
                                         <nav aria-label="breadcrumb">
