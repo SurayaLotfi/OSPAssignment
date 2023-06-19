@@ -251,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
                             <div class="section-title center-align">
                                 <h5>Contact Us</h5>
                                 <h2>
-                                    Reach Out for Bullying Awareness Assistance
+                                    Send Us Your Feedback
                                 </h2>
                             </div>
                             <form action="" method="post" class="contact-form mt-35" onsubmit="return validateForm()">
