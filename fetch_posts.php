@@ -41,8 +41,10 @@ session_start();
                 if(mysqli_num_rows($resulttemp) == 0){
                     echo "<h3>  No posts yet. </h3>";
                 }
-            }elseif($category == "Most Recent"){
+            }elseif($category == "Newest"){
                 $sql = "SELECT * FROM posts ORDER BY id DESC";
+            }elseif($category == "Oldest"){
+                $sql = "SELECT * FROM posts ORDER BY id";
             }elseif($category == "Most Popular"){
                 $sql = "SELECT * FROM posts ORDER BY (comments+views) DESC";
             }elseif($category == "My Posts"){

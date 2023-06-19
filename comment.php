@@ -12,7 +12,7 @@ if (isset($_POST["post_comment"]))
     $post_id = mysqli_real_escape_string($mysqli, $_POST["post_id"]);
     $reply_of = 0; //zero if comment is directly for the post. will be greater than zero only for replies.
  
-    $result = mysqli_query($mysqli, "INSERT INTO comments(username,  comment, post_id, created_at, reply_of) VALUES ('" . $name . "',  '" . $comment . "', '" . $post_id . "', NOW(), '" . $reply_of . "')");
+    $result = mysqli_query($mysqli, "INSERT INTO comments(username,  comment, post_id, created_at) VALUES ('" . $name . "',  '" . $comment . "', '" . $post_id . "', NOW())");
     if($result){
         $query = "SELECT * from comments where post_id = $post_id"; //calculating number of comments this post has
         $result = mysqli_query($mysqli, $query);

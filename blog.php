@@ -303,7 +303,8 @@ if(!empty($_SESSION['username'])){
                               <section id="categories-1" class="widget widget_categories">
                                 <h2 class="widget-title">Filter By</h2>
                                 <ul>
-                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=MostRecent">Most Recent</a></li>
+                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=Newest">Newest</a></li>
+                                    <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=Oldest">Oldest</a></li>
                                     <li class="cat-item cat-item-16"><a href="fetch_posts.php?category=MostPopular">Most Popular</a></li>
                                     <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=MyPosts">My Posts</a></li>
                                 </ul>
@@ -318,18 +319,7 @@ if(!empty($_SESSION['username'])){
                                     <li class="cat-item cat-item-22"><a href="fetch_posts.php?category=Others">Others</a> (<?php echo $total_others?>)</li>
                                 </ul>
                                 </section>
-                              <!-- <section id="custom_html-5" class="widget_text widget widget_custom_html">
-                                 <h2 class="widget-title">Follow Us</h2>
-                                 <div class="textwidget custom-html-widget">
-                                    <div class="widget-social">
-                                       <a href="#"><i class="fab fa-twitter"></i></a>
-                                       <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                       <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                       <a href="#"><i class="fab fa-instagram"></i></a>
-                                       <a href="#"><i class="fab fa-wordpress"></i></a>
-                                    </div>
-                                 </div>
-                              </section> -->
+  
 
                               <section id="recent-posts-4" class="widget widget_recent_entries">
                                  <h2 class="widget-title">Recent Posts</h2>
@@ -355,18 +345,7 @@ if(!empty($_SESSION['username'])){
                                  ?>
                                  </ul>
                               </section>
-                              <!-- <section id="tag_cloud-1" class="widget widget_tag_cloud">
-                                 <h2 class="widget-title">Tag</h2>
-                                 <div class="tagcloud">
-                                     <a href="#" class="tag-cloud-link tag-link-28 tag-link-position-1" style="font-size: 8pt;" aria-label="app (1 item)">app</a>
-                                    <a href="#" class="tag-cloud-link tag-link-17 tag-link-position-2" style="font-size: 8pt;" aria-label="Branding (1 item)">Branding</a>
-                                    <a href="#" class="tag-cloud-link tag-link-20 tag-link-position-3" style="font-size: 8pt;" aria-label="corporat (1 item)">corporat</a>
-                                    <a href="#" class="tag-cloud-link tag-link-24 tag-link-position-4" style="font-size: 16.4pt;" aria-label="Design (2 items)">Design</a>
-                                    <a href="#" class="tag-cloud-link tag-link-25 tag-link-position-5" style="font-size: 22pt;" aria-label="gallery (3 items)">gallery</a>
-                                    <a href="#" class="tag-cloud-link tag-link-26 tag-link-position-6" style="font-size: 8pt;" aria-label="video (1 item)">video</a>
-                                    <a href="#" class="tag-cloud-link tag-link-29 tag-link-position-7" style="font-size: 16.4pt;" aria-label="web design (2 items)">web design</a>
-                                 </div>
-                              </section> -->
+
                            </aside>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ include "connect.php";
                     echo "failed to process query";
                 }
             }else{
-                
+
             }
     }
 
@@ -313,34 +313,6 @@ include "connect.php";
                             {
                                 array_push($comments, $row);
                             }
-                            
-                            // // loop through each comment
-                            // foreach ($comments as $comment_key => $comment)
-                            // {
-                            //     // initialize replies array for each comment
-                            //     $replies = array();
-                            
-                            //     // // check if it is a comment to post, not a reply to comment
-                            //     // if ($comment->reply_of == 0)
-                            //     // {
-                            //     //     // loop through all comments again
-                            //     //     foreach ($comments as $reply_key => $reply)
-                            //     //     {
-                            //     //         // check if comment is a reply
-                            //     //         if ($reply->reply_of == $comment->id)
-                            //     //         {
-                            //     //             // add in replies array
-                            //     //             array_push($replies, $reply);
-                            
-                            //     //             // remove from comments array
-                            //     //             unset($comments[$reply_key]);
-                            //     //         }
-                            //     //     }
-                            //     // }
-                            
-                            //     // assign replies to comments object
-                            //     $comment->replies = $replies;
-                            // }
  
 
                         ?>
