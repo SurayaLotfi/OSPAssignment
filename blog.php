@@ -1,8 +1,5 @@
 <?php  session_start(); 
 
-if(empty($_SESSION['username'])){
-    header("location: login.php");
-}
 
 ?>
 <!doctype html>
@@ -409,6 +406,7 @@ if(empty($_SESSION['username'])){
                                <div class="contact-field p-relative c-message mb-30">                                  
                                    <textarea name="story" id="story" cols="30" rows="10" placeholder="Share Your Story"></textarea>
                                </div>
+                               
                                <div class="slider-btn">                                          
                                            <button type="submit" name="submit" class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
                                 </div>                             

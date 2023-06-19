@@ -5,7 +5,7 @@ if(!empty($_SESSION['username'])){
     $username = $_SESSION['username'];
 
 }else{
-    header("location: login.php");
+    $username = 'Not_login_yet';
 }
 ?>
 
@@ -95,9 +95,9 @@ if(!empty($_SESSION['username'])){
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php?source=volunteer" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=quiz" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php?source=volunteer" class="btn">Sign In</a>
+                                                <a href="login.php?source=quiz" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
@@ -195,8 +195,18 @@ if(!empty($_SESSION['username'])){
                                         </li>
                                         <?php if($rowcount == 0){?>
                                         <li>
+                                            <?php if(!empty($_SESSION['username'])){?>
                                             <div class="header-btn second-header-btn">
                                             <a href="quiz_detail.php?q=quiz&step=2&eid=<?php echo $eid ?>&n=1&t=<?php echo $total ?>" class="btn">Start</a>
+                                            </div>
+                                            <?php }else{
+                                                ?>
+                                                <div class="header-btn second-header-btn">
+                                                <a href="login.php?source=quiz" class="btn">Start</a>
+                                                </div><?php 
+                                                
+                                                } ?>
+                                            
                                         </li>
                                         <?php } 
                                         else {?>
