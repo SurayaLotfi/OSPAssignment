@@ -441,6 +441,14 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                                     echo '</li>';
                                                 }
                                             }
+                                            else{
+                                                if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+                                                    //logged in and joined
+                                                    if ($joined == 1) {
+                                                        echo '<a class="btn" href="#delete">Unjoin</a>';
+                                                    }
+                                                }
+                                            }
                                             ?>
                                             </div>
                                         </div>
@@ -521,7 +529,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                     <p><strong>Phone Number:</strong> <?php echo $notel; ?></p>
                                         <div class="row">
                                             <div class="col pt-15 pb-15">
-                                                <a class="button" href="#edit">Edit</a>
+                                            <a class="button" href="#edit"><u>Edit</u></a>
                                             </div>
                                         </div>
                                         <!-- <div class="row">
@@ -645,7 +653,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
                             <div>
                                 <button type="submit" class="btn btn-success" name="submit">Update</button>
-                                <a href="volunteer_details.php?act_id=<?php echo $act_id; ?>" class="btn btn-danger">Cancel</a>
+                                <a href="volunteer_details.php?act_id=<?php echo $act_id; ?>&joined=1" class="btn btn-danger">Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -665,7 +673,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
                             <div>
                                 <button type="submit" class="btn btn-danger" name="confirm-delete">Delete</button>
-                                <a href="volunteer_details.php?act_id=<?php echo $act_id; ?>" class="btn btn-secondary">Cancel</a>
+                                <a href="volunteer_details.php?act_id=<?php echo $act_id; ?>&joined=1" class="btn btn-secondary">Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -681,14 +689,16 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                 <a class="close" href="#">&times;</a>
                 <div class="content">
                     <div class="form-container">
-                        <form method="post">
-                            <p>Please fill in your name and phone number, if you are confirm to join. Then, click 'Confirm'</p>
-                            <label>Full Name</label>
-                            <input placeholder="Your name.." type="text" name="fullName">
-                            <label>Phone Number</label>
-                            <input placeholder="01X-XXXXXXX" type="text" name="phoneNumber">
-                            <input type="submit" value="Confirm" name="join">
-                        </form>
+                    <form method="post" onsubmit="return validateForm()">
+                        <p>Please fill in your name and phone number, if you are confirm to join. Then, click 'Confirm'</p>
+                        <label>Full Name</label>
+                        <input placeholder="Your name.." type="text" name="fullName">
+                        <label>Phone Number</label>
+                        <input placeholder="01X-XXXXXXX" type="text" name="phoneNumber" id="phoneNumber">
+                        <span class="error" id="phone-error"></span>
+                        <br>
+                        <input type="submit" value="Confirm" name="join">
+                    </form>
                     </div>
                 </div>
             </div>
@@ -810,6 +820,27 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/element-in-view.js"></script>
         <script src="js/main.js"></script>
+
+        <script>
+            function validateForm() {
+                var phoneNumber = document.getElementById('phoneNumber').value.trim();
+                var phoneError = document.getElementById('phone-error');
+
+                // Regular expression pattern for phone number validation
+                var phoneRegex = /^(\+?6?01)[02-46-9]-*[0-9]{7}$|^(\+?6?01)[1]-*[0-9]{8}$/;
+
+                // Check if phone number matches the pattern
+                if (!phoneRegex.test(phoneNumber)) {
+                    phoneError.textContent = 'Invalid phone number';
+                    return false;
+                }
+
+                // Clear the error message if phone number is valid
+                phoneError.textContent = '';
+
+                return true;
+            }
+        </script>
 
     </body>
 </html>

@@ -1,5 +1,26 @@
 <?php
 include "connect.php";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    // Get the form data
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $message = $_POST['message'];
+            
+    // Insert the contact record
+    $insertContactQuery = "INSERT INTO contact (fullname, email, phone, message) VALUES ('$fullname', '$email', '$phone', '$message')";
+    $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
+
+    if ($insertContactResult) {
+        header("Location: contact.php?#success-send");
+        exit();
+    } else {
+        // Handle the insert error appropriately for your application
+        echo "Error inserting contact record: " . mysqli_error($mysqli);
+    }
+}
+            
 ?>
 
 <!doctype html>
@@ -47,6 +68,11 @@ include "connect.php";
                                             </li>
                                             <li class="has-sub">
                                                 <a href="quiz.php">Quiz</a>
+                                                <ul>
+                                                <li><a href="quiz.php">Quizzes</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
+                                                </ul>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -68,9 +94,9 @@ include "connect.php";
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=volunteer" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php" class="btn">Sign In</a>
+                                                <a href="login.php?source=volunteer" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
@@ -89,7 +115,7 @@ include "connect.php";
         <main>
             
             <!-- breadcrumb-area -->
-            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp.png)">
+            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp2.png)">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -98,17 +124,25 @@ include "connect.php";
                                     <h2>Contact Us</h2>    
                                     <div class="breadcrumb-wrap">
                               
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">About Us</li>
-                                    </ol>
-                                </nav>
-                            </div>
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Activity</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="welcome-message">
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                                        $username = $_SESSION['username'];
+                                        echo 'You\'re logged in as <u>' . $username . '</u>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </section>
@@ -316,46 +350,6 @@ include "connect.php";
         </main>
         <!-- main-area-end -->
 
-        <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-                // Get the form data
-                $fullname = $_POST['fullname'];
-                $email = $_POST['email'];
-                $phone = $_POST['phone'];
-                $message = $_POST['message'];
-                        
-                // Insert the contact record
-                $insertContactQuery = "INSERT INTO contact (fullname, email, phone, message) VALUES ('$fullname', '$email', '$phone', '$message')";
-                $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
-            
-                if ($insertContactResult) {
-                    header("Location: contact.php?#success-send");
-                } else {
-                    // Handle the insert error appropriately for your application
-                    echo "Error inserting contact record: " . mysqli_error($mysqli);
-                }
-            }
-            
-        ?>
-
-        <div class="overlay" id="success-send">
-            <div class="wrapper">
-                <div class="content">
-                    <div class="form-container">
-                        <h2>The details have been successfully sent</h2>
-                        <button class="btn btn-primary" onclick="closePopup()">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            function closePopup() {
-                // Redirect back to the volunteer_details.php page
-                window.location.href = "contact.php";
-            }
-        </script>
-
     <!-- footer -->
     <footer class="footer-bg footer-p">
         <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
@@ -436,6 +430,24 @@ include "connect.php";
         </footer>
     <!-- footer-end -->
 
+    <div class="overlay" id="success-send">
+            <div class="wrapper">
+                <div class="content">
+                    <div class="form-container">
+                        <h2>The details have been successfully sent</h2>
+                        <button class="btn btn-primary" onclick="closePopup()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function closePopup() {
+                // Redirect back to the volunteer_details.php page
+                window.location.href = "contact.php";
+            }
+        </script>
+
         <!-- JS here -->
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="js/vendor/jquery-3.6.0.min.js"></script>
@@ -457,10 +469,8 @@ include "connect.php";
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/element-in-view.js"></script>
         <script src="js/main.js"></script>
-    </body>
-</html>
 
-<style>
+        <style>
         .error {
         color: red;
     }
@@ -565,3 +575,5 @@ include "connect.php";
                 font-size: 16px;
             }
     </style>
+    </body>
+</html>
