@@ -267,7 +267,7 @@ if(!empty($_SESSION['username'])){
                                                 <p class="post-story"><?php echo $truncatedContent; ?></p>
                                             <!-- </div> -->
                                             <div class="blog__btn">
-                                            <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a>
+                                            <a href="storydetail.php?post_id=<?php echo $post_id?>&source=out" class="btn">Read More</a>
                                             <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
                                                 
                                                 

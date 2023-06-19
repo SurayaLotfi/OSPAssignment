@@ -85,7 +85,7 @@ if(isset($_POST['delete'])){
                 ?>
             <script type = "text/javascript">
             alert("Delete unSuccessful");
-            window.location = "viewonboarding.php";
+            window.location = "blog.php";
             </script>
             <?php
             }
@@ -93,7 +93,7 @@ if(isset($_POST['delete'])){
             ?>
             <script type = "text/javascript">
             alert("Delete not clicked.");
-            window.location = "viewonboarding.php";
+            window.location = "blog.php";
             </script>
             <?php
         }

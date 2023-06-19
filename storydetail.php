@@ -2,21 +2,24 @@
 include "connect.php";
 //incrementing view count
 
-    if(isset($_GET['post_id'])){
-    $post_id = $_GET['post_id'];
-    $query = "SELECT * FROM posts WHERE id = $post_id";
-    $result = mysqli_query($mysqli, $query);
-    if($result){
-        $row = mysqli_fetch_assoc($result);
-        $views = $row['views'];
-        $totalviews = $views +1; //if they click on the post, we increment the view by 1
-        $updateQuery = "UPDATE posts SET views = $totalviews WHERE id = $post_id";
-        $resultUpdate = mysqli_query($mysqli, $updateQuery);
-    }else{
-        echo "failed to process query";
-    }
-
-    
+    if(isset($_GET['post_id']) && isset($_GET['source'])){
+        $source = $_GET['source'];
+            if($source = 'out'){
+                $post_id = $_GET['post_id'];
+                $query = "SELECT * FROM posts WHERE id = $post_id";
+                $result = mysqli_query($mysqli, $query);
+                if($result){
+                    $row = mysqli_fetch_assoc($result);
+                    $views = $row['views'];
+                    $totalviews = $views +1; //if they click on the post, we increment the view by 1
+                    $updateQuery = "UPDATE posts SET views = $totalviews WHERE id = $post_id";
+                    $resultUpdate = mysqli_query($mysqli, $updateQuery);
+                }else{
+                    echo "failed to process query";
+                }
+            }else{
+                
+            }
     }
 
 ?>
