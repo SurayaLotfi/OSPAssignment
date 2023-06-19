@@ -19,18 +19,38 @@ session_start();
                 $sql = "SELECT * FROM posts";
             }elseif($category == "Physical Bullying"){
                 $sql = "SELECT * FROM posts WHERE category = 'Physical Bullying'";
+                $resulttemp = mysqli_query($mysqli, $sql);
+                if(mysqli_num_rows($resulttemp) == 0){
+                    echo "<h3>  No posts yet. </h3>";
+                }
             }elseif($category == "Cyber Bullying"){
                 $sql = "SELECT * FROM posts WHERE category = 'Cyber Bullying'";
+                $resulttemp = mysqli_query($mysqli, $sql);
+                if(mysqli_num_rows($resulttemp) == 0){
+                    echo "<h3>  No posts yet. </h3>";
+                }
             }elseif($category == "Verbal Bullying"){
                 $sql = "SELECT * FROM posts WHERE category = 'Verbal Bullying'";
+                $resulttemp = mysqli_query($mysqli, $sql);
+                if(mysqli_num_rows($resulttemp) == 0){
+                    echo "<h3>  No posts yet. </h3>";
+                }
             }elseif($category == "Others"){
                 $sql = "SELECT * FROM posts WHERE category = 'Others'";
+                $resulttemp = mysqli_query($mysqli, $sql);
+                if(mysqli_num_rows($resulttemp) == 0){
+                    echo "<h3>  No posts yet. </h3>";
+                }
             }elseif($category == "Most Recent"){
                 $sql = "SELECT * FROM posts ORDER BY id DESC";
             }elseif($category == "Most Popular"){
                 $sql = "SELECT * FROM posts ORDER BY (comments+views) DESC";
             }elseif($category == "My Posts"){
                 $sql = "SELECT * FROM posts WHERE username = '$username'";
+                $resulttemp = mysqli_query($mysqli, $sql);
+                if(mysqli_num_rows($resulttemp) == 0){
+                    echo "<h3> You have no posts yet. </h3>";
+                }
             }else {
             $sql = "SELECT * FROM posts"; 
         }
@@ -90,8 +110,19 @@ session_start();
                             ?>
                         </ul>
                     </div>
-                    <h2><a href="storydetail.php?post_id=<?php echo $post_id?>"><?php echo $row['title']?></a></h2>
-                        <p><?php echo $row['story']?></p>
+                    <!--cutting the display to show only the first 20 words-->
+                    <?php
+                                $story = $row["story"];
+                                $words = explode(" ", $story);
+                                $truncatedContent = implode(" ", array_slice($words, 0, 20));
+                        
+                                // Add ellipsis if the content has more than 10 words
+                                if (count($words) > 10) {
+                                    $truncatedContent .= "...";
+                                }
+                        ?>
+                        <h2 class="post-title"><?php echo $row['title']; ?></h2>
+                        <p class="post-story"><?php echo $truncatedContent; ?></p>
                     <div class="blog__btn">
                     <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a>
                     <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
