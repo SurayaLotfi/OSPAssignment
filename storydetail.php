@@ -67,7 +67,12 @@ include "connect.php";
                                                 <a href="index.php">Home</a>
                                             </li>
                                             <li class="has-sub">
-                                                <a href="quiz.html">Quiz</a>
+                                                <a href="quiz.php">Quiz</a>
+                                                <ul>
+                                                <li><a href="quiz.php">Quizzes</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
+                                                </ul>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -89,9 +94,9 @@ include "connect.php";
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=blog" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php" class="btn">Sign In</a>
+                                                <a href="login.php?source=blog" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
