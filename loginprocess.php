@@ -35,8 +35,8 @@ if ($result->num_rows > 0) {
             case 'volunteer':
                 header('Location: volunteer.php');
                 break;
-            case 'community':
-                header('Location: community.php');
+            case 'blog':
+                header('Location: blog.php');
                 break;
             case 'quiz':
                 header('Location: quiz.php');

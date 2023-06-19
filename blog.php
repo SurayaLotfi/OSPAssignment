@@ -1,5 +1,9 @@
 <?php  session_start(); 
-
+if(!empty($_SESSION['username'])){
+    $username = $_SESSION['username'];
+}else{
+    header("location: login.php?source=blog");
+}
 
 ?>
 <!doctype html>
@@ -78,9 +82,9 @@
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=index" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php" class="btn">Sign In</a>
+                                                <a href="login.php?source=blog" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
@@ -248,9 +252,19 @@
                                                     ?>
                                                 </ul>
                                             </div>
-                                            <!-- <div class="editable-content"> -->
+                                            <!--cutting the display to show only the first 20 words-->
+                                                <?php
+                                                     $story = $row["story"];
+                                                     $words = explode(" ", $story);
+                                                     $truncatedContent = implode(" ", array_slice($words, 0, 20));
+                                             
+                                                     // Add ellipsis if the content has more than 10 words
+                                                     if (count($words) > 10) {
+                                                         $truncatedContent .= "...";
+                                                     }
+                                                ?>
                                                 <h2 class="post-title"><?php echo $row['title']; ?></h2>
-                                                <p class="post-story"><?php echo $row['story']; ?></p>
+                                                <p class="post-story"><?php echo $truncatedContent; ?></p>
                                             <!-- </div> -->
                                             <div class="blog__btn">
                                             <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a>
@@ -386,7 +400,7 @@
                            <div class="row">
                            <div class="col-lg-12">
                                <div class="contact-field p-relative c-name mb-30">                                    
-                                   <input type="text" id="title" name="title" placeholder="Title" required>
+                                   <input type="text" id="title" name="title" placeholder="Title" size ="50" maxlength="50" required>
                                </div>                               
                            </div>
                            <div class="col-lg-12">                               
@@ -406,7 +420,7 @@
                                <div class="contact-field p-relative c-message mb-30">                                  
                                    <textarea name="story" id="story" cols="30" rows="10" placeholder="Share Your Story"></textarea>
                                </div>
-                               
+
                                <div class="slider-btn">                                          
                                            <button type="submit" name="submit" class="btn ss-btn active" data-animation="fadeInRight" data-delay=".8s">Submit Now</button>				
                                 </div>                             
