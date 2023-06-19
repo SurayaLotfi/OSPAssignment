@@ -234,7 +234,8 @@ if(!empty($_SESSION['username'])){
 
     //history start
     $q=mysqli_query($mysqli,"SELECT * FROM history WHERE username='$username' ORDER BY date DESC " )or die('Error197');
-    echo  '<div class="table-container" style="display: flex; justify-content: center; align-items: center; height: 60vh; overflow-x: auto;">
+    echo  '<div class="panel title">
+    <div class="table-container" style="display: flex; justify-content: center; align-items: center; height: 60vh; overflow-x: auto;">
     <table class="table table-striped title1" style="width: 80%; white-space: nowrap;">
       <colgroup>
         <col style="width: 5%;">
