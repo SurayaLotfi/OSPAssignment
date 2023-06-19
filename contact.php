@@ -1,8 +1,10 @@
 <?php
 session_start();
 include "connect.php";
+$setEmail = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    $setEmail = 1;
     // Get the form data
     $fullname = $_POST['fullname'];
     $email = $_POST['email'];
@@ -14,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
 
     if ($insertContactResult) {
-        header("Location: contact.php?#success-send");
+        header("Location: contact.php?#success-sending-email");
         exit();
     } else {
         // Handle the insert error appropriately for your application
@@ -431,7 +433,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             </footer>
         <!-- footer-end -->
 
-        <div class="overlay" id="success-send">
+        <div class="overlay" id="success-sending-email">
             <div class="wrapper">
                 <div class="content">
                     <div class="form-container">
@@ -444,7 +446,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
         <script>
             function closePopup() {
-                // Redirect back to the volunteer_details.php page
+                // Redirect back to the contact.php page
                 window.location.href = "contact.php";
             }
         </script>
