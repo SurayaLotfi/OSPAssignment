@@ -6,9 +6,9 @@ include "connect.php";
 if(isset($_SESSION['username'])){
     if(isset($_POST['submit'])){
         $username = $_SESSION['username'];
-        $title = $_POST['title'];
-        $story = $_POST['story'];
         $category = $_POST['category'];
+        $title = mysqli_real_escape_string($mysqli, $_POST['title']);
+        $story = mysqli_real_escape_string($mysqli, $_POST['story']);
 
 
         $sql = "INSERT INTO posts (username, title, story, category) VALUES ('$username','$title','$story','$category')";

@@ -306,33 +306,33 @@ include "connect.php";
                                 array_push($comments, $row);
                             }
                             
-                            // loop through each comment
-                            foreach ($comments as $comment_key => $comment)
-                            {
-                                // initialize replies array for each comment
-                                $replies = array();
+                            // // loop through each comment
+                            // foreach ($comments as $comment_key => $comment)
+                            // {
+                            //     // initialize replies array for each comment
+                            //     $replies = array();
                             
-                                // check if it is a comment to post, not a reply to comment
-                                if ($comment->reply_of == 0)
-                                {
-                                    // loop through all comments again
-                                    foreach ($comments as $reply_key => $reply)
-                                    {
-                                        // check if comment is a reply
-                                        if ($reply->reply_of == $comment->id)
-                                        {
-                                            // add in replies array
-                                            array_push($replies, $reply);
+                            //     // // check if it is a comment to post, not a reply to comment
+                            //     // if ($comment->reply_of == 0)
+                            //     // {
+                            //     //     // loop through all comments again
+                            //     //     foreach ($comments as $reply_key => $reply)
+                            //     //     {
+                            //     //         // check if comment is a reply
+                            //     //         if ($reply->reply_of == $comment->id)
+                            //     //         {
+                            //     //             // add in replies array
+                            //     //             array_push($replies, $reply);
                             
-                                            // remove from comments array
-                                            unset($comments[$reply_key]);
-                                        }
-                                    }
-                                }
+                            //     //             // remove from comments array
+                            //     //             unset($comments[$reply_key]);
+                            //     //         }
+                            //     //     }
+                            //     // }
                             
-                                // assign replies to comments object
-                                $comment->replies = $replies;
-                            }
+                            //     // assign replies to comments object
+                            //     $comment->replies = $replies;
+                            // }
  
 
                         ?>
@@ -357,10 +357,6 @@ include "connect.php";
                                             </div>
                                             
                                                 <p><h5><?php echo $comment->comment; ?></h5></p>
-                                            <!-- <div class="blog__btn"> -->
-                                            <!-- <a href="storydetail.php?post_id=<?php echo $post_id?>" class="btn">Read More</a> -->
-                                            <!-- <button class="blog__btn" onclick="showReplyForReplyForm(this);" data-name="<?php echo $reply->username; ?>" data-id="<?php echo $comment->id; ?>"> Reply</button>
-                                            </div> -->
                                             <div class="meta-info" style="text-align: end; margin-bottom: -30px; margin-top: -30px;">
                                                 <ul>
                                                     <?php

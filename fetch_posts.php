@@ -75,7 +75,7 @@ session_start();
                 </div>
                 <div class="modal-body"> 
                 <form action="delete_post.php" method="post" enctype="multipart/form-data" >
-                    <input type = "text" name="post_id" id="post_id">
+                    <input type = "hidden" name="post_id" id="post_id">
                     <!-- <input type = "hidden" name="delete_id" id="delete_id"> -->
                     <div style="margin: 50px">
                         <h3>Are you sure you want to delete your post?</h3>
