@@ -503,7 +503,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                     }
                                     ?>
                                 </p>
-                                <h2 class="widget-title">Slots left</h2>
+                                <h2 class="widget-title">Number of Participant</h2>
                                 <p>
                                     <?php
                                     // $slotsLeft = $activityMaxPart - $activityCurPart;
