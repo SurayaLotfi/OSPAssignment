@@ -1,5 +1,29 @@
 <?php
+session_start();
 include "connect.php";
+$setEmail = 0;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    $setEmail = 1;
+    // Get the form data
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $message = $_POST['message'];
+            
+    // Insert the contact record
+    $insertContactQuery = "INSERT INTO contact (fullname, email, phone, message) VALUES ('$fullname', '$email', '$phone', '$message')";
+    $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
+
+    if ($insertContactResult) {
+        header("Location: contact.php?#success-sending-email");
+        exit();
+    } else {
+        // Handle the insert error appropriately for your application
+        echo "Error inserting contact record: " . mysqli_error($mysqli);
+    }
+}
+            
 ?>
 
 <!doctype html>
@@ -47,6 +71,11 @@ include "connect.php";
                                             </li>
                                             <li class="has-sub">
                                                 <a href="quiz.php">Quiz</a>
+                                                <ul>
+                                                <li><a href="quiz.php">Quizzes</a></li>
+                                                <li><a href="historyQuiz.php">History</a></li>
+                                                <li><a href="rankingQuiz.php">Ranking</a></li>
+                                                </ul>
                                             </li>
                                             <li class="has-sub"> 
                                                 <a href="blog.php">Community Forum</a>
@@ -68,9 +97,9 @@ include "connect.php";
                                     <li>
                                         <div class="header-btn second-header-btn">
                                             <?php if(isset($_SESSION['logged_in'])) { ?>
-                                                <a href="logout.php" class="btn">Sign Out</a>
+                                                <a href="logout.php?source=contact" class="btn">Sign Out</a>
                                             <?php } else { ?>
-                                                <a href="login.php" class="btn">Sign In</a>
+                                                <a href="login.php?source=contact" class="btn">Sign In</a>
                                             <?php } ?>
                                         </div>
                                     </li>
@@ -89,7 +118,7 @@ include "connect.php";
         <main>
             
             <!-- breadcrumb-area -->
-            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp.png)">
+            <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrp2.png)">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -98,63 +127,71 @@ include "connect.php";
                                     <h2>Contact Us</h2>    
                                     <div class="breadcrumb-wrap">
                               
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">About Us</li>
-                                    </ol>
-                                </nav>
-                            </div>
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Activity</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="welcome-message">
+                                    <?php
+                                    // Check if the user is logged in
+                                    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+                                        $username = $_SESSION['username'];
+                                        echo 'You\'re logged in as <u>' . $username . '</u>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </section>
             <!-- breadcrumb-area-end -->
 
-<!-- OUR TEAM DISPLAY -->
-<div class="container-fluid pt-120 pb-90">
-    <div class="row">   
-        <div class="col-lg-12 p-relative">
-            <div class="section-title center-align mb-50 text-center">
-                <h5>Our Team</h5>
-                <h2>
-                Our Expert Team
-                </h2>
+            <!-- OUR TEAM DISPLAY -->
+            <div class="container-fluid pt-120 pb-90">
+                <div class="row">   
+                    <div class="col-lg-12 p-relative">
+                        <div class="section-title center-align mb-50 text-center">
+                            <h5>Our Team</h5>
+                            <h2>
+                            Our Expert Team
+                            </h2>
+                        </div>
+                    </div>     
+                </div>
+                <div class="row text-center pl-100 pr-100">
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img src="img/team/Visa.png" style="max-width: 200px; height: auto;">
+                        <h3>VISALINI</h3>
+                        <p>Bachelor in Computer Science (Information System)</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <img src="img/team/Suraya.png" style="max-width: 200px; height: auto;">
+                        <h3>SURAYA</h3>
+                        <p>Bachelor in Computer Science (Information System)</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img src="img/team/Filzah.png" style="max-width: 200px; height: auto;">
+                        <h3>FILZAH</h3>
+                        <p>Bachelor in Computer Science (Information System)</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                    <img src="img/team/Azrul.png" style="max-width: 200px; height: auto;">
+                        <h3>AZRUL</h3>
+                        <p>Bachelor in Computer Science (Information System)</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <img src="img/team/Faiz.png" style="max-width: 200px; height: auto;">
+                        <h3>FAIZ</h3>
+                        <p>Bachelor in Computer Science (Information System)</p>
+                    </div>
+                </div>
+                <hr class="my-4">
             </div>
-        </div>     
-    </div>
-	<div class="row text-center pl-100 pr-100">
-		<div class="col-xs-12 col-sm-12 col-md-4">
-        <img src="img/team/Visa.png" style="max-width: 200px; height: auto;">
-			<h3>VISALINI</h3>
-			<p>Bachelor in Computer Science (Information System)</p>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-4">
-			<img src="img/team/Suraya.png" style="max-width: 200px; height: auto;">
-			<h3>SURAYA</h3>
-			<p>Bachelor in Computer Science (Information System)</p>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-4">
-        <img src="img/team/Filzah.png" style="max-width: 200px; height: auto;">
-			<h3>FILZAH</h3>
-			<p>Bachelor in Computer Science (Information System)</p>
-		</div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-        <img src="img/team/Azrul.png" style="max-width: 200px; height: auto;">
-			<h3>AZRUL</h3>
-			<p>Bachelor in Computer Science (Information System)</p>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-6">
-			<img src="img/team/Faiz.png" style="max-width: 200px; height: auto;">
-			<h3>FAIZ</h3>
-			<p>Bachelor in Computer Science (Information System)</p>
-		</div>
-	</div>
-	<hr class="my-4">
-</div>
             <!-- contact-area -->
             <section id="contact" class="contact-area after-none contact-bg pt-90 pb-30" style="background: #12275e;" >
                 <div class="container">            
@@ -316,29 +353,87 @@ include "connect.php";
         </main>
         <!-- main-area-end -->
 
-        <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-                // Get the form data
-                $fullname = $_POST['fullname'];
-                $email = $_POST['email'];
-                $phone = $_POST['phone'];
-                $message = $_POST['message'];
+        <!-- footer -->
+        <footer class="footer-bg footer-p">
+            <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="footer-widget mb-30">
+                                <div class="f-widget-title mb-15">
+                                <img src="img/logo/nl2.png" alt="img">
+                                </div>
+                                <div class="footer-text mb-20">
+                                    <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
+                                </div>
+                                <div class="footer-social">                                    
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </div>        
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-sm-6">
+                            <div class="footer-widget mb-30">
+                                <div class="f-widget-title">
+                                    <h2>Our Links</h2>
+                                </div>
+                                <div class="footer-link">
+                                    <ul>                                        
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="quiz.html"> Quiz</a></li>
+                                        <li><a href="community.html">  Community Forum</a></li>
+                                        <li><a href="contact.html"> Contact Us</a></li>
+                                        <li><a href="volunteer.html">Join Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-sm-6">
+                            <div class="footer-widget mb-30">
+                                <div class="f-widget-title">
+                                    <h2>Contact Us</h2>
+                                </div>
+                                <div class="f-contact">
+                                    <ul>
+                                    <li>
+                                        <i class="icon fal fa-map-marker-check"></i>
+                                        <span>Faculty of Computer Science and Information Technology</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon fal fa-phone"></i>
+                                        <span>1800-121-3637<br>+91-7052-101-786</span>
+                                    </li>
+                                <li><i class="icon fal fa-envelope"></i>
+                                        <span>
+                                            <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
+                                    <br>
+                                            <a href="mailto:help@example.com">help@example.com</a>
+                                    </span>
+                                    </li>
+                                </ul>
+                                    
+                                    </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        <div class="copyright-wrap text-center">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">                         
+                            Copyright © 2023 UM All rights reserved.  
+                        </div>
                         
-                // Insert the contact record
-                $insertContactQuery = "INSERT INTO contact (fullname, email, phone, message) VALUES ('$fullname', '$email', '$phone', '$message')";
-                $insertContactResult = mysqli_query($mysqli, $insertContactQuery);
-            
-                if ($insertContactResult) {
-                    header("Location: contact.php?#success-send");
-                } else {
-                    // Handle the insert error appropriately for your application
-                    echo "Error inserting contact record: " . mysqli_error($mysqli);
-                }
-            }
-            
-        ?>
+                        
+                    </div>
+                </div>
+            </div>
+            </footer>
+        <!-- footer-end -->
 
-        <div class="overlay" id="success-send">
+        <div class="overlay" id="success-sending-email">
             <div class="wrapper">
                 <div class="content">
                     <div class="form-container">
@@ -351,90 +446,10 @@ include "connect.php";
 
         <script>
             function closePopup() {
-                // Redirect back to the volunteer_details.php page
+                // Redirect back to the contact.php page
                 window.location.href = "contact.php";
             }
         </script>
-
-    <!-- footer -->
-    <footer class="footer-bg footer-p">
-        <div class="footer-top pt-120 pb-80  p-relative" style="background-image: url(img/bg/footer-bg.png); background-color: #fff;  background-repeat: no-repeat;background-size: cover;background-position: center;">
-            <div class="container">
-                <div class="row justify-content-between">
-                      <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title mb-15">
-                               <img src="img/logo/nl2.png" alt="img">
-                            </div>
-                            <div class="footer-text mb-20">
-                                <p>An educational website dedicated to addressing and combating bullying issues, providing resources, support, and insights to create a safe and inclusive environment for students.</p>
-                            </div>
-                            <div class="footer-social">                                    
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>        
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title">
-                                <h2>Our Links</h2>
-                            </div>
-                            <div class="footer-link">
-                                <ul>                                        
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="quiz.html"> Quiz</a></li>
-                                    <li><a href="community.html">  Community Forum</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
-                                    <li><a href="volunteer.html">Join Us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-sm-6">
-                        <div class="footer-widget mb-30">
-                            <div class="f-widget-title">
-                                <h2>Contact Us</h2>
-                            </div>
-                            <div class="f-contact">
-                                <ul>
-                                <li>
-                                    <i class="icon fal fa-map-marker-check"></i>
-                                    <span>Faculty of Computer Science and Information Technology</span>
-                                </li>
-                                <li>
-                                    <i class="icon fal fa-phone"></i>
-                                    <span>1800-121-3637<br>+91-7052-101-786</span>
-                                </li>
-                               <li><i class="icon fal fa-envelope"></i>
-                                    <span>
-                                        <a href="mailto:17201828@siswa.um.edu.my">17201828@siswa.um.edu.my</a>
-                                   <br>
-                                        <a href="mailto:help@example.com">help@example.com</a>
-                                   </span>
-                                </li>
-                            </ul>
-                                
-                                </div>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-        </div>
-       <div class="copyright-wrap text-center">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12">                         
-                          Copyright © 2023 UM All rights reserved.  
-                    </div>
-                    
-                    
-                </div>
-            </div>
-        </div>
-        </footer>
-    <!-- footer-end -->
 
         <!-- JS here -->
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
@@ -457,13 +472,11 @@ include "connect.php";
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/element-in-view.js"></script>
         <script src="js/main.js"></script>
-    </body>
-</html>
 
-<style>
+        <style>
         .error {
         color: red;
-    }
+        }
         .newbutton {
             font-size: 1em;
             padding: 15px 35px;
@@ -564,4 +577,6 @@ include "connect.php";
                 text-align: right;
                 font-size: 16px;
             }
-    </style>
+        </style>
+    </body>
+</html>
